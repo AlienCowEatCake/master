@@ -1,0 +1,345 @@
+\documentclass[a4paper,14pt]{article}
+%\documentclass[a4paper,12pt]{article}
+
+% Русский язык (LaTeX)
+%\usepackage[T1,T2A]{fontenc}
+%\usepackage[utf8]{inputenc}
+%\usepackage[english,russian]{babel}
+
+% Русский язык и шрифты (XeLaTeX)
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage[english,russian]{babel}
+\usepackage{xecyr}
+\defaultfontfeatures{Ligatures={TeX}}
+\setsansfont[Path=./fonts/arial/, UprightFont=*, ItalicFont=*i, BoldFont=*bd, BoldItalicFont=*bi]{arial}
+\setmonofont[Path=./fonts/courier_new/, UprightFont=*, ItalicFont=*i, BoldFont=*bd, BoldItalicFont=*bi, Mapping=]{cour}
+\setmainfont[Path=./fonts/times_new_roman/, UprightFont=*, ItalicFont=*i, BoldFont=*bd, BoldItalicFont=*bi]{times}
+
+% Отступ у первого абзаца
+\usepackage[indentfirst]{titlesec}
+
+% Возможность сделать 14-й шрифт
+\usepackage{extsizes}
+\usepackage{anyfontsize}
+
+% Междустрочный интервал
+%\linespread{1.35}
+\usepackage[nodisplayskipstretch]{setspace}
+%\onehalfspacing
+\setstretch{1.4}
+% Нет интервала между элементами списков
+\usepackage{enumitem}
+\setlist{nosep}
+% Отступы в списках
+%\setitemize[0]{leftmargin=0pt, itemindent=35pt}
+
+% Интервал между абзацами
+\setlength{\parskip}{6pt}
+
+% Поля страницы
+\usepackage[left=3cm,top=2cm,right=1cm,bottom=2cm]{geometry}
+
+% Отступ для абзаца
+\setlength{\parindent}{1cm}
+
+% Литература с точки + нормальные ссылки
+\usepackage[square,numbers,sort&compress]{natbib}
+\renewcommand{\bibnumfmt}[1]{#1.\hfill}
+%\def\@biblabel#1{#1.}
+
+% Начать нумерацию страниц не с 1
+%\setcounter{page}{4}
+
+% Картинки
+\usepackage{graphicx}
+
+% Каталог для картинок
+\graphicspath{ {./images/} }
+
+% Разные таблицы
+\usepackage{tabularx, multirow}
+\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}
+\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}
+\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}
+%\newcolumntype{C}[2]{>{\hsize=#1\hsize\columncolor{#2}\centering\arraybackslash}X}
+
+% Таблицы и рисунки по ГОСТу
+\usepackage[tableposition=top, singlelinecheck=false]{caption}
+\DeclareCaptionLabelFormat{gostfigure}{Рисунок #2}\DeclareCaptionLabelFormat{gosttable}{Таблица #2}
+\DeclareCaptionLabelSeparator{gost}{~---~}
+\captionsetup{labelsep=gost}
+\captionsetup[figure]{labelformat=gostfigure, justification=centering}
+\captionsetup[table]{labelformat=gosttable, justification=raggedright}
+\usepackage{subfig}
+\renewcommand{\thesubfigure}{\asbuk{subfigure}}
+% в рисунках: h - "хотелось бы картинку здесь"; h! - "очень хочу картинку здесь"; H - "ХОЧУ картинку здесь и баста", p - на отдельной странице, t - сверху
+% Управление плавающими штуковинами (рисунками, таблицами, etc)
+\usepackage{float}
+
+% Точки после номеров разделов
+\usepackage[subfigure]{tocloft}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+\makeatletter
+\def\@seccntformat#1{\csname the#1\endcsname.\ }
+\makeatother
+
+% Даешь подсекции в оглавление
+\setcounter{tocdepth}{3}
+
+% Размер шрифтов в названиях секций/подсекций
+\titleformat{\section}{\normalfont\fontsize{14}{16}\bfseries}{\thesection}{1em}{}
+
+% Запрет висячих строк
+\clubpenalty=10000
+\widowpenalty=10000
+
+% Для формул
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+
+% Работа с цветом
+% http://habrahabr.ru/post/52166/
+\usepackage[usenames]{color}
+\usepackage{colortbl}
+
+% Разные подчеркивания
+% https://tex.stackexchange.com/questions/27258/how-do-i-write-underline-text-but-with-a-dotted-line
+\usepackage{tikz}
+\newcommand{\dotunderline}[1]{%
+    \tikz[baseline=(todotted.base)]{
+        \node[inner sep=1pt,outer sep=0pt] (todotted) {#1};
+        \draw[densely dotted] (todotted.south west) -- (todotted.south east);
+    }%
+}%
+
+% Раскопировать пробелы
+\newcommand\spacedfill[1]{\makebox[#1]{\leaders\hbox{~}\hfill}}
+
+% Код программы
+% http://mydebianblog.blogspot.ru/2012/12/latex.html
+\usepackage{verbatim}
+
+% Структурированный pdf
+\usepackage[bookmarksnumbered=true,bookmarksopen=true,breaklinks=true,pdfborder={0 0 0},linktoc=all]{hyperref}
+
+% Минимальное количество букв, которые можно переносить
+\righthyphenmin=2
+
+% Борьба с overfull
+\tolerance=300000
+
+% Перенос знаков во внутритекстовых формулах (использовать так $a\hm+b\hm+c\hm+d$)
+%\newcommand*{\hm}[1]{#1\nobreak\discretionary{}{\hbox{$\mathsurround=0pt #1$}}{}}
+% Можно также просто запретить переносить знаки операций и отношений
+\binoppenalty=10000
+\relpenalty=10000
+
+%
+\title{Отчет по производственной практике}
+\author{Жигалов П.С.}
+
+% Команды и сокращения
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+% =============================================================================
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{spacing}{0.75}
+		\begin{center}
+			{~}\\ 
+			\vspace{-0.55cm}
+			{\fontsize{12}{14}\selectfont \MakeUppercase{Министерство образования и науки Российской Федерации}}\\
+			\vspace{0.4cm}
+			{\fontsize{11}{14}\selectfont ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ}\\
+			{\fontsize{11}{14}\selectfont ВЫСШЕГО ОБРАЗОВАНИЯ}\\
+			\vspace{0.48cm}
+			{\fontsize{12}{14}\selectfont <<\MakeUppercase{Новосибирский государственный технический университет}>>}\\
+			\vspace{-0.25cm}
+			\noindent\rule{16cm}{0.7pt}
+			{~}\\
+			\vspace{0.8cm}
+			{\fontsize{12}{14}\selectfont Кафедра \dotunderline{\spacedfill{4cm}{\fontsize{14}{14}\selectfont Вычислительных технологий}\spacedfill{4cm}}}\\
+			\vspace{-0.15cm}
+			{\fontsize{8}{14}\selectfont \spacedfill{1.8cm}(полное название кафедры)}\\
+			\vspace{1.9cm}
+			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{1.5cm}{\fontsize{14}{14}\selectfont Петр Сергеевич Жигалов}\spacedfill{1.5cm}}}\\
+			{\fontsize{8}{14}\selectfont (И. О. Фамилия студента – автора работы)}\\
+			\vspace{0.8cm}
+			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{0.9cm}{\fontsize{14}{14}\selectfont Анализ систем источник-приемник в задачах морской геоэлектрики}\spacedfill{0.9cm}}}\\
+			{\fontsize{8}{14}\selectfont (полное название темы магистерской диссертации)}\\
+			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{16cm}}}\\
+			{\fontsize{8}{14}\selectfont ~}\\
+			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{16cm}}}\\
+			\vspace{1.1cm}
+			{\fontsize{12}{14}\selectfont \textbf{МАГИСТЕРСКАЯ ДИССЕРТАЦИЯ}}\\
+			{\fontsize{12}{14}\selectfont по направлению высшего образования}\\
+			\vspace{0.4cm}
+			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{1.75cm}{\fontsize{14}{14}\selectfont 01.04.02 – Прикладная математика и информатика}\spacedfill{3.75cm}}}\\
+			{\fontsize{8}{14}\selectfont (код и наименование направления подготовки магистра)}\\
+			\vspace{0.2cm}
+			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{16cm}}}\\
+			\vspace{0.35cm}
+			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{1.7cm}{\fontsize{14}{14}\selectfont факультет прикладной математики и информатики}\spacedfill{3.7cm}}}\\
+			{\fontsize{8}{14}\selectfont (факультет)}\\
+		\end{center}
+		{\fontsize{12}{14}\selectfont Тема диссертации утверждена приказом по НГТУ № 4931/2~~~от~~~<<15>>~~~октября~~~2014 г.}\\
+		\begin{center}
+			\hfill
+			\parbox[t][4em][t]{0.49\textwidth} {
+				\begin{center}
+					\vspace{0.1cm}
+					{\fontsize{12}{14}\selectfont Руководитель}\\
+					\vspace{0.3cm}
+					{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{1.6cm}{\fontsize{14}{14}\selectfont Шурина Э.П.}\spacedfill{1.6cm}}}\\
+					\vspace{-0.05cm}
+					{\fontsize{8}{14}\selectfont (фамилия, И., О.)}\\
+					\vspace{0.2cm}
+					{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{1.25cm}{\fontsize{14}{14}\selectfont д.т.н., профессор}\spacedfill{1.25cm}}}\\
+					\vspace{-0.05cm}
+					{\fontsize{8}{14}\selectfont (уч. степень, уч. звание)}\\
+				\end{center}
+			}\\
+			\vfill
+			{\fontsize{12}{14}\selectfont Новосибирск, 2016 г.}\\
+			\vspace{0.9cm}
+		\end{center}
+	\end{spacing}
+\end{titlepage}
+\clearpage
+\begin{titlepage}
+	\begin{spacing}{0.75}
+		\begin{center}
+			{~}\\ 
+			\vspace{0.3cm}
+			{\fontsize{12}{14}\selectfont \MakeUppercase{Министерство образования и науки Российской Федерации}}\\
+			\vspace{0.4cm}
+			{\fontsize{11}{14}\selectfont ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ}\\
+			{\fontsize{11}{14}\selectfont ВЫСШЕГО ОБРАЗОВАНИЯ}\\
+			\vspace{0.48cm}
+			{\fontsize{12}{14}\selectfont <<\MakeUppercase{Новосибирский государственный технический университет}>>}\\
+			\vspace{-0.25cm}
+			\noindent\rule{16cm}{0.7pt}
+			{~}\\
+			\vspace{0.8cm}
+			{\fontsize{12}{14}\selectfont Кафедра \dotunderline{\spacedfill{4cm}{\fontsize{14}{14}\selectfont Вычислительных технологий}\spacedfill{4cm}}}\\
+			\vspace{-0.15cm}
+			{\fontsize{8}{14}\selectfont \spacedfill{1.8cm}(полное название кафедры)}\\
+			\vspace{0.2cm}
+			\hfill
+			\parbox[t][4em][t]{0.42\textwidth} {
+				\begin{center}
+					\vspace{-0.4cm}
+					{\fontsize{12}{14}\selectfont УТВЕРЖДАЮ}\\
+					\vspace{0.0cm}
+				\end{center}
+				\begin{flushright}
+					{\fontsize{12}{14}\selectfont Зав. кафедрой ~\dotunderline{\spacedfill{0.5cm}{\fontsize{14}{14}\selectfont Шокин Ю.И.}\spacedfill{0.5cm}}~~~}\\
+					\vspace{-0.1cm}
+					{\fontsize{8}{14}\selectfont (фамилия, И., О.)\spacedfill{1.3cm}}\\
+					\vspace{0.2cm}
+					{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{3.75cm}}~~~}\\
+					\vspace{-0.1cm}
+					{\fontsize{8}{14}\selectfont (подпись, дата)\spacedfill{1.3cm}}\\
+				\end{flushright}
+			}\\
+			\vspace{2.4cm}
+			{\fontsize{12}{14}\selectfont \textbf{ЗАДАНИЕ}}\\
+			\vspace{0.04cm}
+			{\fontsize{12}{14}\selectfont \textbf{на магистерскую диссертацию}}\\
+			\vspace{-0.1cm}
+			\begin{flushleft}
+				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont студенту \dotunderline{\spacedfill{4cm}{\fontsize{14}{14}\selectfont Жигалову Петру Сергеевичу}\spacedfill{4.25cm}}}\\
+				\vspace{-0.05cm}
+				{\spacedfill{7.2cm} \fontsize{8}{14}\selectfont (фамилия, имя, отчество)}\\
+				\vspace{0.3cm}
+				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont факультета \dotunderline{\spacedfill{2.5cm}{\fontsize{14}{14}\selectfont прикладной математики и информатики}\spacedfill{2.95cm}}}\\
+				\vspace{0.35cm}
+				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont Направление подготовки \dotunderline{\spacedfill{0.4cm}{\fontsize{14}{14}\selectfont 01.04.02 – Прикладная математика и информатика}\spacedfill{0.45cm}}}\\
+				\vspace{-0.05cm}
+				{\spacedfill{7.5cm} \fontsize{8}{14}\selectfont (код и наименование направления подготовки магистра)}\\
+				\vspace{0.1cm}
+				{\spacedfill{0.55cm} \dotunderline{\spacedfill{15.95cm}}}\\
+				\vspace{0.35cm}
+				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont Магистерская программа \dotunderline{\spacedfill{1.0cm}{\fontsize{14}{14}\selectfont Математическое моделирование} \spacedfill{3.45cm}}}\\
+				\vspace{-0.05cm}
+				{\spacedfill{9.3cm} \fontsize{8}{14}\selectfont (наименование программы)}\\
+				\vspace{0.05cm}
+				{\spacedfill{0.55cm} \dotunderline{\spacedfill{2.7cm}{\fontsize{14}{14}\selectfont детерминированных и стохастических процессов} \spacedfill{2.75cm}}}\\
+				\vspace{0.35cm}
+				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont Тема \dotunderline{\spacedfill{0.3cm}{\fontsize{14}{14}\selectfont Анализ систем источник-приемник в задачах морской геоэлектрики} \spacedfill{0.3cm}}}\\
+				\vspace{-0.05cm}
+				{\spacedfill{8.1cm} \fontsize{8}{14}\selectfont (полное название темы)}\\
+				\vspace{0.1cm}
+				{\spacedfill{0.55cm} \dotunderline{\spacedfill{15.95cm}}}\\
+				\vspace{0.4cm}
+				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont Цели работы {\fontsize{14}{14}\selectfont Lorem Ipsum}}\\
+				\vspace{-0.35cm}
+				{\spacedfill{3.05cm} \dotunderline{\spacedfill{13.45cm}}}\\
+				\vspace{0.15cm}
+				{\spacedfill{0.55cm} \fontsize{14}{14}\selectfont Lorem Ipsum}\\
+				\vspace{-0.35cm}
+				{\spacedfill{0.55cm} \dotunderline{\spacedfill{15.95cm}}}\\
+				\vspace{0.15cm}
+				{\spacedfill{0.55cm} \fontsize{14}{14}\selectfont Lorem Ipsum}\\
+				\vspace{-0.35cm}
+				{\spacedfill{0.55cm} \dotunderline{\spacedfill{15.95cm}}}\\
+				\vspace{0.15cm}
+				{\spacedfill{0.55cm} \fontsize{14}{14}\selectfont Lorem Ipsum}\\
+				\vspace{-0.35cm}
+				{\spacedfill{0.55cm} \dotunderline{\spacedfill{15.95cm}}}\\
+				\vspace{0.25cm}
+				{\spacedfill{0.55cm} \dotunderline{\spacedfill{15.95cm}}}\\
+				\vspace{-0.6cm}
+				\parbox[t][4em][t]{0.38\textwidth} {
+					\begin{center}
+						\vspace{0.1cm}
+						{\fontsize{12}{14}\selectfont Руководитель}\\
+						\vspace{0.15cm}
+						{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{0.6cm}{\fontsize{14}{14}\selectfont Шурина Э.П.}\spacedfill{0.6cm}}}\\
+						\vspace{-0.07cm}
+						{\fontsize{8}{14}\selectfont (фамилия, И., О.)}\\
+						\vspace{0.05cm}
+						{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{0.25cm}{\fontsize{14}{14}\selectfont д.т.н., профессор}\spacedfill{0.25cm}}}\\
+						\vspace{-0.07cm}
+						{\fontsize{8}{14}\selectfont (уч. степень, уч. звание)}\\
+						\vspace{0.25cm}
+						{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{4.1cm}}}\\
+						\vspace{-0.17cm}
+						{\fontsize{8}{14}\selectfont (подпись, дата)}\\
+					\end{center}
+				}\\
+			\end{flushleft}
+		\end{center}
+	\end{spacing}
+\end{titlepage}
+\setcounter{page}{3}
+
+% =============================================================================
+
+\begin{titlepage}
+	\clearpage
+	\phantomsection
+	\section*{Аннотация}
+\end{titlepage}
+\setcounter{page}{4}
+
+% =============================================================================
+
+\tableofcontents
+
+% =============================================================================
+
+\clearpage
+\phantomsection
+\section*{Введение}
+\addcontentsline{toc}{section}{Введение}
+
+\end{document}
