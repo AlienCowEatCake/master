@@ -205,6 +205,7 @@
 \newcommand{\CalTau}{\mathcal{T}}
 \newcommand{\CalEps}{\mathcal{E}}
 \newcommand{\CalF}{\mathcal{F}}
+\renewcommand{\log}{\mathop{\mathrm{log}}\nolimits}
 
 % =============================================================================
 
@@ -713,11 +714,11 @@
 %\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.25]{tetrahedron.png}
-	\caption{тетраэдральный конечный элемент}
+	\caption{Тетраэдральный конечный элемент}
 	\label{fig:tetrahedron}
 \end{figure}
 
-Под $\mathcal{L}$-координатами понимают функции следующего вида:
+\noindent Под $\mathcal{L}$-координатами понимают функции следующего вида:
 \begin{equation*}
 	\mathcal{L}_i (x, y, z) = \alpha_{i, 1} x + \alpha_{i, 2} y + \alpha_{i, 3} z + \alpha_{i, 4} , \text{~~~} i = \overline{1..4} . \label{eq:tet:L}
 \end{equation*}
@@ -797,11 +798,11 @@
 %\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.25]{triangle.png}
-	\caption{треугольный конечный элемент}
+	\caption{Треугольный конечный элемент}
 	\label{fig:triangle}
 \end{figure}
 
-Тогда $\mathcal{L}$-координаты примут вид:
+\noindent Тогда $\mathcal{L}$-координаты примут вид:
 \begin{equation*}
 	\mathcal{L}_i (x, y) = \alpha_{i, 1} x + \alpha_{i, 2} y + \alpha_{i, 3} , \text{~~~} i = \overline{1..3} . \label{eq:tr:L}
 \end{equation*}
@@ -852,7 +853,122 @@
 \begin{equation*}
 	\int\limits_{\Omega_k} f(x, y) \,d\Omega_k = \sum\limits_{i = 1}^m f( x_i , y_i) w_i ,
 \end{equation*}
-где $(x_i , y_i)$ -- точки Гаусса, $m$ -- число точек Гаусса, $w_i$ -- соответствующие веса. Так же, как и для тетраэдров, для работы с базисом второго порядка нужно использовать формулы, обеспечивающие восьмой порядок интегрирования~\citep{zhang_integration}. Для базиса первого порядка достаточно и меньших порядков интегрирования~\citep{tet_integration, misovskih}.
+где $(x_i , y_i)$ -- точки Гаусса, $m$ -- число точек Гаусса, $w_i$ -- соответствующие веса. Так же, как и для тетраэдров, для работы с базисом второго порядка нужно использовать формулы, обеспечивающие восьмой порядок интегрирования~\citep{zhang_integration}. Для базиса первого порядка достаточно и меньших порядков интегрирования~\citep{tr_integration, misovskih}.
+
+% =============================================================================
+
+\subsection{Двухуровневый решатель}
+
+% =============================================================================
+
+\clearpage
+\section{Построение СЛАУ}
+\subsection{Структура глобальной матрицы СЛАУ}
+\subsection{Учет краевых условий}
+\subsection{Учет токовой петли}
+\subsection{Вывод решения}
+
+% =============================================================================
+
+\clearpage
+\section{Верификация}
+Верификация полученной конечноэлементной аппроксимации будет проводиться на тестовой задаче, имеющей аналитическое решение.
+\subsection{Расчетная область}
+Расчетная область представляет собой куб со следующими параметрами: $x \in [0,1]$, $y \in [0,1]$, $z \in [0,1]$. Куб разбивается на регулярную тетраэдральную сетку согласно рисунку \ref{fig:verify:x1}:
+
+\begin{figure}[!htbp]
+%\begin{figure}[H]
+	\centering
+	\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x1.png}
+	\caption{Конечноэлементная сетка для верификации}
+	\label{fig:verify:x1}
+\end{figure}
+
+\noindent Всего в сетке 750 тетраэдров, 300 треугольников по границе, 216 узлов, 1115 ребер и 1650 граней.
+
+Физические параметры среды заданы следующим образом: $\varepsilon = \varepsilon_0$, $\mu = \mu_0$, $\sigma = 10$~См/м. Частота источника поля $\nu = \frac{100}{2 \pi}$~Гц. На всех внешних гранях расчетной области заданы краевые условия первого рода (\ref{eq:bound1}).
+
+% =============================================================================
+
+\subsection{Тестирование на линейных функциях}
+В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
+\begin{equation*}
+	\mathbf{E} = ( y+z , x+z, x+y )^T .
+\end{equation*}
+Тестирование будем проводить на базисных функциях первого и второго порядка второго типа. Погрешности в норме пространства $\mathbb{L}^2$ полученных решений приведены в таблице \ref{tab:verify:linear_diff}.
+
+\begin{table}[H]
+	\caption{относительные погрешности в норме $\mathbb{L}^2$}
+	\label{tab:verify:linear_diff}
+	\begin{tabularx}{\textwidth}{|C{1}|C{1}|C{1}|C{1}|C{1}|C{1}|}
+		\hline Порядок базисных ф-й & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| |\mathbf{E}| - |\mathbf{E}^h| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_x - \mathbf{E}^h_x \|_{\mathbb{L}^2}}{\| \mathbf{E}_x \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_y - \mathbf{E}^h_y \|_{\mathbb{L}^2}}{\| \mathbf{E}_y \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_z - \mathbf{E}^h_z \|_{\mathbb{L}^2}}{\| \mathbf{E}_z \|_{\mathbb{L}^2}}}$} \\
+		\hline 1 & 5.277e-11 & 5.313e-11 & 5.345e-11 & 5.169e-11 \\
+		\hline 2 & 8.064e-11 & 8.111e-11 & 8.056e-11 & 8.025e-11 \\
+		\hline
+	\end{tabularx}
+\end{table}
+\vspace{-0.5cm}Как и следовало ожидать, метод хорошо аппроксимировал линейную функцию.
+
+% =============================================================================
+
+\subsection{Тестирование на нелинейных функциях}
+
+В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
+\begin{equation}
+	\mathbf{E} = \left( \begin{array}{c}
+		e^{-(0.5-y)^2 -(0.5-z)^2} \\
+		e^{-(0.5-x)^2 -(0.5-z)^2} \\
+		e^{-(0.5-x)^2 -(0.5-y)^2} \\
+	\end{array} \right) .
+	\label{eq:verify:exp_solution}
+\end{equation}
+Тестирование будем проводить на базисных функциях первого и второго порядка второго типа. Погрешности в норме пространства $\mathbb{L}^2$ полученных решений приведены в таблице \ref{tab:verify:exp_diff}.
+
+\begin{table}[H]
+	\caption{относительные погрешности в норме $\mathbb{L}^2$}
+	\label{tab:verify:exp_diff}
+	\begin{tabularx}{\textwidth}{|C{1}|C{1}|C{1}|C{1}|C{1}|C{1}|}
+		\hline Порядок базисных ф-й & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| |\mathbf{E}| - |\mathbf{E}^h| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_x - \mathbf{E}^h_x \|_{\mathbb{L}^2}}{\| \mathbf{E}_x \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_y - \mathbf{E}^h_y \|_{\mathbb{L}^2}}{\| \mathbf{E}_y \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_z - \mathbf{E}^h_z \|_{\mathbb{L}^2}}{\| \mathbf{E}_z \|_{\mathbb{L}^2}}}$} \\
+		\hline 1 & 6.608e-3 & 7.869e-3 & 5.877e-3 & 5.877e-3 \\
+		\hline 2 & 1.775e-4 & 1.895e-4 & 1.712e-4 & 1.712e-4 \\
+		\hline
+	\end{tabularx}
+\end{table}
+\vspace{-0.5cm}Метод достаточно хорошо аппроксимировал и нелинейную функцию.
+
+% =============================================================================
+
+\subsection{Определение порядка аппроксимации}
+
+В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию (\ref{eq:verify:exp_solution}). Проведем исследование на порядок аппроксимации. Измельчим сетку расчетной области, изображенную на рисунке (\ref{fig:verify:x1}), в 2 и 4 раза, после чего сравним погрешности полученных решений. Измельченные сетки приведены на рисунках \ref{fig:verify:x2} и \ref{fig:verify:x4}, погрешности в норме пространства $\mathbb{L}^2$ полученных решений и порядок аппроксимации -- в таблице \ref{tab:verify:exp_order}.
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x2.png}\label{fig:verify:x2}}
+	~~~~~
+	\subfloat[][]{\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x4.png}\label{fig:verify:x4}}
+	\caption{Конечноэлементные сетки для определения порядка аппроксимации}
+	\label{fig:verify:x2_x4}
+\end{figure}
+
+\begin{table}[H]
+	\caption{относительные погрешности в норме $\mathbb{L}^2$}
+	\label{tab:verify:exp_order}
+	\begin{tabularx}{\textwidth}{|C{0.7}|C{0.9}|C{0.9}|C{0.9}|C{1.3}|C{1.3}|}
+		\hline Порядок базиса &
+		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
+		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
+		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h/4}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
+		\raisebox{-0.7em}{$\smash{\log_2 \frac{\| |\mathbf{E}| - |\mathbf{E}^{h}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}}$} &
+		\raisebox{-0.7em}{$\smash{\log_2 \frac{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| - |\mathbf{E}^{h/4}| \|_{\mathbb{L}^2}}}$} \\
+		\hline 1 & 6.608e-3 & 1.637e-3 & 5.051e-4 & 2.013 & 1.696 \\
+		\hline 2 & 1.775e-4 & 2.164e-5 & 3.582e-6 & 3.036 & 2.595 \\
+		\hline
+	\end{tabularx}
+\end{table}
+\vspace{-0.5cm}
+
+Из результатов видно, что порядок аппроксимации получился второй для базисных функций первого порядка и третий для базисных функций второго порядка, что и следовало ожидать.
 
 % =============================================================================
 
@@ -908,9 +1024,11 @@ Zhang L. et al. A set of symmetric quadrature rules on triangles and tetrahedra 
 \bibitem{tet_integration}
 Numerical Integration over the Tetrahedral Domain [Электронный ресурс].
 -- Режим доступа: \href{https://web.archive.org/web/20140714140951/https://people.fh-landshut.de/~maurer/numeth/node148.html}{\url{https://people.fh-landshut.de/~maurer/numeth/node148.html}}.
+\bibitem{tr_integration}
+Numerical Integration over the Triangular Domain [Электронный ресурс].
+-- Режим доступа: \href{https://web.archive.org/web/20140714120045/https://people.fh-landshut.de/~maurer/numeth/node147.html}{\url{https://people.fh-landshut.de/~maurer/numeth/node147.html}}.
 \end{thebibliography}
 
 % =============================================================================
-
 
 \end{document}
