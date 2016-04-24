@@ -968,7 +968,81 @@
 \end{table}
 \vspace{-0.5cm}
 
-Из результатов видно, что порядок аппроксимации получился второй для базисных функций первого порядка и третий для базисных функций второго порядка, что и следовало ожидать.
+Из результатов видно, что порядок аппроксимации получился второй для базисных функций первого порядка и третий для базисных функций второго порядка, что совпадает с теоретическими значениями.
+
+% =============================================================================
+
+\clearpage
+\section{Вычислительные эксперименты}
+\subsection{Исследование влияния слоя воздуха}
+
+Для сокращения размеров расчетной области нередко практикуется отказ от расчетов в области с воздухом и вместо этого задание на границе раздела сред воздух-вода условий непротекания~(\ref{eq:bound2}). Однако такой подход не всегда позволяет правильно учесть физические процессы, протекающие в воздухе~\citep{anderson}. %TODO сослаться на НТИ-2015 еще!
+
+Проведем исследование влияния слоя воздуха в модельной задаче морской геоэлектрики при различной глубине погружения в воду источника электромагнитного возмущения.
+
+\subsubsection{Описание расчетной области}
+Схематичное изображение расчетной области показано на рисунке \ref{fig:res1:area}, где $\Omega_1$ – воздух ($\sigma=10^{-6}$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_2$ – морская вода ($\sigma=3.3$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_3$ – грунт ($\sigma=0.2$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_4$ – углеводороды ($\sigma=10^{-2}$~См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $L_1$, $L_2$ и $L_3$ -- размеры области моделирования по осям $x$, $y$ и $z$ соответственно; $L_1 = L_2 = L_3 = 6000$~м; $h_1=600$~м -- толщина $\Omega_2$; $h_3=75$~м, $l_1=400$~м, $h_2=80$~м, -- длина, толщина и глубина объекта $\Omega_4$ соответственно.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{research-1/area_3layers_shift_3.png}
+	\caption{схематичное изображение расчетной области}
+	\label{fig:res1:area}
+\end{figure}
+
+\noindent Объект $\Omega_4$ представляет собой скругленный прямоугольный параллелепипед с двумя равными сторонами, наклоненный под углом $5^{\circ}$. Источником электрического поля является токовая петля диаметром $d=100$~м с током частотой 1~Гц, глубина $h$ которой варьируется в ходе исследования.
+
+\subsubsection{Конечноэлементная сетка}
+Фрагмент $x \in [-600,0]$, $y \in [-600,600]$ $z \in [-1000,600]$ одной из конечноэлементных сеток, использованных для проведения исследования, представлен на рисунке \ref{fig:res1:mesh}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[trim=390mm 20mm 5mm 195mm,clip,scale=0.5]{research-1/mesh/mesh.png}
+	\caption{фрагмент конечноэлементной сетки}
+	\label{fig:res1:mesh}
+\end{figure}
+
+\subsubsection{Результаты вычислительных экспериментов}
+Разности решений в норме $L_2$ в объеме $[-600,600] \times [-600,600] \times [-1000,0]$ между областью, в которой присутствует слой воздуха, и областью, в которой заданы условия непротекания~(\ref{eq:bound2}), для некоторых значений глубины петли $h$ показаны в таблице \ref{tab:res1:diff}. В форме графика эти данные приведены на рисунке \ref{fig:res1:graph}.
+
+\begin{table}[H]
+	\caption{относительные разности решений}
+	\label{tab:res1:diff}
+	\begin{tabularx}{\textwidth}{|C{2.4}|C{0.8}|C{0.8}|C{0.8}|C{0.8}|C{0.8}|C{0.8}|C{0.8}|}
+		\hline Глубина петли & 5 & 10 & 50 & 100 & 200 & 300 & 400 \\
+		\hline $\displaystyle \frac{\| | \mathbf{E}^{air} - \mathbf{E}^{noair} | \|_{L_2}}{\| | \mathbf{E}^{air} | \|_{L_2}}$ & 0.44 & 0.40 & 0.24 & 0.14 & 0.07 & 0.04 & 0.02 \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{research-1/presentation/presentation.eps}
+	\caption{график изменения относительной разности решений при изменении глубины}
+	\label{fig:res1:graph}
+\end{figure}
+
+Графики вещественной компоненты $\mathbf{E}_y$ по линии $y=0$, $z=-610$ для различных глубин петли представлены на рисунках \ref{fig:res1:5_50} и \ref{fig:res1:200_300}.
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{\includegraphics[scale=1]{research-1/-5/EyR_-700.eps}\label{fig:res1:5}}
+	~~~
+	\subfloat[][]{\includegraphics[scale=1]{research-1/-50/EyR_-700.eps}\label{fig:res1:50}}
+	\caption{$\Re(\mathbf{E}_y)$ по линии $y=0$, $z=-610$, глубина (а) 5 м и (б) 50 м}
+	\label{fig:res1:5_50}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{\includegraphics[scale=1]{research-1/-200/EyR_-700.eps}\label{fig:res1:200}}
+	~~~
+	\subfloat[][]{\includegraphics[scale=1]{research-1/-300/EyR_-700.eps}\label{fig:res1:300}}
+	\caption{$\Re(\mathbf{E}_y)$ по линии $y=0$, $z=-610$, глубина (а) 200 м и (б) 300 м}
+	\label{fig:res1:200_300}
+\end{figure}
+
+Из результатов следует, что слой воздуха оказывает значительное влияние на получаемое решение при расположении источника электромагнитного возмущения на малой глубине (меньше трехсот метров для рассмотренной конфигурации).
 
 % =============================================================================
 
@@ -1027,6 +1101,8 @@ Numerical Integration over the Tetrahedral Domain [Электронный рес
 \bibitem{tr_integration}
 Numerical Integration over the Triangular Domain [Электронный ресурс].
 -- Режим доступа: \href{https://web.archive.org/web/20140714120045/https://people.fh-landshut.de/~maurer/numeth/node147.html}{\url{https://people.fh-landshut.de/~maurer/numeth/node147.html}}.
+\bibitem{anderson}
+Anderson C. An integrated approach to marine electromagnetic surveying using a towed streamer and source / Anderson C., Mattsson J. // First Break. – May 2010. – Volume 28, Issue 5. – P. 71-75.
 \end{thebibliography}
 
 % =============================================================================
