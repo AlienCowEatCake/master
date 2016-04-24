@@ -641,11 +641,11 @@
 
 После такой замены, внутри PML-слоя уравнение Гельмгольца (\ref{eq:helmholtz}) будет иметь вид (\ref{eq:helmholtz_pml})
 \begin{equation}
-	\tilde{\nabla} \times ( \mu^{-1} \tilde{\nabla} \times \mathbf{E} ) + k^{2} \mathbf{E} = - i \omega \mathbf{J} , \label{eq:helmholtz_pml}
+	\tilde{\nabla} \times ( \mu^{-1} \tilde{\nabla} \times \mathbf{E} ) + k^{2} \mathbf{E} = 0 , \label{eq:helmholtz_pml}
 \end{equation}
 что приведет к преобразованию уравнения (\ref{eq:weak}) к виду (\ref{eq:weak_pml}):
 \begin{equation}
-	\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \mathbf{E} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = - \int\limits_{\tilde{\Omega}} i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} . \label{eq:weak_pml}
+	\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \mathbf{E} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = 0 . \label{eq:weak_pml}
 \end{equation}
 
 В результате векторная вариационная постановка имеет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, такое что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ будет выполнено}}:
@@ -654,7 +654,7 @@
 		\displaystyle
 		\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\Omega \\
 		\displaystyle
-		\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \mathbf{E} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = - \int\limits_{\tilde{\Omega}} i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} . \\
+		\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \mathbf{E} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = 0 . \\
 	\end{cases}
 \end{equation*}
 
