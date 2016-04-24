@@ -641,20 +641,20 @@
 
 После такой замены, внутри PML-слоя уравнение Гельмгольца (\ref{eq:helmholtz}) будет иметь вид (\ref{eq:helmholtz_pml})
 \begin{equation}
-	\tilde{\nabla} \times ( \mu^{-1} \tilde{\nabla} \times \mathbf{E} ) + k^{2} \mathbf{E} = 0 , \label{eq:helmholtz_pml}
+	\tilde{\nabla} \times ( \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} ) + k^{2} \tilde{\mathbf{E}} = 0 , \label{eq:helmholtz_pml}
 \end{equation}
 что приведет к преобразованию уравнения (\ref{eq:weak}) к виду (\ref{eq:weak_pml}):
 \begin{equation}
-	\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \mathbf{E} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = 0 . \label{eq:weak_pml}
+	\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \tilde{\mathbf{E}} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = 0 . \label{eq:weak_pml}
 \end{equation}
 
-В результате векторная вариационная постановка имеет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, такое что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ будет выполнено}}:
+В результате векторная вариационная постановка имеет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ и  $\tilde{\mathbf{E}} \in \mathbb{H}_{0}( \mathrm{rot}\,, \tilde{\Omega} )$, такие что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ будет выполнено}}:
 \begin{equation*}
 	\begin{cases}
 		\displaystyle
 		\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\Omega \\
 		\displaystyle
-		\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \mathbf{E} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = 0 . \\
+		\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \tilde{\mathbf{E}} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = 0 . \\
 	\end{cases}
 \end{equation*}
 
@@ -790,7 +790,7 @@
 	M^{S_1} \tilde{q} = b^{S_1} ,
 	\label{eq:bound_mnk}
 \end{equation}
-где $M^{S_1}_{i,j} = \int\limits_{S_1} \mathbf{w}_i \cdot \mathbf{w}_j \,d S_1$, $b^{S_1}_{i} = \int\limits_{S_1} \mathbf{E}^g \cdot \mathbf{w}_i \,d S_1$, $\mathbf{w}_i$ и $\mathbf{w}_j$ -- базисные функции на треугольниках.
+где $\displaystyle M^{S_1}_{i,j} = \int\limits_{S_1} \mathbf{w}_i \cdot \mathbf{w}_j \,d S_1$, $\displaystyle b^{S_1}_{i} = \int\limits_{S_1} \mathbf{E}^g \cdot \mathbf{w}_i \,d S_1$, $\mathbf{w}_i$ и $\mathbf{w}_j$ -- базисные функции на треугольниках.
 
 Определим $\mathcal{L}$-координаты на треугольниках таким же образом, как и на тетраэдрах. Введем нумерацию вершин и ребер согласно рисунку \ref{fig:triangle}:
 
@@ -1003,14 +1003,14 @@
 \end{figure}
 
 \subsubsection{Результаты вычислительных экспериментов}
-Разности решений в норме $L_2$ в объеме $[-600,600] \times [-600,600] \times [-1000,0]$ между областью, в которой присутствует слой воздуха, и областью, в которой заданы условия непротекания~(\ref{eq:bound2}), для некоторых значений глубины петли $h$ показаны в таблице \ref{tab:res1:diff}. В форме графика эти данные приведены на рисунке \ref{fig:res1:graph}.
+Разности решений в норме $\mathbb{L}^2$ в объеме $[-600,600] \times [-600,600] \times [-1000,0]$ между областью, в которой присутствует слой воздуха, и областью, в которой заданы условия непротекания~(\ref{eq:bound2}), для некоторых значений глубины петли $h$ показаны в таблице \ref{tab:res1:diff}. В форме графика эти данные приведены на рисунке \ref{fig:res1:graph}.
 
 \begin{table}[H]
 	\caption{относительные разности решений}
 	\label{tab:res1:diff}
 	\begin{tabularx}{\textwidth}{|C{2.4}|C{0.8}|C{0.8}|C{0.8}|C{0.8}|C{0.8}|C{0.8}|C{0.8}|}
 		\hline Глубина петли & 5 & 10 & 50 & 100 & 200 & 300 & 400 \\
-		\hline $\displaystyle \frac{\| | \mathbf{E}^{air} - \mathbf{E}^{noair} | \|_{L_2}}{\| | \mathbf{E}^{air} | \|_{L_2}}$ & 0.44 & 0.40 & 0.24 & 0.14 & 0.07 & 0.04 & 0.02 \\
+		\hline $\displaystyle \frac{\| | \mathbf{E}^{air} - \mathbf{E}^{noair} | \|_{\mathbb{L}^2}}{\| | \mathbf{E}^{air} | \|_{\mathbb{L}^2}}$ & 0.44 & 0.40 & 0.24 & 0.14 & 0.07 & 0.04 & 0.02 \\
 		\hline
 	\end{tabularx}
 \end{table}
@@ -1027,7 +1027,7 @@
 \begin{figure}[H]
 	\centering
 	\subfloat[][]{\includegraphics[scale=1]{research-1/-5/EyR_-700.eps}\label{fig:res1:5}}
-	~~~
+	~
 	\subfloat[][]{\includegraphics[scale=1]{research-1/-50/EyR_-700.eps}\label{fig:res1:50}}
 	\caption{$\Re(\mathbf{E}_y)$ по линии $y=0$, $z=-610$, глубина (а) 5 м и (б) 50 м}
 	\label{fig:res1:5_50}
@@ -1036,7 +1036,7 @@
 \begin{figure}[H]
 	\centering
 	\subfloat[][]{\includegraphics[scale=1]{research-1/-200/EyR_-700.eps}\label{fig:res1:200}}
-	~~~
+	~
 	\subfloat[][]{\includegraphics[scale=1]{research-1/-300/EyR_-700.eps}\label{fig:res1:300}}
 	\caption{$\Re(\mathbf{E}_y)$ по линии $y=0$, $z=-610$, глубина (а) 200 м и (б) 300 м}
 	\label{fig:res1:200_300}

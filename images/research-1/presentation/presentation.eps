@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: presentation.eps
-%%Creator: gnuplot 5.0 patchlevel 3
-%%CreationDate: Sun Apr 24 22:01:12 2016
+%%Creator: gnuplot 5.0 patchlevel rc2
+%%CreationDate: Sun Apr 24 23:10:04 2016
 %%DocumentFonts: (atend)
 %%BoundingBox: 50 50 390 248
 %%EndComments
@@ -48,7 +48,7 @@ gnudict begin
   } if
 } def
 %
-% Gnuplot Prolog Version 5.1 (Oct 2015)
+% Gnuplot Prolog Version 5.0 (Apr 2014)
 %
 %/SuppressPDFMark true def
 %
@@ -83,7 +83,7 @@ gnudict begin
 /PL {stroke userlinewidth setlinewidth
 	Rounded {1 setlinejoin 1 setlinecap} if} def
 3.8 setmiterlimit
-% Classic Line colors (version 5.0)
+% Default Line colors
 /LCw {1 1 1} def
 /LCb {0 0 0} def
 /LCa {0 0 0} def
@@ -96,20 +96,19 @@ gnudict begin
 /LC6 {0 0 0} def
 /LC7 {1 0.3 0} def
 /LC8 {0.5 0.5 0.5} def
-% Default dash patterns (version 5.0)
-/LTB {BL [] LCb DL} def
+% Default Line Types
 /LTw {PL [] 1 setgray} def
-/LTb {PL [] LCb DL} def
+/LTb {BL [] LCb DL} def
 /LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
 /LT0 {PL [] LC0 DL} def
-/LT1 {PL [2 dl1 3 dl2] LC1 DL} def
-/LT2 {PL [1 dl1 1.5 dl2] LC2 DL} def
-/LT3 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC3 DL} def
-/LT4 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
-/LT5 {PL [4 dl1 2 dl2] LC5 DL} def
-/LT6 {PL [1.5 dl1 1.5 dl2 1.5 dl1 1.5 dl2 1.5 dl1 6 dl2] LC6 DL} def
-/LT7 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC7 DL} def
-/LT8 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC8 DL} def
+/LT1 {PL [4 dl1 2 dl2] LC1 DL} def
+/LT2 {PL [2 dl1 3 dl2] LC2 DL} def
+/LT3 {PL [1 dl1 1.5 dl2] LC3 DL} def
+/LT4 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC5 DL} def
+/LT6 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 4 dl2] LC8 DL} def
 /SL {[] 0 setdash} def
 /Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
 /Dia {stroke [] 0 setdash 2 copy vpt add M
@@ -525,14 +524,15 @@ systemdict /pdfmark known not {
 SDict begin [
   /Title (presentation.eps)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 5.0 patchlevel 3)
+  /Creator (gnuplot 5.0 patchlevel rc2)
   /Author (peter)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Sun Apr 24 22:01:12 2016)
+  /CreationDate (Sun Apr 24 23:10:04 2016)
   /DOCINFO pdfmark
 end
 } ifelse
+end
 %
 % Support for boxed text - Ethan A Merritt May 2005
 %
@@ -558,10 +558,6 @@ end
 /Boxing false def
 /textshow { ExtendTextBox Gshow } def
 %
-% redundant definitions for compatibility with prologue.ps older than 5.0.2
-/LTB {BL [] LCb DL} def
-/LTb {PL [] LCb DL} def
-end
 %%EndProlog
 %%Page: 1 1
 gnudict begin
@@ -957,7 +953,7 @@ stroke
 LTb
 LCb setrgbcolor
 1.000 UL
-LTB
+LTb
 LCb setrgbcolor
 810 3751 N
 810 576 L
@@ -972,18 +968,26 @@ LCb setrgbcolor
 LCb setrgbcolor
 180 2163 M
 currentpoint gsave translate -270 rotate 0 0 moveto
-[ [(Helvetica) 180.0 0.0 true true 0 (diff)]
-] -60.0 MCshow
+[ [(Helvetica) 180.0 0.0 true true 0 (Diff)]
+XYsave
+[(Helvetica) 160.0 -54.0 true true 0 (L)]
+XYsave
+[(Helvetica) 140.0 26.0 true true 0 (2)]
+XYrestore
+XYrestore
+] -42.0 MCshow
 grestore
 LTb
 LCb setrgbcolor
 3643 126 M
-[ [(Helvetica) 180.0 0.0 true true 0 (h, m)]
+[ /Helvetica:Italic reencodeISO def
+[(Helvetica:Italic) 180.0 0.0 true true 0 (h)]
+[(Helvetica) 180.0 0.0 true true 0 (, m)]
 ] -60.0 MCshow
 LTb
 % Begin plot #1
 1.000 UP
-7.000 UL
+4.000 UL
 LTb
 0.90 0.12 0.06 C /Helvetica findfont 180 scalefont setfont
 /vshift -60 def
@@ -1006,7 +1010,7 @@ LTb
 LTb
 LCb setrgbcolor
 1.000 UL
-LTB
+LTb
 LCb setrgbcolor
 810 3751 N
 810 576 L
@@ -1023,4 +1027,4 @@ grestore
 end
 showpage
 %%Trailer
-%%DocumentFonts: Helvetica
+%%DocumentFonts: Helvetica:Italic Helvetica
