@@ -146,6 +146,10 @@
 % Структурированный pdf
 \usepackage[bookmarksnumbered=true,bookmarksopen=true,breaklinks=true,pdfborder={0 0 0},linktoc=all]{hyperref}
 
+% Удобные ссылки на электронные ресурсы
+\usepackage{url}
+\renewcommand\UrlFont{}
+
 % Минимальное количество букв, которые можно переносить
 \righthyphenmin=2
 
@@ -412,11 +416,11 @@
 
 % =============================================================================
 
-В современном мире экономика многих стран, таких как Россия, Швеция, Канада, зависит от цены на нефть. Несмотря на то, что цены на углеводороды снижаются, конкуренция за обладание ими не угасает, порой доходя и до вооруженных конфликтов. Таким образом, все более актуальными становятся задачи, связанные с геологоразведкой, особенно в недрах земли, скрытых под толщей морской воды. Это объясняется тем, что, по оценкам специалистов, только на территории Северного Ледовитого океана может находиться до 25 процентов мировых запасов нефти и газа~\citep{shurina, gabrielsen}.
+В современном мире экономика многих стран, таких как Россия, Швеция, Канада, зависит от цены на нефть. Несмотря на то, что цены на углеводороды снижаются, конкуренция за обладание ими не угасает, порой доходя и до вооруженных конфликтов. Таким образом, все более актуальными становятся задачи, связанные с геологоразведкой, особенно в недрах земли, скрытых под толщей морской воды. Это объясняется тем, что, по оценкам специалистов, только на территории Северного Ледовитого океана может находиться до 25 процентов мировых запасов нефти и газа~\citep{shurina}.
 
-Задачи морской геоэлектрики имеют ряд отличительных особенностей. К ним можно отнести изменение электропроводности морской воды в зависимости от глубины. Это обусловлено различной соленостью и температурой разных слоев морской воды. Кроме того, эти свойства могут значительно изменяться в зависимости от сезона, погодных условий, интенсивности таяния льдов, а также от многих других факторов. Морское дно, кроме сложного рельефа, имеет в разных участках различный уровень проникновения соленой или пресной воды в грунт. Также к особенностям относятся большой размер расчетной области и низкая частота источника электромагнитного поля (0.25-100 Гц)~\citep{gabrielsen}.
+Задачи морской геоэлектрики имеют ряд отличительных особенностей. К ним можно отнести изменение электропроводности морской воды в зависимости от глубины~\citep{shurina}. Это обусловлено различной соленостью и температурой разных слоев морской воды. Кроме того, эти свойства могут значительно изменяться в зависимости от сезона, погодных условий, интенсивности таяния льдов, а также от многих других факторов. Морское дно, кроме сложного рельефа, имеет в разных участках различный уровень проникновения соленой или пресной воды в грунт. Также к особенностям относятся большой размер расчетной области и низкая частота источника электромагнитного поля (0.25-100~Гц)~\citep{gabrielsen}.
 
-Геометрические характеристики локального источника возбуждения электромагнитного поля значительно отличаются от области исследования, размеры первого в пределах сотен метров, а вторая – более 6000~м. Это приводит к необходимости применения специальных методов для сокращения области моделирования. Одним из таких методов является применение специального поглощающего слоя, называемого идеально согласованным слоем (Perfectly Matched Layer)~\citep{berenger, wiik_dehoop_ursin}. PML-слой учитываетя в вариационной формулировке как подобласть со специальными коэффициентами. 
+Геометрические характеристики локального источника возбуждения электромагнитного поля значительно отличаются от области исследования, размеры первого в пределах сотен метров, а второй -- более 6000~м. Это приводит к необходимости применения специальных методов для сокращения области моделирования. Одним из таких методов является применение специального поглощающего слоя, называемого идеально согласованным слоем (Perfectly Matched Layer)~\citep{berenger, wiik_dehoop_ursin}. PML-слой учитывается в вариационной формулировке как подобласть со специальными коэффициентами. 
 
 Целью данной работы является исследование применения идеально согласованного слоя (PML-слоя) для ограничения области моделирования в задачах морской геоэлектрики на низких частотах.
 
@@ -436,9 +440,9 @@
 \begin{equation*}
 	\nabla \cdot \mathbf{D} = \rho \text{~~--~закон Гаусса для электрической индукции}, \label{eq:maxwell:gauss_elect}
 \end{equation*}
-где $\mathbf{E}$~--~напряженность электрического поля~(В/м), $\mathbf{H}$~--~напряженность магнитного поля~(А/м), $\mathbf{B}=\mu \mathbf{H}$~--~магнитная индукция~(Тл), $\mathbf{D}=\varepsilon \mathbf{E}$~--~электрическая индукция~(Кл/м${}^2$), $\rho$~--~плотность электрических зарядов~(Кл/м${}^3$), $\sigma$~--~электрическая проводимость~(См/м), $\varepsilon$~--~диэлектрическая проницаемость~(Ф/м), $\mu$~--~магнитная проницаемость~(Гн/м), $\mathbf{J}$~--~плотность стороннего электрического тока~(А/м${}^2$).
+где $\mathbf{E}$~--~напряженность электрического поля~(В/м), $\mathbf{H}$~--~напряженность магнитного поля~(А/м), $\mathbf{B}=\mu \mathbf{H}$~--~магнитная индукция~(Тл), $\mathbf{D}=\varepsilon \mathbf{E}$~--~электрическая индукция~(Кл/м${}^2$), $\rho$~--~плотность электрических зарядов~(Кл/м${}^3$), $\sigma$~--~электрическая проводимость~(См/м), $\varepsilon = \varepsilon_r \varepsilon_0$~--~диэлектрическая проницаемость~(Ф/м), $\varepsilon_r$~--~относительная диэлектрическая проницаемость, $\varepsilon_0 = 8.85 \cdot 10^{-12}$~Ф/м~--~диэлектрическая проницаемость вакуума, $\mu = \mu_r \mu_0$~--~магнитная проницаемость~(Гн/м), $\mu_r$~--~относительная магнитная проницаемость, $\mu_0 = 4 \pi \cdot 10^{-7}$~Гн/м~--~магнитная проницаемость вакуума, $\mathbf{J}$~--~плотность стороннего электрического тока~(А/м${}^2$).
 
-На границе $\Gamma$ между материалами с различными электрофизическими свойствами выполняются следующие условия:
+На границе $\Gamma = \Omega^j \cap \Omega^k$ между материалами $j$ и $k$ с различными электрофизическими свойствами выполняются следующие условия:
 \begin{equation}
 	\Jmp{ \mathbf{E} \times \mathbf{n} }_{\Gamma} = 0 \text{~~--~тангенциальная компонента $\mathbf{E}$ непрерывна}, \label{eq:maxwell:tangent_E}
 \end{equation}
@@ -492,6 +496,10 @@
 \begin{equation}
 	\left. \sigma \mathbf{E} \cdot \mathbf{n} \right | _{ S_2 } = 0 . \label{eq:bound2}
 \end{equation}
+В случае удаленных границ (\ref{eq:bound1}) принимает вид условия <<большого бака>>:
+\begin{equation}
+	\left. \mathbf{E} \times \mathbf{n} \right | _{ S_1 } = 0 . \label{eq:bound1_zero}
+\end{equation}
 Источником электромагнитного возмущения будет выступать замкнутая токовая петля.
 
 Подействуем оператором $\nabla \cdot$ на уравнение~(\ref{eq:maxwell:amper}):
@@ -506,7 +514,7 @@
 % =============================================================================
 
 \subsection{Вариационная постановка}
-Введем следующие пространства~\citep{balandin}:
+Введем следующие пространства~\citep{balandin,monk}:
 \begin{equation*}
 	\mathbb{H} ( \mathrm{rot}\,, \Omega ) = \lbrace \mathbf{v} \in [\mathbb{L}^{2}(\Omega)]^{3} : \nabla \times \mathbf{v} \in [\mathbb{L}^{2}(\Omega)]^{3} \rbrace , \label{eq:H_rot}
 \end{equation*}
@@ -565,17 +573,17 @@
 
 В результате векторная вариационная постановка имеет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, такое что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ будет выполнено}} (\ref{eq:weak}).
 
-Рассмотрим еще пару пространств:
+Рассмотрим еще пару пространств~\citep{monk}
 \begin{equation*}
 	\mathbb{H}( \mathrm{grad}\,, \Omega ) = \lbrace \varphi \in \mathbb{L}^{2}(\Omega) : \nabla \varphi \in [ \mathbb{L}^{2}(\Omega) ]^{3} \rbrace , \label{eq:H_grad}
 \end{equation*}
 \begin{equation*}
 	\mathbb{H}_{0}( \mathrm{grad}\,, \Omega ) = \lbrace \varphi \in \mathbb{H}( \mathrm{grad}\,, \Omega ) : \left. \varphi \right | _{\partial \Omega} = 0 \rbrace . \label{eq:H0_grad}
 \end{equation*}
-В соответствии с комплексом Де Рама (De Rham)
-\begin{equation*}
+В соответствии с комплексом Де Рама (De Rham)~\citep{schwarzbach}
+\begin{equation}
 	\mathbb{H}( \mathrm{grad}\,, \Omega ) \xrightarrow[]{\nabla} \mathbb{H}( \mathrm{rot}\,, \Omega ) \xrightarrow[]{\nabla \times} \mathbb{H}( \mathrm{div}\,, \Omega ) \xrightarrow[]{\nabla \cdot} \mathbb{L}^{2}(\Omega) , \label{eq:derham}
-\end{equation*}
+\end{equation}
 будет иметь место вложение $\nabla \varphi \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, $\forall \varphi \in \mathbb{H}_{0}( \mathrm{grad}\,, \Omega )$. Возьмем $\mathbf{v} = \nabla \varphi$, тогда (\ref{eq:weak}) примет вид:
 \begin{equation*}
 	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \varphi)^{*} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot (\nabla \varphi)^{*} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot (\nabla \varphi)^{*} \,d\Omega .
@@ -625,14 +633,29 @@
 	s_j(\tau) = 1 + \chi \left( \frac{d(\tau)}{\delta} \right)^m , \text{~~} m \geq 1 ,
 	\label{eq:pml_s}
 \end{equation}
-где $d(\tau)$ -- расстояние в $j$-м направлении от границы PML-слоя, $\delta$ -- толщина PML-слоя, $\chi$ -- некоторе комплексное число, причем $\Re(\chi) \ge 0$, $\Im(\chi) \ge 0$. Оператор $\nabla$ в новых координатах будет иметь вид:
+где $d(\tau)$ -- расстояние в $j$-м направлении от границы PML-слоя, $\delta$ -- толщина PML-слоя, $\chi$ -- некоторое комплексное число, причем $\Re(\chi) \ge 0$, $\Im(\chi) \ge 0$. Оператор $\nabla$ в новых координатах будет иметь вид:
 \begin{equation*}
 	\tilde{\nabla} = \left[ \frac{1}{s_x} \frac{\partial}{\partial x} \,, \frac{1}{s_y} \frac{\partial}{\partial y} \,, \frac{1}{s_z} \frac{\partial}{\partial z} \right] .
 \end{equation*}
-Таким образом, вариационное уравнение (\ref{eq:weak}) будет преобразовано к виду (\ref{eq:weak_pml}):
+
+После такой замены, внутри PML-слоя уравнение Гельмгольца (\ref{eq:helmholtz}) будет иметь вид (\ref{eq:helmholtz_pml})
+\begin{equation}
+	\tilde{\nabla} \times ( \mu^{-1} \tilde{\nabla} \times \mathbf{E} ) + k^{2} \mathbf{E} = - i \omega \mathbf{J} , \label{eq:helmholtz_pml}
+\end{equation}
+что приведет к преобразованию уравнения (\ref{eq:weak}) к виду (\ref{eq:weak_pml}):
 \begin{equation}
 	\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \mathbf{E} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = - \int\limits_{\tilde{\Omega}} i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} . \label{eq:weak_pml}
 \end{equation}
+
+В результате векторная вариационная постановка имеет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, такое что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ будет выполнено}}:
+\begin{equation*}
+	\begin{cases}
+		\displaystyle
+		\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\Omega \\
+		\displaystyle
+		\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \mathbf{E} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = - \int\limits_{\tilde{\Omega}} i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} . \\
+	\end{cases}
+\end{equation*}
 
 % =============================================================================
 
@@ -644,27 +667,32 @@
 
 Введем конечномерные подпространства:
 \begin{equation*}
-	H_{0}^h( \mathrm{rot}\,, \Omega ) \subset H_{0}( \mathrm{rot}\,, \Omega ) , \text{~~}
-	H_{0}^h( \mathrm{grad}\,, \Omega ) \subset H_{0}( \mathrm{grad}\,, \Omega ) .
+	\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega ) \subset \mathbb{H}_{0}( \mathrm{rot}\,, \Omega ) , \text{~~}
+	\mathbb{H}_{0}^h( \mathrm{grad}\,, \Omega ) \subset \mathbb{H}_{0}( \mathrm{grad}\,, \Omega ) .
 \end{equation*}
-Для дискретных подпространств $H_{0}^h( \mathrm{rot}\,, \Omega )$ и $H_{0}^h( \mathrm{grad}\,, \Omega )$ комплекс Де Рама также будет верен, следовательно закон сохранения заряда будет также выполнен в слабом смысле.
+Для дискретных подпространств $\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$ и $\mathbb{H}_{0}^h( \mathrm{grad}\,, \Omega )$ комплекс Де Рама~(\ref{eq:derham}) также будет верен, следовательно закон сохранения заряда~(\ref{eq:charge}) будет также выполнен в слабом смысле.
 
-Пространство $H_{0}^h( \mathrm{rot}\,, \Omega )$ является прямой суммой подпространств:
+Пространство $\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$ является прямой суммой подпространств~\citep{hiptmair}
 \begin{equation*}
-	H_{0}^h( \mathrm{rot}\,, \Omega ) = N_{0}^h( \mathrm{rot}\,, \Omega ) \oplus (N_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot} ,
+	\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega ) = \mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ) \oplus (\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot} ,
 \end{equation*}
-где $N_{0}^h( \mathrm{rot}\,, \Omega )$ – ядро rot-оператора, $(N_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ – его ортогональное дополнение. Для выполнения условий непрерывности, необходимо использовать полный базис \citep{webb}, то есть состоящий из роторных базисных функций, принадлежащих пространству $(N_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ и обеспечивающих непрерывность тангенциальных компонент поля $\mathbf{E}$ (\ref{eq:maxwell:tangent_E}), и градиентных базисных функций из пространства $N_{0}^h( \mathrm{rot}\,, \Omega )$, отвечающих за скачок нормальной компоненты поля (\ref{eq:maxwell:normal_D}) и выполнения закона сохранения заряда (\ref{eq:charge}).
+где $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$ – ядро rot-оператора, $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ – его ортогональное дополнение. Для выполнения условий непрерывности, необходимо использовать полный базис \citep{webb1993,webb1999,nedelec1980,nedelec1986}, то есть состоящий из роторных базисных функций, принадлежащих пространству $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ и обеспечивающих непрерывность тангенциальных компонент поля $\mathbf{E}$ (\ref{eq:maxwell:tangent_E}), и градиентных базисных функций из пространства $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$, отвечающих за скачок нормальной компоненты поля~(\ref{eq:maxwell:normal_D}) и выполнения закона сохранения заряда~(\ref{eq:charge}).
 
-Представим векторнозначную функцию $\mathbf{E}^h$ в виде разложения по базису \linebreak $\boldsymbol{\psi}_j \in H_{0}^h( \mathrm{rot}\,, \Omega )$:
+Представим векторнозначную функцию $\mathbf{E}^h$ в виде разложения по базису \linebreak $\boldsymbol{\psi}_j \in \mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$:
 \begin{equation*}
 	\mathbf{E}^h = \sum\limits_{j = 1}^n q_j \boldsymbol{\psi}_j .
 \end{equation*}
-В качестве тестовой функции выберем базисную функцию $\boldsymbol{\psi}_i \in H_{0}^h( \mathrm{rot}\,, \Omega )$, тогда конечноэлементная аппроксимация вариационного уравнения (\ref{eq:weak}) примет вид:
+В качестве тестовой функции выберем базисную функцию $\boldsymbol{\psi}_i \in \mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$, тогда конечноэлементная аппроксимация вариационного уравнения (\ref{eq:weak}) примет вид:
 \begin{equation}
-	\sum\limits_{j = 1}^n \left( \int\limits_\Omega \mu^{-1} \nabla \times \boldsymbol{\psi}_j \cdot \nabla \times \boldsymbol{\psi}_i \,d\Omega + \int\limits_\Omega k^{2} \boldsymbol{\psi}_j \cdot \boldsymbol{\psi}_i \,d\Omega \right) q_j =  - \int\limits_\Omega i \omega \mathbf{J} \cdot \boldsymbol{\psi}_i \,d\Omega . \label{eq:form_28}
+	\begin{array}{c} { \displaystyle
+		\sum\limits_{j = 1}^n \left( \int\limits_\Omega \mu^{-1} \nabla \times \boldsymbol{\psi}_j \cdot \nabla \times \boldsymbol{\psi}_i \,d\Omega + \int\limits_\Omega k^{2} \boldsymbol{\psi}_j \cdot \boldsymbol{\psi}_i \,d\Omega \right) q_j =
+	} \\ { \displaystyle
+		=  - \int\limits_\Omega i \omega \mathbf{J} \cdot \boldsymbol{\psi}_i \,d\Omega .
+	} \end{array}
+	\label{eq:weak_discr}
 \end{equation}
 
-В матрично-векторной форме (\ref{eq:form_28}) можно представить следующим образом:
+В матрично-векторной форме (\ref{eq:weak_discr}) можно представить следующим образом:
 \begin{equation}
 	( G + M )q = F , \label{eq:form_29}
 \end{equation}
@@ -673,26 +701,26 @@
 	G_{ i,j } = \int\limits_{\Omega_k} \mu^{-1} \nabla \times \mathbf{w}_i \cdot \nabla \times \mathbf{w}_j \,d\Omega_k , \text{~~~}
 	M_{ i,j } = \int\limits_{\Omega_k} k^2 \mathbf{w}_i \cdot \mathbf{w}_j \,d\Omega_k . \label{eq:local_matrixes}
 \end{equation*}
-Система линейных алгебраических уравнений (СЛАУ) (\ref{eq:form_29}) решается специальным двухуровневым методом~\citep{nechaev}.
+% Система линейных алгебраических уравнений (СЛАУ) (\ref{eq:form_29}) решается специальным двухуровневым методом~\citep{nechaev}.
 
 % =============================================================================
 
 \subsection{Тетраэдральные конечные элементы}
 
 В качестве конечных элементов для представления расчетной области, будем пользоваться тетраэдрами.
-На тетраэдральном конечном элементе удобно определить $\mathfrak{L}$-ко\-ор\-ди\-на\-ты, называемые также барицентрическими координатами~\citep{soloveychick}. Введем нумерацию вершин и ребер, показанную на рисунке \ref{fig:tetrahedron}:
+На тетраэдральном конечном элементе удобно определить $\mathcal{L}$-ко\-ор\-ди\-на\-ты, называемые также барицентрическими координатами~\citep{soloveychick}. Введем нумерацию вершин и ребер, показанную на рисунке \ref{fig:tetrahedron}:
 
 \begin{figure}[!htbp]
 %\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{tetrahedron.png}
+	\includegraphics[scale=0.25]{tetrahedron.png}
 	\caption{тетраэдральный конечный элемент}
 	\label{fig:tetrahedron}
 \end{figure}
 
-Под $\mathfrak{L}$-координатами понимают функции следующего вида:
+Под $\mathcal{L}$-координатами понимают функции следующего вида:
 \begin{equation*}
-	\mathfrak{L}_i (x, y, z) = \alpha_{i, 1} x + \alpha_{i, 2} y + \alpha_{i, 3} z + \alpha_{i, 4} , \text{~~~} i = \overline{1..4} . \label{eq:tet:L}
+	\mathcal{L}_i (x, y, z) = \alpha_{i, 1} x + \alpha_{i, 2} y + \alpha_{i, 3} z + \alpha_{i, 4} , \text{~~~} i = \overline{1..4} . \label{eq:tet:L}
 \end{equation*}
 Коэффициенты $\alpha_{i, j}$ могут быть определены по формуле (\ref{eq:tet:D1}):
 \begin{equation}
@@ -713,17 +741,45 @@
 	\right]^{-1} = D^{-1} . \label{eq:tet:D1}
 \end{equation}
 
-Задав $\mathfrak{L}$-координаты, можно определить на тетраэдре базисные функции. В отличие от узлового метода конечных элементов, в векторном методе конечных элементов базисные функции ассоциированы не с узлами, а с ребрами (edge), гранями (face) и объемами (volume)~\citep{nechaev, webb}. Так как будет использован полный базис первого порядка (называемый также базисом первого порядка II типа), то ограничимся рассмотрением только базисных функций, ассоциированных с ребрами.
+Задав $\mathcal{L}$-координаты, можно определить на тетраэдре базисные функции. В отличие от узлового метода конечных элементов, в векторном методе конечных элементов базисные функции ассоциированы не с узлами, а с ребрами (edge), гранями (face) и объемами (volume)~\citep{nechaev, webb1999}. Так как будет использован полный базис второго порядка (называемый также базисом второго порядка II типа), то ограничимся рассмотрением только базисных функций, ассоциированных с ребрами и гранями.
 
-Иерархический векторный базис Вебба первого порядка второго типа имеет вид:
+Иерархический векторный базис Вебба второго порядка второго типа имеет вид~\citep{mikhajlova}:
 \begin{equation*}
 	\begin{matrix}
-	\mathbf{w}_{i}^{1,\mathrm{I}} = \mathfrak{L}_k \nabla \mathfrak{L}_l - \mathfrak{L}_l \nabla \mathfrak{L}_k ; \text{~~} i = 1, ..., 6 ; \text{~~} k, l = 1, ..., 4 ; \text{~~} k < l ,\\
-	\mathbf{w}_{i}^{1,\mathrm{II}} = \mathfrak{L}_k \nabla \mathfrak{L}_l + \mathfrak{L}_l \nabla \mathfrak{L}_k ; \text{~~} i = 7, ..., 12 ; \text{~~} k, l = 1, ..., 4 ; \text{~~} k < l ,
+		\displaystyle
+		\mathbf{w}_{i}^{1,\mathrm{I}} = \mathcal{L}_k \nabla \mathcal{L}_l - \mathcal{L}_l \nabla \mathcal{L}_k ;
+		\scriptstyle
+		\text{~~} i = 1, ..., 6 ; \text{~~} k, l = 1, ..., 4 ; \text{~~} k < l ,\\
+		\displaystyle
+		\mathbf{w}_{i}^{1,\mathrm{II}} = \mathcal{L}_k \nabla \mathcal{L}_l + \mathcal{L}_l \nabla \mathcal{L}_k ;
+		\scriptstyle
+		\text{~~} i = 7, ..., 12 ; \text{~~} k, l = 1, ..., 4 ; \text{~~} k < l ,\\
+		\displaystyle
+		\mathbf{w}_{i}^{2,\mathrm{I}} = \mathcal{L}_k \mathcal{L}_l \nabla \mathcal{L}_j + \mathcal{L}_j \mathcal{L}_l \nabla \mathcal{L}_k - 2 \mathcal{L}_j \mathcal{L}_k \nabla \mathcal{L}_l ;
+		\scriptstyle
+		\text{~~} i = 13, ..., 16 ; \text{~~} j, k, l = 1, ..., 4 ; \text{~~} j < k < l ,\\
+		\displaystyle
+		\mathbf{w}_{i}^{2,\mathrm{I}} = \mathcal{L}_k \mathcal{L}_l \nabla \mathcal{L}_j - 2 \mathcal{L}_j \mathcal{L}_l \nabla \mathcal{L}_k + \mathcal{L}_j \mathcal{L}_k \nabla \mathcal{L}_l ;
+		\scriptstyle
+		\text{~~} i = 17, ..., 20 ; \text{~~} j, k, l = 1, ..., 4 ; \text{~~} j < k < l ,\\
+		\displaystyle
+		\mathbf{w}_{i}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_j \mathcal{L}_k \mathcal{L}_l ) ; \text{~~} i = 21, ..., 24 ;
+		\scriptstyle
+		\text{~~} j, k, l = 1, ..., 4 ; \text{~~} j < k < l ,\\
+		\displaystyle
+		\mathbf{w}_{i}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_j \mathcal{L}_k ( \mathcal{L}_j - \mathcal{L}_k ) ) ;
+		\scriptstyle
+		\text{~~} i = 25, ..., 30 ; \text{~~} j, k = 1, ..., 4 ; \text{~~} j < k ,
 	\end{matrix}
 	\label{eq:basis}
 \end{equation*}
-где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, ассоциированные с ребрами, $\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, ассоциированные с ребрами.
+где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, ассоциированные с ребрами, $\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, ассоциированные с ребрами, $\mathbf{w}_{13}^{2,\mathrm{I}}, ..., \mathbf{w}_{20}^{2,\mathrm{I}}$ – базисные функции второго порядка первого типа, ассоциированные с гранями, $\mathbf{w}_{21}^{2,\mathrm{II}}, ..., \mathbf{w}_{30}^{2,\mathrm{II}}$ – базисные функции второго порядка второго типа, ассоциированные с гранями (первые четыре) и ребрами.
+
+Для вычисления интегралов в (\ref{eq:weak_discr}) воспользуемся кубатурной формулой численного интегрирования (формулой Гаусса)~\citep{misovskih}:
+\begin{equation*}
+	\int\limits_{\Omega_k} f(x, y, z) \,d\Omega_k = \sum\limits_{i = 1}^m f( x_i , y_i , z_i ) w_i ,
+\end{equation*}
+где $(x_i , y_i , z_i )$ -- точки Гаусса, $m$ -- число точек Гаусса, $w_i$ -- соответствующие веса. При работе с базисными функциями второго порядка нужно использовать формулы, которые бы обеспечивали восьмой порядок интегрирования~\citep{zhang_integration}. Для базисных функций первого порядка будет достаточно и меньших порядков интегрирования~\citep{tet_integration, misovskih}.
 
 % =============================================================================
 
@@ -749,7 +805,7 @@ Wiik, T. A Discontinuous Galerkin Method for Modelling Marine Controlled Source 
 \bibitem{balandin} 
 Баландин, М.Ю. Векторный метод конечных элементов : Учеб. пособие / М.Ю. Баландин, Э.П. Шурина. – Новосибирск : Изд-во НГТУ, 2001. – 69~с.
 % 7
-\bibitem{webb}
+\bibitem{webb1999}
 Webb, J.P. Hierarchal Vector Basis Functions of Arbitrary Order for Triangular and Tetrahedral Finite Elements / J.P. Webb // IEEE transactions on antennas and propagation. – 1999. – Vol.~47. – P.~1244-1253.
 % 8
 \bibitem{nechaev}
@@ -757,6 +813,28 @@ Nechaev, O.V. Multilevel iterative solver for the edge fem solution of the 3D Ma
 % 9
 \bibitem{soloveychick}
 Соловейчик, Ю.Г. Метод конечных элементов для решения скалярных и векторных задач : учеб. пособие / Ю.Г. Соловейчик, М.Э. Рояк, М.Г. Персова. – Новосибирск : Изд-во НГТУ, 2007. – 896~с.
+
+\bibitem{monk}
+Monk P. Finite element methods for Maxwell's equations. – Oxford University Press, 2003.
+\bibitem{schwarzbach}
+Schwarzbach C. Stability of finite element solutions to Maxwell's equations in frequency domain. – 2009.
+\bibitem{hiptmair}
+Hiptmair R. Multigrid method for Maxwell's equations // SIAM Journal on Numerical Analysis. – 1998. – Т. 36. – №. 1. – С. 204-225.
+\bibitem{nedelec1980}
+Nédélec J. C. Mixed finite elements in $\mathbb{R}$3 //Numerische Mathematik. – 1980. – Т. 35. – №. 3. – С. 315-341.
+\bibitem{nedelec1986}
+Nédélec J. C. A new family of mixed finite elements in $\mathbb{R}$3 //Numerische Mathematik. – 1986. – Т. 50. – №. 1. – С. 57-81.
+\bibitem{webb1993}
+Webb J. P. Edge elements and what they can do for you //Magnetics, IEEE Transactions on. – 1993. – Т. 29. – №. 2. – С. 1460-1465.
+\bibitem{mikhajlova}
+Михайлова Е. И., Шурина Э. П. Математическое моделирование высокочастотного электромагнитного поля в волноводных устройствах //Вестник НГУ. Серия: Математика, механика, информатика. – 2013. – Т. 13. – №. 4. – С. 102-118.
+\bibitem{misovskih}
+Мысовских И. П. Интерполяционные кубатурные формулы. – Наука. Гл. ред. физ.-мат. лит., 1981.
+\bibitem{zhang_integration}
+Zhang L. et al. A set of symmetric quadrature rules on triangles and tetrahedra //J. Comput. Math. – 2009. – Т. 27. – №. 1. – С. 89-96.
+\bibitem{tet_integration}
+Numerical Integration over the Tetrahedral Domain [Электронный ресурс].
+-- Режим доступа: \href{https://web.archive.org/web/20140714140951/https://people.fh-landshut.de/~maurer/numeth/node148.html}{\url{https://people.fh-landshut.de/~maurer/numeth/node148.html}}.
 \end{thebibliography}
 
 % =============================================================================
