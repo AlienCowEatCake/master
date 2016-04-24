@@ -707,8 +707,7 @@
 
 \subsection{Тетраэдральные конечные элементы}
 
-В качестве конечных элементов для представления расчетной области, будем пользоваться тетраэдрами.
-На тетраэдральном конечном элементе удобно определить $\mathcal{L}$-ко\-ор\-ди\-на\-ты, называемые также барицентрическими координатами~\citep{soloveychick}. Введем нумерацию вершин и ребер, показанную на рисунке \ref{fig:tetrahedron}:
+В качестве конечных элементов для представления расчетной области, будем пользоваться тетраэдрами. На тетраэдральном конечном элементе удобно определить $\mathcal{L}$-ко\-ор\-ди\-на\-ты, называемые также барицентрическими координатами~\citep{soloveychick}. Введем нумерацию вершин и ребер, показанную на рисунке \ref{fig:tetrahedron}:
 
 \begin{figure}[!htbp]
 %\begin{figure}[H]
@@ -743,7 +742,7 @@
 
 Задав $\mathcal{L}$-координаты, можно определить на тетраэдре базисные функции. В отличие от узлового метода конечных элементов, в векторном методе конечных элементов базисные функции ассоциированы не с узлами, а с ребрами (edge), гранями (face) и объемами (volume)~\citep{nechaev, webb1999}. Так как будет использован полный базис второго порядка (называемый также базисом второго порядка II типа), то ограничимся рассмотрением только базисных функций, ассоциированных с ребрами и гранями.
 
-Иерархический векторный базис Вебба второго порядка второго типа имеет вид~\citep{mikhajlova}:
+Иерархический векторный базис Вебба второго порядка второго типа на тетраэдрах имеет вид~\citep{mikhajlova}:
 \begin{equation*}
 	\begin{matrix}
 		\displaystyle
@@ -763,9 +762,9 @@
 		\scriptstyle
 		\text{~~} i = 17, ..., 20 ; \text{~~} j, k, l = 1, ..., 4 ; \text{~~} j < k < l ,\\
 		\displaystyle
-		\mathbf{w}_{i}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_j \mathcal{L}_k \mathcal{L}_l ) ; \text{~~} i = 21, ..., 24 ;
+		\mathbf{w}_{i}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_j \mathcal{L}_k \mathcal{L}_l ) ;
 		\scriptstyle
-		\text{~~} j, k, l = 1, ..., 4 ; \text{~~} j < k < l ,\\
+		\text{~~} i = 21, ..., 24 ; \text{~~} j, k, l = 1, ..., 4 ; \text{~~} j < k < l ,\\
 		\displaystyle
 		\mathbf{w}_{i}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_j \mathcal{L}_k ( \mathcal{L}_j - \mathcal{L}_k ) ) ;
 		\scriptstyle
@@ -780,6 +779,80 @@
 	\int\limits_{\Omega_k} f(x, y, z) \,d\Omega_k = \sum\limits_{i = 1}^m f( x_i , y_i , z_i ) w_i ,
 \end{equation*}
 где $(x_i , y_i , z_i )$ -- точки Гаусса, $m$ -- число точек Гаусса, $w_i$ -- соответствующие веса. При работе с базисными функциями второго порядка нужно использовать формулы, которые бы обеспечивали восьмой порядок интегрирования~\citep{zhang_integration}. Для базисных функций первого порядка будет достаточно и меньших порядков интегрирования~\citep{tet_integration, misovskih}.
+
+% =============================================================================
+
+\subsection{Треугольные конечные элементы}
+
+Границы области $\Omega$ являются двумерными и представляют собой треугольники. Для учета краевых условий (\ref{eq:bound1}) требуется построить разложение $\mathbf{E}^g$ по базису соответствующей границы в смысле МНК, для этого нужно решать СЛАУ вида
+\begin{equation}
+	M^{S_1} \tilde{q} = b^{S_1} ,
+	\label{eq:bound_mnk}
+\end{equation}
+где $M^{S_1}_{i,j} = \int\limits_{S_1} \mathbf{w}_i \cdot \mathbf{w}_j \,d S_1$, $b^{S_1}_{i} = \int\limits_{S_1} \mathbf{E}^g \cdot \mathbf{w}_i \,d S_1$, $\mathbf{w}_i$ и $\mathbf{w}_j$ -- базисные функции на треугольниках.
+
+Определим $\mathcal{L}$-координаты на треугольниках таким же образом, как и на тетраэдрах. Введем нумерацию вершин и ребер согласно рисунку \ref{fig:triangle}:
+
+\begin{figure}[!htbp]
+%\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{triangle.png}
+	\caption{треугольный конечный элемент}
+	\label{fig:triangle}
+\end{figure}
+
+Тогда $\mathcal{L}$-координаты примут вид:
+\begin{equation*}
+	\mathcal{L}_i (x, y) = \alpha_{i, 1} x + \alpha_{i, 2} y + \alpha_{i, 3} , \text{~~~} i = \overline{1..3} . \label{eq:tr:L}
+\end{equation*}
+Коэффициенты $\alpha_{i, j}$ могут быть определены по формуле (\ref{eq:tr:D1}):
+\begin{equation}
+	\left[
+	\begin{matrix}
+		\alpha_{1, 1} & \alpha_{1, 2} & \alpha_{1, 3} \\
+		\alpha_{2, 1} & \alpha_{2, 2} & \alpha_{2, 3} \\
+		\alpha_{3, 1} & \alpha_{3, 2} & \alpha_{3, 3} \\
+	\end{matrix}
+	\right] = \left[
+	\begin{matrix}
+		X_1 & X_2 & X_3 \\
+		Y_1 & Y_2 & Y_3 \\
+		1 & 1 & 1 \\
+	\end{matrix}
+	\right]^{-1} = D^{-1} . \label{eq:tr:D1}
+\end{equation}
+
+Иерархический векторный базис Вебба второго порядка второго типа на треугольниках имеет вид:
+\begin{equation*}
+	\begin{matrix}
+		\displaystyle
+		\mathbf{w}_{i}^{1,\mathrm{I}} = \mathcal{L}_k \nabla \mathcal{L}_l - \mathcal{L}_l \nabla \mathcal{L}_k ;
+		\scriptstyle
+		\text{~~} i = 1, ..., 3 ; \text{~~} k, l = 1, ..., 3 ; \text{~~} k < l ,\\
+		\displaystyle
+		\mathbf{w}_{i}^{1,\mathrm{II}} = \mathcal{L}_k \nabla \mathcal{L}_l + \mathcal{L}_l \nabla \mathcal{L}_k ;
+		\scriptstyle
+		\text{~~} i = 4, ..., 6 ; \text{~~} k, l = 1, ..., 3 ; \text{~~} k < l ,\\
+		\displaystyle
+		\mathbf{w}_{7}^{2,\mathrm{I}} = \mathcal{L}_2 \mathcal{L}_3 \nabla \mathcal{L}_1 + \mathcal{L}_1 \mathcal{L}_3 \nabla \mathcal{L}_2 - 2 \mathcal{L}_1 \mathcal{L}_2 \nabla \mathcal{L}_3 ,\\
+		\displaystyle
+		\mathbf{w}_{8}^{2,\mathrm{I}} = \mathcal{L}_2 \mathcal{L}_3 \nabla \mathcal{L}_1 - 2 \mathcal{L}_1 \mathcal{L}_3 \nabla \mathcal{L}_2 + \mathcal{L}_1 \mathcal{L}_2 \nabla \mathcal{L}_3 ,\\
+		\displaystyle
+		\mathbf{w}_{9}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_1 \mathcal{L}_2 \mathcal{L}_3 ) ,\\
+		\displaystyle
+		\mathbf{w}_{i}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_j \mathcal{L}_k ( \mathcal{L}_j - \mathcal{L}_k ) ) ;
+		\scriptstyle
+		\text{~~} i = 10, ..., 12 ; \text{~~} j, k = 1, ..., 3 ; \text{~~} j < k ,
+	\end{matrix}
+	\label{eq:tr_basis}
+\end{equation*}
+где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{3}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, $\mathbf{w}_{4}^{1,\mathrm{II}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, $\mathbf{w}_{7}^{2,\mathrm{I}}, \mathbf{w}_{8}^{2,\mathrm{I}}$ – базисные функции второго порядка первого типа, $\mathbf{w}_{9}^{2,\mathrm{II}}, ..., \mathbf{w}_{12}^{2,\mathrm{II}}$ – базисные функции второго порядка второго типа.
+
+Для вычисления интегралов в (\ref{eq:bound_mnk}) воспользуемся формулой Гаусса~\citep{misovskih}:
+\begin{equation*}
+	\int\limits_{\Omega_k} f(x, y) \,d\Omega_k = \sum\limits_{i = 1}^m f( x_i , y_i) w_i ,
+\end{equation*}
+где $(x_i , y_i)$ -- точки Гаусса, $m$ -- число точек Гаусса, $w_i$ -- соответствующие веса. Так же, как и для тетраэдров, для работы с базисом второго порядка нужно использовать формулы, обеспечивающие восьмой порядок интегрирования~\citep{zhang_integration}. Для базиса первого порядка достаточно и меньших порядков интегрирования~\citep{tet_integration, misovskih}.
 
 % =============================================================================
 
