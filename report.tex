@@ -1046,6 +1046,133 @@
 
 % =============================================================================
 
+\subsection{Исследование эффективности применения PML-слоя}
+Цель вычислительных экспериментов: определение эффективности применения PML-слоя.
+Геометрические характеристики PML-слоя показаны на рисунке \ref{fig:info_2d}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1.25]{research-2/info_2d_2.png}
+	\caption{геометрические характеристики PML-слоя}
+	\label{fig:info_2d}
+\end{figure}
+
+Вычислительные эксперименты были выполнены следующим образом: последовательно варьировался каждый из параметров PML-слоя: толщина PML-слоя в $k$-м направлении $\delta_k$, где $k = \begin{smallmatrix}x\\1\end{smallmatrix},\begin{smallmatrix}y\\2\end{smallmatrix},\begin{smallmatrix}z\\3\end{smallmatrix}$, расстояние от центра области до границ PML-слоя $l_k$, коэффициент комплексного растяжения координат $\chi$~(\ref{eq:pml_s}), оставшиеся параметры фиксировались, что позволило определить параметры, влияющие на характеристики PML-слоя.
+
+Фрагменты тетраэдральных конечноэлементных сеток с <<большим баком>> и с PML-слоем приведены на рисунках \ref{fig:meshes} (а) и \ref{fig:meshes} (б). Все сетки строились таким образом,
+чтобы обеспечить сгущение в области с локальным источником, в качестве которого выступала замкнутая токовая петля.
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.2mm 0mm,clip,scale=1]{research-2/meshes.png}\label{fig:meshes_a}}
+	\subfloat[][]{\includegraphics[trim=79.2mm 0mm 0mm 0mm,clip,scale=1]{research-2/meshes.png}\label{fig:meshes_b}}
+	\caption{конечноэлементные сетки: (а) <<большой бак>> и (б) PML-слой}
+	\label{fig:meshes}
+\end{figure}
+
+\subsubsection{Описание расчетной области}
+На рисунке \ref{fig:area} приведена расчетная область, где $\Omega_1$ -- воздух ($\sigma = 10^{-6}$~См/м), $\Omega_2$ -- морская вода ($\sigma = 3.3$~См/м), $\Omega_3$ -- грунт~($\sigma = 0.2$~См/м), $\Omega_4$ -- углеводороды~($\sigma = 0.01$~См/м), $L_1$, $L_2$ и $L_3$ -- размеры области моделирования по осям $x$, $y$ и $z$ соответственно, $L_1 = L_2 = L_3 = 6000$~м, $h_1 = 300$~м -- толщина $\Omega_2$, $l_1 = 400$~м, $h_3 = 100$~м, $h_2 = 100$~м -- длина, толщина и глубина объекта $\Omega_4$ соответственно.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{research-2/area_3layers_3.png}
+	\caption{расчетная область}
+	\label{fig:area}
+\end{figure}
+
+Объект $\Omega_4$ представляет собой скругленный прямоугольный параллелепипед с двумя равными сторонами, наклоненный под углом $5^{\circ}$. Источником электрического поля является петля диаметром $d = 100$~м с током частотой $1$~Гц, расположенная в воздухе на расстоянии $h = 5$~м от границы раздела сред воздух--вода.
+
+\subsubsection{Варьирование коэффициентов растяжения}
+Зафиксируем $\delta_k = 100$~м, $l_k = 600$~м, $m = 3$, $h = 5$~м и будем варьировать коэффициент комплексного растяжения координат $\chi$. Выделим внутри области c условием <<большого бака>> и области, на границе которой задан PML-слой, подобласть $\Omega'$ размером $1000 \times 1000 \times 1000$~м${}^3$, для которой оценим разность в норме $L^2$ между действительными компонентами $\mathbf{E}_y$ векторов решений $\mathbf{E}_y^{\text{бак}}$ и $\mathbf{E}_y^{\text{PML}}$, полученных с применением <<большого бака>> и PML-слоя соответственно. Результаты приведены в таблице \ref{tab:tbl_13}.
+\begin{table}[H]
+	\caption{варьирование коэффициентов растяжения при $h= 5$~м}
+	\label{tab:tbl_13}
+	\begin{tabularx}{\textwidth}{|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{1}|C{1}|C{3.1}|}
+		\rowcolor[gray]{.9} \hline $\Re(\chi)$ в $\Omega_1$ & $\Im(\chi)$ в $\Omega_1$ & $\Re(\chi)$ в $\Omega_2$ & $\Im(\chi)$ в $\Omega_2$ & $\Re(\chi)$ в $\Omega_3$ & $\Im(\chi)$ в $\Omega_3$ & Время, бак & Время, PML & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} \\
+		\hline 3 & 0 & 1 & 5 & 3 & 1 & 650 & 592 & 0.106636 \\
+		\hline 3 & 1 & 0 & 6 & 2 & 1 & 650 & 599 & 0.092546 \\
+		\hline 4 & 0 & 1 & 5 & 3 & 1 & 650 & 731 & 0.0946679 \\
+		\hline 4 & 1 & 0 & 6 & 2 & 1 & 650 & 591 & 0.0909998 \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+Также рассмотрим случай, когда петля расположена на расстоянии $h= -5$~м от границы раздела сред воздух--вода. Результаты приведены в таблице \ref{tab:tbl_14}.
+\begin{table}[H]
+	\caption{варьирование коэффициентов растяжения при $h= -5$~м}
+	\label{tab:tbl_14}
+	\begin{tabularx}{\textwidth}{|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{1}|C{1}|C{3.1}|}
+		\rowcolor[gray]{.9} \hline $\Re(\chi)$ в $\Omega_1$ & $\Im(\chi)$ в $\Omega_1$ & $\Re(\chi)$ в $\Omega_2$ & $\Im(\chi)$ в $\Omega_2$ & $\Re(\chi)$ в $\Omega_3$ & $\Im(\chi)$ в $\Omega_3$ & Время, бак & Время, PML & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} \\
+		\hline 4 & 0 & 1 & 5 & 3 & 1 & 309 & 344 & 0.0929047 \\
+		\hline 4 & 0 & 1 & 6 & 3 & 1 & 309 & 294 & 0.086956 \\
+		\hline 4 & 0 & 1 & 6 & 3 & 2 & 309 & 253 & 0.0809429 \\
+		\hline 4 & 1 & 1 & 6 & 3 & 2 & 309 & 306 & 0.0657666 \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+\subsubsection{Варьирование толщины PML-слоя}
+Зафиксируем $\chi_{\Omega_1} = (4, 1)$, $\chi_{\Omega_2} = (0, 6)$, $\chi_{\Omega_2} = (2, 1)$, $l_k = 600$~м, $m = 3$, $h = 5$~м и будем варьировать толщину PML-слоя $\delta_k$. Результаты приведены в таблице \ref{tab:tbl_15}.
+\begin{table}[H]
+	\caption{варьирование толщины PML-слоя при $h= 5$~м}
+	\label{tab:tbl_15}
+	\begin{tabularx}{\textwidth}{|C{0.5}|C{1}|C{1}|C{1.5}|}
+		\rowcolor[gray]{.9} \hline $\delta_k$ & Время, бак & Время, PML & $\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}$ \\
+		\hline 80 & 673 & 1289 & 0.119883 \\
+		\hline 100 & 650 & 591 & 0.0909998 \\
+		\hline 120 & 609 & 1142 & 0.078364 \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+Также рассмотрим случай, когда петля расположена на расстоянии $h=-5$~м от границы раздела сред воздух--вода, для которого $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_2} = (3, 2)$. Результаты приведены в таблице \ref{tab:tbl_16}.
+\begin{table}[H]
+	\caption{варьирование толщины PML-слоя при $h= -5$~м}
+	\label{tab:tbl_16}
+	\begin{tabularx}{\textwidth}{|C{0.5}|C{1}|C{1}|C{1.5}|}
+		\rowcolor[gray]{.9} \hline $\delta_k$ & Время, бак & Время, PML & $\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}$ \\
+		\hline 80 & 359 & 297 & 0.12013 \\
+		\hline 100 & 309 & 253 & 0.0809429 \\
+		\hline 120 & 250 & 859 & 0.0623323 \\
+		\hline
+	\end{tabularx}
+\end{table}
+
+\subsubsection{Проверка выполнения условий на контактных границах}
+Проверим, что в случае независимого варьирования коэффициентов комплексного растяжения координат $\chi$, на границе двух PML-слоев с различными характеристиками не нарушаются условия на контактных границах (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}). Для этого рассмотрим поведение напряженности электрического поля $\mathbf{E}$ вдоль линии $x = 650$, $y = 0$, $z = [-0.005, 0.005]$ (середина PML-слоя по $x$-направлению):
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{research-2/650/ExR.eps}
+	\includegraphics[scale=1]{research-2/650/ExI.eps}
+	\includegraphics[scale=1]{research-2/650/EyR.eps}
+	\includegraphics[scale=1]{research-2/650/EyI.eps}
+	\includegraphics[scale=1]{research-2/650/EzR.eps}
+	\includegraphics[scale=1]{research-2/650/EzI.eps}
+	\caption{графики компонент электрического поля на контактных границах}
+	\label{fig:650_3}
+\end{figure}
+
+Как видно из графиков на рисунке \ref{fig:650_3}, разрывна только нормальная компонента $\mathbf{E}_z$, следовательно, условия (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}) выполнены.
+
+\subsubsection{Графическое представление результатов}
+На рисунках \ref{fig:field_sca} и \ref{fig:field_vec} показаны картины электрического поля, полученные при параметрах $h=-5$~м, $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_2} = (3, 2)$, $m=3$, $l_k = 600$~м и $\delta_k = 100$~м. На рисунках \ref{fig:field_sca} (а) и \ref{fig:field_vec} (а) представлено решение с PML-слоем, \ref{fig:field_sca} (б) и \ref{fig:field_vec} (б) -- решение с <<большим баком>>.
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{\includegraphics[scale=0.5]{research-2/field/pml_sca.png}}
+	\subfloat[][]{\includegraphics[scale=0.5]{research-2/field/std_sca.png}}
+	\caption{$\Re(\mathbf{E}_y)$ в сечении плоскостью $z=10$~м}
+	\label{fig:field_sca}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{\includegraphics[scale=0.5]{research-2/field/pml_vec.png}}
+	\subfloat[][]{\includegraphics[scale=0.5]{research-2/field/std_vec.png}}
+	\caption{изолинии $\Re(\mathbf{E}_y)$ и векторы $\left( \Re(\mathbf{E}_x) , \Re(\mathbf{E}_y) \right)^T$ в сечении плоскостью $z=10$~м}
+	\label{fig:field_vec}
+\end{figure}
+
+
+% =============================================================================
+
 \clearpage
 \addcontentsline{toc}{section}{Список литературы}
 \begin{thebibliography}{10}
