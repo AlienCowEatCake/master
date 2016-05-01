@@ -66,7 +66,7 @@
 \graphicspath{ {./images/} }
 
 % Разные таблицы
-\usepackage{tabularx, multirow}
+\usepackage{tabularx, multirow, tabu}
 \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}
 \newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}
 \newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}
@@ -443,7 +443,7 @@
 \end{equation*}
 где $\mathbf{E}$~--~напряженность электрического поля~(В/м), $\mathbf{H}$~--~напряженность магнитного поля~(А/м), $\mathbf{B}=\mu \mathbf{H}$~--~магнитная индукция~(Тл), $\mathbf{D}=\varepsilon \mathbf{E}$~--~электрическая индукция~(Кл/м${}^2$), $\rho$~--~плотность электрических зарядов~(Кл/м${}^3$), $\sigma$~--~электрическая проводимость~(См/м), $\varepsilon = \varepsilon_r \varepsilon_0$~--~диэлектрическая проницаемость~(Ф/м), $\varepsilon_r$~--~относительная диэлектрическая проницаемость, $\varepsilon_0 = 8.85 \cdot 10^{-12}$~Ф/м~--~диэлектрическая проницаемость вакуума, $\mu = \mu_r \mu_0$~--~магнитная проницаемость~(Гн/м), $\mu_r$~--~относительная магнитная проницаемость, $\mu_0 = 4 \pi \cdot 10^{-7}$~Гн/м~--~магнитная проницаемость вакуума, $\mathbf{J}$~--~плотность стороннего электрического тока~(А/м${}^2$).
 
-На границе $\Gamma = \Omega^j \cap \Omega^k$ между материалами $j$ и $k$ с различными электрофизическими свойствами выполняются следующие условия:
+На границе $\Gamma = \Omega^j \cap \Omega^k$ между материалами $j$ и $k$ с различными электрофизическими свойствами должны быть выполнены следующие условия:
 \begin{equation}
 	\Jmp{ \mathbf{E} \times \mathbf{n} }_{\Gamma} = 0 \text{~~--~тангенциальная компонента $\mathbf{E}$ непрерывна}, \label{eq:maxwell:tangent_E}
 \end{equation}
@@ -488,7 +488,7 @@
 \begin{equation}
 	\nabla \times ( \mu^{-1} \nabla \times \mathbf{E} ) + k^{2} \mathbf{E} = - i \omega \mathbf{J} , \label{eq:helmholtz}
 \end{equation}
-где $k^{2} = i \omega \sigma - \omega^{2} \varepsilon$. Уравнение~(\ref{eq:helmholtz}) называют уравнением Гельмгольца.
+где $k^{2} = i \omega \sigma - \omega^{2} \varepsilon$. Уравнение~(\ref{eq:helmholtz}) называется уравнением Гельмгольца.
 
 Краевые условия для уравнения (\ref{eq:helmholtz}) можно записать следующим образом:
 \begin{equation}
@@ -621,7 +621,7 @@
 % =============================================================================
 
 \subsection{Вариационная постановка с учетом PML-слоя}
-Для ограничения расчетной области вводится PML-слой, который определяется модифицированными координатами $\tilde{x}$, $\tilde{y}$, $\tilde{z}$, полученными следующей заменой координат~\citep{wiik_dehoop_ursin}:
+Для ограничения расчетной области вводится PML-слой ${\Omega^{PML}}$ согласно рисунку \ref{fig:theory:area_3layers_PML}, который определяется модифицированными координатами $\tilde{x}$, $\tilde{y}$, $\tilde{z}$, полученными следующей заменой координат ~\citep{wiik_dehoop_ursin}:
 \begin{equation*}
 	\tilde{x} = \int\limits_0^x s_x (t) \,dt ,
 	\text{~~~~~}
@@ -634,10 +634,18 @@
 	s_j(\tau) = 1 + \chi \left( \frac{d(\tau)}{\delta} \right)^m , \text{~~} m \geq 1 ,
 	\label{eq:pml_s}
 \end{equation}
-где $d(\tau)$ -- расстояние в $j$-м направлении от границы PML-слоя, $\delta$ -- толщина PML-слоя, $\chi$ -- некоторое комплексное число, причем $\Re(\chi) \ge 0$, $\Im(\chi) \ge 0$. Оператор $\nabla$ в новых координатах будет иметь вид:
+где $d(\tau)$ -- расстояние в $j$-м направлении от внутренней границы PML-слоя, $\delta$ -- толщина PML-слоя, $\chi$ -- некоторое комплексное число, причем $\Re(\chi) \ge 0$, $\Im(\chi) \ge 0$. Оператор $\nabla$ в новых координатах будет иметь вид:
 \begin{equation*}
 	\tilde{\nabla} = \left[ \frac{1}{s_x} \frac{\partial}{\partial x} \,, \frac{1}{s_y} \frac{\partial}{\partial y} \,, \frac{1}{s_z} \frac{\partial}{\partial z} \right] .
 \end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.2mm 0mm,clip,scale=1]{theory/area_3layers_PML.png}\label{fig:theory:area_3layers_PML_a}}
+	\subfloat[][]{\includegraphics[trim=79.2mm 0mm 0mm 0mm,clip,scale=1]{theory/area_3layers_PML.png}\label{fig:theory:area_3layers_PML_b}}
+	\caption{расчетные области: (а) без PML-слоя и (б) с PML-слоем}
+	\label{fig:theory:area_3layers_PML}
+\end{figure}
 
 После такой замены, внутри PML-слоя уравнение Гельмгольца (\ref{eq:helmholtz}) будет иметь вид (\ref{eq:helmholtz_pml})
 \begin{equation}
@@ -645,16 +653,16 @@
 \end{equation}
 что приведет к преобразованию уравнения (\ref{eq:weak}) к виду (\ref{eq:weak_pml}):
 \begin{equation}
-	\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \tilde{\mathbf{E}} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = 0 . \label{eq:weak_pml}
+	\int\limits_{{\Omega^{PML}}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d{\Omega^{PML}} + \int\limits_{{\Omega^{PML}}} k^{2} \tilde{\mathbf{E}} \cdot \mathbf{v}^{*} \,d{\Omega^{PML}} = 0 . \label{eq:weak_pml}
 \end{equation}
 
-В результате векторная вариационная постановка имеет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ и  $\tilde{\mathbf{E}} \in \mathbb{H}_{0}( \mathrm{rot}\,, \tilde{\Omega} )$, такие что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ будет выполнено}}:
+В результате, если обозначить $\widehat{\Omega} = \Omega \setminus {\Omega^{PML}}$, то векторная вариационная постановка с учетом PML-слоя примет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \widehat{\Omega} )$ и  $\tilde{\mathbf{E}} \in \mathbb{H}_{0}( \mathrm{rot}\,, {\Omega^{PML}} )$, такие что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \widehat{\Omega} )$ и $\forall \tilde{\mathbf{v}} \in \mathbb{H}_{0}( \mathrm{rot}\,, {\Omega^{PML}} )$ будет выполнено}}:
 \begin{equation*}
 	\begin{cases}
 		\displaystyle
-		\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\Omega \\
+		\int\limits_{\widehat{\Omega}} \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\widehat{\Omega} + \int\limits_{\widehat{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\widehat{\Omega} = - \int\limits_{\widehat{\Omega}} i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\widehat{\Omega} \\
 		\displaystyle
-		\int\limits_{\tilde{\Omega}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d\tilde{\Omega} + \int\limits_{\tilde{\Omega}} k^{2} \tilde{\mathbf{E}} \cdot \mathbf{v}^{*} \,d\tilde{\Omega} = 0 . \\
+		\int\limits_{{\Omega^{PML}}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \tilde{\mathbf{v}}^{*} \,d{\Omega^{PML}} + \int\limits_{{\Omega^{PML}}} k^{2} \tilde{\mathbf{E}} \cdot \tilde{\mathbf{v}}^{*} \,d{\Omega^{PML}} = 0 . \\
 	\end{cases}
 \end{equation*}
 
@@ -677,7 +685,7 @@
 \begin{equation*}
 	\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega ) = \mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ) \oplus (\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot} ,
 \end{equation*}
-где $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$ – ядро rot-оператора, $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ – его ортогональное дополнение. Для выполнения условий непрерывности, необходимо использовать полный базис \citep{webb1993,webb1999,nedelec1980,nedelec1986}, то есть состоящий из роторных базисных функций, принадлежащих пространству $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ и обеспечивающих непрерывность тангенциальных компонент поля $\mathbf{E}$ (\ref{eq:maxwell:tangent_E}), и градиентных базисных функций из пространства $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$, отвечающих за скачок нормальной компоненты поля~(\ref{eq:maxwell:normal_D}) и выполнения закона сохранения заряда~(\ref{eq:charge}).
+где $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$ – ядро rot-оператора, $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ – его ортогональное дополнение. Для выполнения условий непрерывности (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}) необходимо использовать полный базис (базис II типа) \citep{webb1993,webb1999,nedelec1980,nedelec1986}, состоящий из роторных базисных функций, принадлежащих пространству $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ и обеспечивающих непрерывность тангенциальных компонент электрического поля $\mathbf{E}$ (\ref{eq:maxwell:tangent_E}), и градиентных базисных функций из пространства $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$, отвечающих за скачок нормальной компоненты электрического поля $\mathbf{E}$~(\ref{eq:maxwell:normal_D}) и выполнения закона сохранения заряда~(\ref{eq:charge}).
 
 Представим векторнозначную функцию $\mathbf{E}^h$ в виде разложения по базису \linebreak $\boldsymbol{\psi}_j \in \mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$:
 \begin{equation*}
@@ -702,20 +710,18 @@
 	G_{ i,j } = \int\limits_{\Omega_k} \mu^{-1} \nabla \times \mathbf{w}_i \cdot \nabla \times \mathbf{w}_j \,d\Omega_k , \text{~~~}
 	M_{ i,j } = \int\limits_{\Omega_k} k^2 \mathbf{w}_i \cdot \mathbf{w}_j \,d\Omega_k . \label{eq:local_matrixes}
 \end{equation*}
-% Система линейных алгебраических уравнений (СЛАУ) (\ref{eq:form_29}) решается специальным двухуровневым методом~\citep{nechaev}.
+% Система линейных алгебраических уравнений (СЛАУ) (\ref{eq:slae}) решается специальным двухуровневым методом~\citep{nechaev}.
 
 % =============================================================================
 
 \subsection{Тетраэдральные конечные элементы}
 
-В качестве конечных элементов для представления расчетной области, будем пользоваться тетраэдрами. На тетраэдральном конечном элементе удобно определить $\mathcal{L}$-ко\-ор\-ди\-на\-ты, называемые также барицентрическими координатами~\citep{soloveychick}. Введем нумерацию вершин и ребер, показанную на рисунке \ref{fig:tetrahedron}:
-
-\begin{figure}[!htbp]
-%\begin{figure}[H]
+В качестве конечных элементов для представления расчетной области, будем пользоваться тетраэдрами. На тетраэдральном конечном элементе определим $\mathcal{L}$-ко\-ор\-ди\-на\-ты, называемые также барицентрическими координатами~\citep{soloveychick}. Введем нумерацию вершин и ребер, показанную на рисунке \ref{fig:theory:tetrahedron}:
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.25]{tetrahedron.png}
-	\caption{Тетраэдральный конечный элемент}
-	\label{fig:tetrahedron}
+	\includegraphics[scale=0.25]{theory/tetrahedron.png}
+	\caption{тетраэдральный конечный элемент}
+	\label{fig:theory:tetrahedron}
 \end{figure}
 
 \noindent Под $\mathcal{L}$-координатами понимают функции следующего вида:
@@ -733,15 +739,15 @@
 	\end{matrix}
 	\right] = \left[
 	\begin{matrix}
-		X_1 & X_2 & X_3 & X_4 \\
-		Y_1 & Y_2 & Y_3 & Y_4 \\
-		Z_1 & Z_2 & Z_3 & Z_4 \\
+		{p_1}_x & {p_2}_x & {p_3}_x & {p_4}_x \\
+		{p_1}_y & {p_2}_y & {p_3}_y & {p_4}_y \\
+		{p_1}_z & {p_2}_z & {p_3}_z & {p_4}_z \\
 		1 & 1 & 1 & 1 \\
 	\end{matrix}
 	\right]^{-1} = D^{-1} . \label{eq:tet:D1}
 \end{equation}
 
-Задав $\mathcal{L}$-координаты, можно определить на тетраэдре базисные функции. В отличие от узлового метода конечных элементов, в векторном методе конечных элементов базисные функции ассоциированы не с узлами, а с ребрами (edge), гранями (face) и объемами (volume)~\citep{nechaev, webb1999}. Так как будет использован полный базис второго порядка (называемый также базисом второго порядка II типа), то ограничимся рассмотрением только базисных функций, ассоциированных с ребрами и гранями.
+Задав $\mathcal{L}$-координаты, можно определить на тетраэдре базисные функции. В отличие от узлового метода конечных элементов, в векторном методе конечных элементов базисные функции ассоциированы не с узлами, а с ребрами (edge), гранями (face) и объемами (volume)~\citep{nechaev, webb1999}. Так как будут использованы полные (II типа) базисы первого и второго порядков, то ограничимся рассмотрением только базисных функций, ассоциированных с ребрами и гранями.
 
 Иерархический векторный базис Вебба второго порядка второго типа на тетраэдрах имеет вид~\citep{mikhajlova}:
 \begin{equation*}
@@ -773,7 +779,7 @@
 	\end{matrix}
 	\label{eq:basis}
 \end{equation*}
-где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, ассоциированные с ребрами, $\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, ассоциированные с ребрами, $\mathbf{w}_{13}^{2,\mathrm{I}}, ..., \mathbf{w}_{20}^{2,\mathrm{I}}$ – базисные функции второго порядка первого типа, ассоциированные с гранями, $\mathbf{w}_{21}^{2,\mathrm{II}}, ..., \mathbf{w}_{30}^{2,\mathrm{II}}$ – базисные функции второго порядка второго типа, ассоциированные с гранями (первые четыре) и ребрами.
+где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, ассоциированные с ребрами, $\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, ассоциированные с ребрами, $\mathbf{w}_{13}^{2,\mathrm{I}}, ..., \mathbf{w}_{20}^{2,\mathrm{I}}$ – базисные функции второго порядка первого типа, ассоциированные с гранями, $\mathbf{w}_{21}^{2,\mathrm{II}}, ..., \mathbf{w}_{30}^{2,\mathrm{II}}$ – базисные функции второго порядка второго типа, ассоциированные с гранями (первые четыре) и ребрами. Так как этот базис иерархический, то для получения базиса меньшего порядка следует ограничиться меньшим количеством функций. Так, для базиса первого порядка второго  типа следует использовать функции $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$.
 
 Для вычисления интегралов в (\ref{eq:weak_discr}) воспользуемся кубатурной формулой численного интегрирования (формулой Гаусса)~\citep{misovskih}:
 \begin{equation*}
@@ -792,14 +798,12 @@
 \end{equation}
 где $\displaystyle M^{S_1}_{i,j} = \int\limits_{S_1} \mathbf{w}_i \cdot \mathbf{w}_j \,d S_1$, $\displaystyle b^{S_1}_{i} = \int\limits_{S_1} \mathbf{E}^g \cdot \mathbf{w}_i \,d S_1$, $\mathbf{w}_i$ и $\mathbf{w}_j$ -- базисные функции на треугольниках.
 
-Определим $\mathcal{L}$-координаты на треугольниках таким же образом, как и на тетраэдрах. Введем нумерацию вершин и ребер согласно рисунку \ref{fig:triangle}:
-
-\begin{figure}[!htbp]
-%\begin{figure}[H]
+Определим $\mathcal{L}$-координаты на треугольниках таким же образом, как и на тетраэдрах. Введем нумерацию вершин и ребер согласно рисунку \ref{fig:theory:triangle}:
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.25]{triangle.png}
-	\caption{Треугольный конечный элемент}
-	\label{fig:triangle}
+	\includegraphics[scale=0.25]{theory/triangle.png}
+	\caption{треугольный конечный элемент}
+	\label{fig:theory:triangle}
 \end{figure}
 
 \noindent Тогда $\mathcal{L}$-координаты примут вид:
@@ -816,8 +820,8 @@
 	\end{matrix}
 	\right] = \left[
 	\begin{matrix}
-		X_1 & X_2 & X_3 \\
-		Y_1 & Y_2 & Y_3 \\
+		{p_1}_x & {p_2}_x & {p_3}_x \\
+		{p_1}_y & {p_2}_y & {p_3}_y \\
 		1 & 1 & 1 \\
 	\end{matrix}
 	\right]^{-1} = D^{-1} . \label{eq:tr:D1}
@@ -847,7 +851,7 @@
 	\end{matrix}
 	\label{eq:tr_basis}
 \end{equation*}
-где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{3}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, $\mathbf{w}_{4}^{1,\mathrm{II}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, $\mathbf{w}_{7}^{2,\mathrm{I}}, \mathbf{w}_{8}^{2,\mathrm{I}}$ – базисные функции второго порядка первого типа, $\mathbf{w}_{9}^{2,\mathrm{II}}, ..., \mathbf{w}_{12}^{2,\mathrm{II}}$ – базисные функции второго порядка второго типа.
+где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{3}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, $\mathbf{w}_{4}^{1,\mathrm{II}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, $\mathbf{w}_{7}^{2,\mathrm{I}}, \mathbf{w}_{8}^{2,\mathrm{I}}$ – базисные функции второго порядка первого типа, $\mathbf{w}_{9}^{2,\mathrm{II}}, ..., \mathbf{w}_{12}^{2,\mathrm{II}}$ – базисные функции второго порядка второго типа. Для базиса первого порядка второго типа следует использовать функции $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$.
 
 Для вычисления интегралов в (\ref{eq:bound_mnk}) воспользуемся формулой Гаусса~\citep{misovskih}:
 \begin{equation*}
@@ -858,20 +862,414 @@
 % =============================================================================
 
 \subsection{Двухуровневый решатель}
+%TODO Написать про двухуровневый решатель
 
 % =============================================================================
 
 \clearpage
 \section{Построение СЛАУ}
 \subsection{Структура глобальной матрицы СЛАУ}
+Рассмотрим структуру глобальной матрицы СЛАУ на примере двух тетраэдральных конечных элементов с базисом первого полного порядка, имеющих общую грань. Глобальная нумерация вершин и ребер этих тетраэдров приведена на рисунке \ref{fig:theory:2-tetrahedrons}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{theory/2-tetrahedrons.png}
+	\caption{два тетраэдральных конечных элемента}
+	\label{fig:theory:2-tetrahedrons}
+\end{figure}
+
+Локальные матрицы тетраэдра имеют блочный вид, матрица массы является плотной (\ref{eq:theory:matrix_M}), а в матрице жесткости ненулевой только один блок (\ref{eq:theory:matrix_G}):
+\begin{equation}
+	M = \left[
+	\begin{matrix}
+		M^{I, I} & M^{I, II} \\
+		M^{II, I} & M^{II, II} \\
+	\end{matrix}
+	\right] , \label{eq:theory:matrix_M}
+\end{equation}
+\begin{equation}
+	G = \left[
+	\begin{matrix}
+		G^{I, I} & \mathbb{O} \\
+		 \mathbb{O} &  \mathbb{O} \\
+	\end{matrix}
+	\right] , \label{eq:theory:matrix_G}
+\end{equation}
+где $M^{I, I}$, $G^{I, I}$ -- вклады от интегралов, содержащих только роторные ($\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$); $M^{II, II}$ -- только градиентные ($\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$); $M^{I, II}$, $M^{II, I}$ -- и роторные, и градиентные базисные функции.
+
+Глобальной матрице жесткости также имеет блочную структуру, для двух тетраэдров она схематично приведена на рисунке \ref{fig:theory:matrx_structure}. Под $G_1$ и $G_2$ понимаются вклады от матриц жесткости (\ref{eq:theory:matrix_G}) первого и второго тетраэдров соответственно, под $M_1$ и $M_2$ -- вклады от матриц массы (\ref{eq:theory:matrix_M}) первого и второго тетраэдров соответственно.
+
+\begin{figure}[H]
+	\begin{spacing}{0.75}
+	\setlength{\parskip}{0pt}
+	\begin{tabu}{|[2pt]@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|[1.25pt]@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|@{}C{1}|[2pt]}
+		\tabucline[2pt]{-}
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+		\\[0.75ex]\hline
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+		\\[0.75ex]\hline
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+		\\[0.75ex]\hline
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-2ex}\par\small $\scriptscriptstyle G_{1} + M_{1}$ \par $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			&
+			&
+			&
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			&
+			&
+			&
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			&
+			&
+			&
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			~\vspace{-1ex}\par\small $\scriptscriptstyle G_{2} + M_{2}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\tabucline[1.25pt]{-}
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+		\\[0.75ex]\hline
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+		\\[0.75ex]\hline
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			&
+			&
+		\\[0.75ex]\hline
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{1}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-2ex}\par~~\small $\scriptscriptstyle M_{1}$ \par ~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\hline
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			&
+			&
+			&
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$ &
+			~\vspace{-1ex}\par~~\small $\scriptscriptstyle M_{2}$
+		\\[0.25ex]\tabucline[2pt]{-}
+	\end{tabu}
+	\end{spacing}
+	\vspace{1ex}
+	\caption{структура СЛАУ}
+	\label{fig:theory:matrx_structure}
+\end{figure}
+
+% =============================================================================
+
 \subsection{Учет краевых условий}
+
+Неоднородные краевые условия первого рода вида (\ref{eq:bound1}) учитываются следующим образом:
+\begin{enumerate}
+	\item строится разложение $\mathbf{E}^g$ по базису треугольников границы в смысле МНК, для этого решается СЛАУ вида (\ref{eq:bound_mnk});
+	\item в диагональные элементы глобальной матрицы, соответствующие базисным функциям треугольников границы, записываются единицы, в элементы правой части -- полученные веса;
+	\item выполняется симметризация СЛАУ (если СЛАУ хранится в несимметричном формате, этот шаг можно пропустить).
+\end{enumerate}
+
+Однородные краевые условия первого рода вида (\ref{eq:bound1_zero}) учитываются аналогично, с той лишь разницей, что не требуется строить разложение $\mathbf{E}^g$ по базису, так как очевидно, что все веса будут нулевыми.
+
+Однородные электрические краевые условия второго рода вида (\ref{eq:bound2}) учитываются естественным образом и не вносят вклад в матрицу или правую часть СЛАУ, поэтому не требуют какой-либо специальной процедуры учета.
+
+% =============================================================================
+
 \subsection{Учет токовой петли}
-\subsection{Вывод решения}
+%TODO Написать про учет токовой петли, спросить у Макса если что
 
 % =============================================================================
 
 \clearpage
-\section{Верификация}
+\section{Верификация программного комплекса}
 Верификация полученной конечноэлементной аппроксимации будет проводиться на тестовой задаче, имеющей аналитическое решение.
 \subsection{Расчетная область}
 Расчетная область представляет собой куб со следующими параметрами: $x \in [0,1]$, $y \in [0,1]$, $z \in [0,1]$. Куб разбивается на регулярную тетраэдральную сетку согласно рисунку \ref{fig:verify:x1}:
@@ -880,7 +1278,7 @@
 %\begin{figure}[H]
 	\centering
 	\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x1.png}
-	\caption{Конечноэлементная сетка для верификации}
+	\caption{конечноэлементная сетка для верификации}
 	\label{fig:verify:x1}
 \end{figure}
 
@@ -947,7 +1345,7 @@
 	\subfloat[][]{\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x2.png}\label{fig:verify:x2}}
 	~~~~~
 	\subfloat[][]{\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x4.png}\label{fig:verify:x4}}
-	\caption{Конечноэлементные сетки для определения порядка аппроксимации}
+	\caption{конечноэлементные сетки для определения порядка аппроксимации}
 	\label{fig:verify:x2_x4}
 \end{figure}
 
