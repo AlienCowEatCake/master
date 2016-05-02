@@ -1,9 +1,9 @@
 %!PS-Adobe-2.0 EPSF-2.0
 %%Title: EzI.eps
-%%Creator: gnuplot 5.0 patchlevel 0
-%%CreationDate: Fri Mar 11 06:01:16 2016
+%%Creator: gnuplot 5.0 patchlevel rc2
+%%CreationDate: Mon May  2 15:35:28 2016
 %%DocumentFonts: (atend)
-%%BoundingBox: 50 50 287 158
+%%BoundingBox: 50 50 287 179
 %%EndComments
 %%BeginProlog
 /gnudict 256 dict def
@@ -43,12 +43,12 @@ gnudict begin
 /vpt vpt_ def
 /doclip {
   ClipToBoundingBox {
-    newpath 50 50 moveto 287 50 lineto 287 158 lineto 50 158 lineto closepath
+    newpath 50 50 moveto 287 50 lineto 287 179 lineto 50 179 lineto closepath
     clip
   } if
 } def
 %
-% Gnuplot Prolog Version 5.0 (Dec 2014)
+% Gnuplot Prolog Version 5.0 (Apr 2014)
 %
 %/SuppressPDFMark true def
 %
@@ -83,7 +83,7 @@ gnudict begin
 /PL {stroke userlinewidth setlinewidth
 	Rounded {1 setlinejoin 1 setlinecap} if} def
 3.8 setmiterlimit
-% Classic Line colors (version 5.0)
+% Default Line colors
 /LCw {1 1 1} def
 /LCb {0 0 0} def
 /LCa {0 0 0} def
@@ -96,19 +96,19 @@ gnudict begin
 /LC6 {0 0 0} def
 /LC7 {1 0.3 0} def
 /LC8 {0.5 0.5 0.5} def
-% Default dash patterns (version 5.0)
+% Default Line Types
 /LTw {PL [] 1 setgray} def
 /LTb {BL [] LCb DL} def
 /LTa {AL [1 udl mul 2 udl mul] 0 setdash LCa setrgbcolor} def
 /LT0 {PL [] LC0 DL} def
-/LT1 {PL [2 dl1 3 dl2] LC1 DL} def
-/LT2 {PL [1 dl1 1.5 dl2] LC2 DL} def
-/LT3 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC3 DL} def
-/LT4 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
-/LT5 {PL [4 dl1 2 dl2] LC5 DL} def
-/LT6 {PL [1.5 dl1 1.5 dl2 1.5 dl1 1.5 dl2 1.5 dl1 6 dl2] LC6 DL} def
-/LT7 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC7 DL} def
-/LT8 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC8 DL} def
+/LT1 {PL [4 dl1 2 dl2] LC1 DL} def
+/LT2 {PL [2 dl1 3 dl2] LC2 DL} def
+/LT3 {PL [1 dl1 1.5 dl2] LC3 DL} def
+/LT4 {PL [6 dl1 2 dl2 1 dl1 2 dl2] LC4 DL} def
+/LT5 {PL [3 dl1 3 dl2 1 dl1 3 dl2] LC5 DL} def
+/LT6 {PL [2 dl1 2 dl2 2 dl1 6 dl2] LC6 DL} def
+/LT7 {PL [1 dl1 2 dl2 6 dl1 2 dl2 1 dl1 2 dl2] LC7 DL} def
+/LT8 {PL [2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 2 dl2 2 dl1 4 dl2] LC8 DL} def
 /SL {[] 0 setdash} def
 /Pnt {stroke [] 0 setdash gsave 1 setlinecap M 0 0 V stroke grestore} def
 /Dia {stroke [] 0 setdash 2 copy vpt add M
@@ -524,11 +524,11 @@ systemdict /pdfmark known not {
 SDict begin [
   /Title (EzI.eps)
   /Subject (gnuplot plot)
-  /Creator (gnuplot 5.0 patchlevel 0)
-  /Author (Peter)
+  /Creator (gnuplot 5.0 patchlevel rc2)
+  /Author (peter)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Fri Mar 11 06:01:16 2016)
+  /CreationDate (Mon May  2 15:35:28 2016)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -568,24 +568,24 @@ doclip
 0 setgray
 newpath
 (Helvetica) findfont 160 scalefont setfont
-BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {BackgroundColor C 1.000 0 0 4752.00 2160.00 BoxColFill} if
+BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {BackgroundColor C 1.000 0 0 4752.00 2590.00 BoxColFill} if
 1.000 UL
 LTb
 LCb setrgbcolor
 2.000 UL
 LTb
-0.80 0.80 0.80 C 1104 674 M
+0.80 0.80 0.80 C 1104 721 M
 3359 0 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
-1104 674 M
+1104 721 M
 63 0 V
 3296 0 R
 -63 0 V
 stroke
-1008 674 M
+1008 721 M
 [ [(Helvetica) 160.0 0.0 true true 0 (0.0×10)]
 [(Helvetica) 128.0 80.0 true true 0 (+0)]
 ] -69.3 MRshow
@@ -594,18 +594,18 @@ LTb
 LCb setrgbcolor
 2.000 UL
 LTb
-0.80 0.80 0.80 C 1104 1078 M
+0.80 0.80 0.80 C 1104 1245 M
 3359 0 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
-1104 1078 M
+1104 1245 M
 63 0 V
 3296 0 R
 -63 0 V
 stroke
-1008 1078 M
+1008 1245 M
 [ [(Helvetica) 160.0 0.0 true true 0 (5.0×10)]
 [(Helvetica) 128.0 80.0 true true 0 (-10)]
 ] -69.3 MRshow
@@ -614,18 +614,18 @@ LTb
 LCb setrgbcolor
 2.000 UL
 LTb
-0.80 0.80 0.80 C 1104 1482 M
+0.80 0.80 0.80 C 1104 1769 M
 3359 0 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
-1104 1482 M
+1104 1769 M
 63 0 V
 3296 0 R
 -63 0 V
 stroke
-1008 1482 M
+1008 1769 M
 [ [(Helvetica) 160.0 0.0 true true 0 (1.0×10)]
 [(Helvetica) 128.0 80.0 true true 0 (-9)]
 ] -69.3 MRshow
@@ -634,18 +634,18 @@ LTb
 LCb setrgbcolor
 2.000 UL
 LTb
-0.80 0.80 0.80 C 1104 1886 M
+0.80 0.80 0.80 C 1104 2292 M
 3359 0 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
-1104 1886 M
+1104 2292 M
 63 0 V
 3296 0 R
 -63 0 V
 stroke
-1008 1886 M
+1008 2292 M
 [ [(Helvetica) 160.0 0.0 true true 0 (1.5×10)]
 [(Helvetica) 128.0 80.0 true true 0 (-9)]
 ] -69.3 MRshow
@@ -655,14 +655,14 @@ LCb setrgbcolor
 2.000 UL
 LTb
 0.80 0.80 0.80 C 1440 512 M
-0 1455 V
+0 1885 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
 1440 512 M
 0 63 V
-0 1392 R
+0 1822 R
 0 -63 V
 stroke
 1440 352 M
@@ -674,14 +674,14 @@ LCb setrgbcolor
 2.000 UL
 LTb
 0.80 0.80 0.80 C 2112 512 M
-0 1455 V
+0 1885 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
 2112 512 M
 0 63 V
-0 1392 R
+0 1822 R
 0 -63 V
 stroke
 2112 352 M
@@ -693,14 +693,14 @@ LCb setrgbcolor
 2.000 UL
 LTb
 0.80 0.80 0.80 C 2784 512 M
-0 1455 V
+0 1885 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
 2784 512 M
 0 63 V
-0 1392 R
+0 1822 R
 0 -63 V
 stroke
 2784 352 M
@@ -712,14 +712,14 @@ LCb setrgbcolor
 2.000 UL
 LTb
 0.80 0.80 0.80 C 3455 512 M
-0 1455 V
+0 1885 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
 3455 512 M
 0 63 V
-0 1392 R
+0 1822 R
 0 -63 V
 stroke
 3455 352 M
@@ -731,14 +731,14 @@ LCb setrgbcolor
 2.000 UL
 LTb
 0.80 0.80 0.80 C 4127 512 M
-0 1455 V
+0 1885 V
 stroke
 1.000 UL
 LTb
 LCb setrgbcolor
 4127 512 M
 0 63 V
-0 1392 R
+0 1822 R
 0 -63 V
 stroke
 4127 352 M
@@ -750,10 +750,10 @@ LCb setrgbcolor
 1.000 UL
 LTb
 LCb setrgbcolor
-1104 1967 N
-0 -1455 V
+1104 2397 N
+0 -1885 V
 3359 0 V
-0 1455 V
+0 1885 V
 -3359 0 V
 Z stroke
 1.000 UP
@@ -761,7 +761,7 @@ Z stroke
 LTb
 LCb setrgbcolor
 LCb setrgbcolor
-166 1239 M
+166 1454 M
 currentpoint gsave translate -270 rotate 0 0 moveto
 [ /Helvetica:Bold reencodeISO def
 [(Helvetica:Bold) 180.0 0.0 true true 0 (E)]
@@ -769,20 +769,20 @@ XYsave
 [(Helvetica) 160.0 90.0 true true 0 (Im)]
 XYrestore
 [(Helvetica) 160.0 -54.0 true true 0 (z)]
-[(Helvetica) 180.0 0.0 true true 0 (   \(V/m\))]
+[(Helvetica) 180.0 0.0 true true 0 ( ,  V/m)]
 ] -65.3 MCshow
 grestore
 LTb
 LCb setrgbcolor
 2783 112 M
-[ [(Helvetica) 180.0 0.0 true true 0 (z \(m\))]
+[ [(Helvetica) 180.0 0.0 true true 0 (z, m)]
 ] -60.0 MCshow
 LTb
 % Begin plot #1
 1.000 UP
 3.000 UL
 LTb
-1.00 0.00 0.00 C 1104 707 M
+1.00 0.00 0.00 C 1104 765 M
 2 0 V
 1 0 V
 2 0 V
@@ -887,7 +887,7 @@ LTb
 1 0 V
 2 0 V
 2 0 V
-stroke 1279 707 M
+stroke 1279 765 M
 1 0 V
 2 0 V
 2 0 V
@@ -992,7 +992,7 @@ stroke 1279 707 M
 2 0 V
 2 0 V
 1 0 V
-stroke 1453 707 M
+stroke 1453 765 M
 2 0 V
 2 0 V
 1 0 V
@@ -1097,7 +1097,7 @@ stroke 1453 707 M
 2 0 V
 1 0 V
 2 0 V
-stroke 1628 707 M
+stroke 1628 765 M
 2 0 V
 1 0 V
 2 0 V
@@ -1202,7 +1202,7 @@ stroke 1628 707 M
 1 0 V
 2 0 V
 2 0 V
-stroke 1803 707 M
+stroke 1803 765 M
 1 0 V
 2 0 V
 2 0 V
@@ -1307,7 +1307,7 @@ stroke 1803 707 M
 2 0 V
 2 0 V
 1 0 V
-stroke 1977 707 M
+stroke 1977 765 M
 2 0 V
 2 0 V
 1 0 V
@@ -1412,7 +1412,7 @@ stroke 1977 707 M
 2 0 V
 1 0 V
 2 0 V
-stroke 2152 707 M
+stroke 2152 765 M
 2 0 V
 1 0 V
 2 0 V
@@ -1517,7 +1517,7 @@ stroke 2152 707 M
 1 0 V
 2 0 V
 2 0 V
-stroke 2327 707 M
+stroke 2327 765 M
 1 0 V
 2 0 V
 2 0 V
@@ -1622,7 +1622,7 @@ stroke 2327 707 M
 2 0 V
 2 0 V
 1 0 V
-stroke 2501 707 M
+stroke 2501 765 M
 2 0 V
 2 0 V
 1 0 V
@@ -1727,7 +1727,7 @@ stroke 2501 707 M
 2 0 V
 1 0 V
 2 0 V
-stroke 2676 707 M
+stroke 2676 765 M
 2 0 V
 1 0 V
 2 0 V
@@ -1791,7 +1791,7 @@ stroke 2676 707 M
 1 0 V
 2 0 V
 2 0 V
-2 1147 V
+2 1486 V
 1 0 V
 2 0 V
 2 0 V
@@ -1832,7 +1832,7 @@ stroke 2676 707 M
 1 0 V
 2 0 V
 2 0 V
-stroke 2851 1854 M
+stroke 2851 2251 M
 1 0 V
 2 0 V
 2 0 V
@@ -1937,7 +1937,7 @@ stroke 2851 1854 M
 2 0 V
 2 0 V
 1 0 V
-stroke 3025 1854 M
+stroke 3025 2251 M
 2 0 V
 2 0 V
 1 0 V
@@ -2042,7 +2042,7 @@ stroke 3025 1854 M
 2 0 V
 1 0 V
 2 0 V
-stroke 3200 1854 M
+stroke 3200 2251 M
 2 0 V
 1 0 V
 2 0 V
@@ -2147,7 +2147,7 @@ stroke 3200 1854 M
 1 0 V
 2 0 V
 2 0 V
-stroke 3375 1854 M
+stroke 3375 2251 M
 1 0 V
 2 0 V
 2 0 V
@@ -2252,7 +2252,7 @@ stroke 3375 1854 M
 2 0 V
 2 0 V
 1 0 V
-stroke 3549 1854 M
+stroke 3549 2251 M
 2 0 V
 2 0 V
 1 0 V
@@ -2357,7 +2357,7 @@ stroke 3549 1854 M
 2 0 V
 1 0 V
 2 0 V
-stroke 3724 1854 M
+stroke 3724 2251 M
 2 0 V
 1 0 V
 2 0 V
@@ -2462,7 +2462,7 @@ stroke 3724 1854 M
 1 0 V
 2 0 V
 2 0 V
-stroke 3899 1854 M
+stroke 3899 2251 M
 1 0 V
 2 0 V
 2 0 V
@@ -2567,7 +2567,7 @@ stroke 3899 1854 M
 2 0 V
 2 0 V
 1 0 V
-stroke 4073 1854 M
+stroke 4073 2251 M
 2 0 V
 2 0 V
 1 0 V
@@ -2672,7 +2672,7 @@ stroke 4073 1854 M
 2 0 V
 1 0 V
 2 0 V
-stroke 4248 1854 M
+stroke 4248 2251 M
 2 0 V
 1 0 V
 2 0 V
@@ -2777,7 +2777,7 @@ stroke 4248 1854 M
 1 0 V
 2 0 V
 2 0 V
-stroke 4423 1854 M
+stroke 4423 2251 M
 1 0 V
 2 0 V
 2 0 V
@@ -2810,10 +2810,10 @@ LCb setrgbcolor
 1.000 UL
 LTb
 LCb setrgbcolor
-1104 1967 N
-0 -1455 V
+1104 2397 N
+0 -1885 V
 3359 0 V
-0 1455 V
+0 1885 V
 -3359 0 V
 Z stroke
 1.000 UP

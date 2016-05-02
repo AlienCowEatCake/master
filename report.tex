@@ -231,7 +231,7 @@
 			{\fontsize{8}{14}\selectfont \spacedfill{1.8cm}(полное название кафедры)}\\
 			\vspace{1.9cm}
 			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{1.5cm}{\fontsize{14}{14}\selectfont Петр Сергеевич Жигалов}\spacedfill{1.5cm}}}\\
-			{\fontsize{8}{14}\selectfont (И. О. Фамилия студента – автора работы)}\\
+			{\fontsize{8}{14}\selectfont (И. О. Фамилия студента -- автора работы)}\\
 			\vspace{0.8cm}
 			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{0.9cm}{\fontsize{14}{14}\selectfont Анализ систем источник-приемник в задачах морской геоэлектрики}\spacedfill{0.9cm}}}\\
 			{\fontsize{8}{14}\selectfont (полное название темы магистерской диссертации)}\\
@@ -242,7 +242,7 @@
 			{\fontsize{12}{14}\selectfont \textbf{МАГИСТЕРСКАЯ ДИССЕРТАЦИЯ}}\\
 			{\fontsize{12}{14}\selectfont по направлению высшего образования}\\
 			\vspace{0.4cm}
-			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{1.75cm}{\fontsize{14}{14}\selectfont 01.04.02 – Прикладная математика и информатика}\spacedfill{3.75cm}}}\\
+			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{1.75cm}{\fontsize{14}{14}\selectfont 01.04.02 -- Прикладная математика и информатика}\spacedfill{3.75cm}}}\\
 			{\fontsize{8}{14}\selectfont (код и наименование направления подготовки магистра)}\\
 			\vspace{0.2cm}
 			{\fontsize{12}{14}\selectfont \dotunderline{\spacedfill{16cm}}}\\
@@ -322,7 +322,7 @@
 				\vspace{0.3cm}
 				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont факультета \dotunderline{\spacedfill{2.5cm}{\fontsize{14}{14}\selectfont прикладной математики и информатики}\spacedfill{2.95cm}}}\\
 				\vspace{0.35cm}
-				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont Направление подготовки \dotunderline{\spacedfill{0.4cm}{\fontsize{14}{14}\selectfont 01.04.02 – Прикладная математика и информатика}\spacedfill{0.45cm}}}\\
+				{\spacedfill{0.55cm} \fontsize{12}{14}\selectfont Направление подготовки \dotunderline{\spacedfill{0.4cm}{\fontsize{14}{14}\selectfont 01.04.02 -- Прикладная математика и информатика}\spacedfill{0.45cm}}}\\
 				\vspace{-0.05cm}
 				{\spacedfill{7.5cm} \fontsize{8}{14}\selectfont (код и наименование направления подготовки магистра)}\\
 				\vspace{0.1cm}
@@ -395,7 +395,7 @@
 
 	Объектом исследования является поведение электрического поля в недрах земли под слоем морской воды.
 
-	Цель работы – решение трехмерной прямой задачи морской геоэлектрики векторным методом конечных элементов.
+	Цель работы -- решение трехмерной прямой задачи морской геоэлектрики векторным методом конечных элементов.
 
 	В процессе работы проводилось численное моделирование электрического поля векторным методом конечных элементов, сравнивались результаты на разных частотах и разных комбинациях материалов с различными электрофизическими свойствами.
 
@@ -424,6 +424,8 @@
 Геометрические характеристики локального источника возбуждения электромагнитного поля значительно отличаются от области исследования, размеры первого в пределах сотен метров, а второй -- более 6000~м. Это приводит к необходимости применения специальных методов для сокращения области моделирования. Одним из таких методов является применение специального поглощающего слоя, называемого идеально согласованным слоем (Perfectly Matched Layer)~\citep{berenger, wiik_dehoop_ursin}. PML-слой учитывается в вариационной формулировке как подобласть со специальными коэффициентами. 
 
 Целью данной работы является исследование применения идеально согласованного слоя (PML-слоя) для ограничения области моделирования в задачах морской геоэлектрики на низких частотах.
+
+Для сокращения размеров расчетной области нередко практикуется отказ от расчетов в подобласти с воздухом и, вместо этого, задание на границе раздела сред воздух-вода условий непротекания~(\ref{eq:bound2}). Однако такой подход не позволяет правильно учесть физические процессы, протекающие в воздухе~\citep{anderson}. %TODO сослаться на НТИ-2015 еще!
 
 \clearpage
 \section{Математическая модель}
@@ -641,8 +643,8 @@
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.2mm 0mm,clip,scale=1]{theory/area_3layers_PML.png}\label{fig:theory:area_3layers_PML_a}}
-	\subfloat[][]{\includegraphics[trim=79.2mm 0mm 0mm 0mm,clip,scale=1]{theory/area_3layers_PML.png}\label{fig:theory:area_3layers_PML_b}}
+	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.0mm 0mm,clip,scale=1]{theory/area_3layers_PML.eps}\label{fig:theory:area_3layers_PML_a}}
+	\subfloat[][]{\includegraphics[trim=77.0mm 0mm 0mm 0mm,clip,scale=1]{theory/area_3layers_PML.eps}\label{fig:theory:area_3layers_PML_b}}
 	\caption{расчетные области: (а) без PML-слоя и (б) с PML-слоем}
 	\label{fig:theory:area_3layers_PML}
 \end{figure}
@@ -685,7 +687,7 @@
 \begin{equation*}
 	\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega ) = \mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ) \oplus (\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot} ,
 \end{equation*}
-где $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$ – ядро rot-оператора, $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ – его ортогональное дополнение. Для выполнения условий непрерывности (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}) необходимо использовать полный базис (базис II типа) \citep{webb1993,webb1999,nedelec1980,nedelec1986}, состоящий из роторных базисных функций, принадлежащих пространству $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ и обеспечивающих непрерывность тангенциальных компонент электрического поля $\mathbf{E}$ (\ref{eq:maxwell:tangent_E}), и градиентных базисных функций из пространства $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$, отвечающих за скачок нормальной компоненты электрического поля $\mathbf{E}$~(\ref{eq:maxwell:normal_D}) и выполнения закона сохранения заряда~(\ref{eq:charge}).
+где $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$ -- ядро rot-оператора, $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ -- его ортогональное дополнение. Для выполнения условий непрерывности (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}) необходимо использовать полный базис (базис II типа) \citep{webb1993,webb1999,nedelec1980,nedelec1986}, состоящий из роторных базисных функций, принадлежащих пространству $(\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega ))^{\bot}$ и обеспечивающих непрерывность тангенциальных компонент электрического поля $\mathbf{E}$ (\ref{eq:maxwell:tangent_E}), и градиентных базисных функций из пространства $\mathbb{N}_{0}^h( \mathrm{rot}\,, \Omega )$, отвечающих за скачок нормальной компоненты электрического поля $\mathbf{E}$~(\ref{eq:maxwell:normal_D}) и выполнения закона сохранения заряда~(\ref{eq:charge}).
 
 Представим векторнозначную функцию $\mathbf{E}^h$ в виде разложения по базису \linebreak $\boldsymbol{\psi}_j \in \mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$:
 \begin{equation*}
@@ -719,7 +721,7 @@
 В качестве конечных элементов для представления расчетной области, будем пользоваться тетраэдрами. На тетраэдральном конечном элементе определим $\mathcal{L}$-ко\-ор\-ди\-на\-ты, называемые также барицентрическими координатами~\citep{soloveychick}. Введем нумерацию вершин и ребер, показанную на рисунке \ref{fig:theory:tetrahedron}:
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.25]{theory/tetrahedron.png}
+	\includegraphics[scale=0.25]{theory/tetrahedron.eps}
 	\caption{тетраэдральный конечный элемент}
 	\label{fig:theory:tetrahedron}
 \end{figure}
@@ -779,7 +781,7 @@
 	\end{matrix}
 	\label{eq:basis}
 \end{equation*}
-где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, ассоциированные с ребрами, $\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, ассоциированные с ребрами, $\mathbf{w}_{13}^{2,\mathrm{I}}, ..., \mathbf{w}_{20}^{2,\mathrm{I}}$ – базисные функции второго порядка первого типа, ассоциированные с гранями, $\mathbf{w}_{21}^{2,\mathrm{II}}, ..., \mathbf{w}_{30}^{2,\mathrm{II}}$ – базисные функции второго порядка второго типа, ассоциированные с гранями (первые четыре) и ребрами. Так как этот базис иерархический, то для получения базиса меньшего порядка следует ограничиться меньшим количеством функций. Так, для базиса первого порядка второго  типа следует использовать функции $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$.
+где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$ -- базисные функции первого порядка первого типа, ассоциированные с ребрами, $\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$ -- базисные функции первого порядка второго типа, ассоциированные с ребрами, $\mathbf{w}_{13}^{2,\mathrm{I}}, ..., \mathbf{w}_{20}^{2,\mathrm{I}}$ -- базисные функции второго порядка первого типа, ассоциированные с гранями, $\mathbf{w}_{21}^{2,\mathrm{II}}, ..., \mathbf{w}_{30}^{2,\mathrm{II}}$ -- базисные функции второго порядка второго типа, ассоциированные с гранями (первые четыре) и ребрами. Так как этот базис иерархический, то для получения базиса меньшего порядка следует ограничиться меньшим количеством функций. Так, для базиса первого порядка второго  типа следует использовать функции $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$.
 
 Для вычисления интегралов в (\ref{eq:weak_discr}) воспользуемся кубатурной формулой численного интегрирования (формулой Гаусса)~\citep{misovskih}:
 \begin{equation*}
@@ -801,7 +803,7 @@
 Определим $\mathcal{L}$-координаты на треугольниках таким же образом, как и на тетраэдрах. Введем нумерацию вершин и ребер согласно рисунку \ref{fig:theory:triangle}:
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.25]{theory/triangle.png}
+	\includegraphics[scale=0.25]{theory/triangle.eps}
 	\caption{треугольный конечный элемент}
 	\label{fig:theory:triangle}
 \end{figure}
@@ -851,7 +853,7 @@
 	\end{matrix}
 	\label{eq:tr_basis}
 \end{equation*}
-где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{3}^{1,\mathrm{I}}$ – базисные функции первого порядка первого типа, $\mathbf{w}_{4}^{1,\mathrm{II}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$ – базисные функции первого порядка второго типа, $\mathbf{w}_{7}^{2,\mathrm{I}}, \mathbf{w}_{8}^{2,\mathrm{I}}$ – базисные функции второго порядка первого типа, $\mathbf{w}_{9}^{2,\mathrm{II}}, ..., \mathbf{w}_{12}^{2,\mathrm{II}}$ – базисные функции второго порядка второго типа. Для базиса первого порядка второго типа следует использовать функции $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$.
+где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{3}^{1,\mathrm{I}}$ -- базисные функции первого порядка первого типа, $\mathbf{w}_{4}^{1,\mathrm{II}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$ -- базисные функции первого порядка второго типа, $\mathbf{w}_{7}^{2,\mathrm{I}}, \mathbf{w}_{8}^{2,\mathrm{I}}$ -- базисные функции второго порядка первого типа, $\mathbf{w}_{9}^{2,\mathrm{II}}, ..., \mathbf{w}_{12}^{2,\mathrm{II}}$ -- базисные функции второго порядка второго типа. Для базиса первого порядка второго типа следует использовать функции $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$.
 
 Для вычисления интегралов в (\ref{eq:bound_mnk}) воспользуемся формулой Гаусса~\citep{misovskih}:
 \begin{equation*}
@@ -863,6 +865,7 @@
 
 \subsection{Двухуровневый решатель}
 %TODO Написать про двухуровневый решатель
+{\color{red}\textbf{Написать про двухуровневый решатель}}
 
 % =============================================================================
 
@@ -872,7 +875,7 @@
 Рассмотрим структуру глобальной матрицы СЛАУ на примере двух тетраэдральных конечных элементов с базисом первого полного порядка, имеющих общую грань. Глобальная нумерация вершин и ребер этих тетраэдров приведена на рисунке \ref{fig:theory:2-tetrahedrons}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.25]{theory/2-tetrahedrons.png}
+	\includegraphics[scale=0.25]{theory/2-tetrahedrons.eps}
 	\caption{два тетраэдральных конечных элемента}
 	\label{fig:theory:2-tetrahedrons}
 \end{figure}
@@ -1265,6 +1268,7 @@
 
 \subsection{Учет токовой петли}
 %TODO Написать про учет токовой петли, спросить у Макса если что
+{\color{red}\textbf{Написать про учет токовой петли}}
 
 % =============================================================================
 
@@ -1338,7 +1342,7 @@
 
 \subsection{Определение порядка аппроксимации}
 
-В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию (\ref{eq:verify:exp_solution}). Проведем исследование на порядок аппроксимации. Измельчим сетку расчетной области, изображенную на рисунке (\ref{fig:verify:x1}), в 2 и 4 раза, после чего сравним погрешности полученных решений. Измельченные сетки приведены на рисунках \ref{fig:verify:x2} и \ref{fig:verify:x4}, погрешности в норме пространства $\mathbb{L}^2$ полученных решений и порядок аппроксимации -- в таблице \ref{tab:verify:exp_order}.
+В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию (\ref{eq:verify:exp_solution}). Проведем исследование на порядок аппроксимации. Измельчим сетку расчетной области, изображенную на рисунке \ref{fig:verify:x1}, в 2 и 4 раза, после чего сравним погрешности полученных решений. Измельченные сетки приведены на рисунках \ref{fig:verify:x2} и \ref{fig:verify:x4}, погрешности в норме пространства $\mathbb{L}^2$ полученных решений и порядок аппроксимации -- в таблице \ref{tab:verify:exp_order}.
 
 \begin{figure}[H]
 	\centering
@@ -1374,16 +1378,16 @@
 \section{Вычислительные эксперименты}
 \subsection{Исследование влияния слоя воздуха}
 
-Для сокращения размеров расчетной области нередко практикуется отказ от расчетов в области с воздухом и вместо этого задание на границе раздела сред воздух-вода условий непротекания~(\ref{eq:bound2}). Однако такой подход не всегда позволяет правильно учесть физические процессы, протекающие в воздухе~\citep{anderson}. %TODO сослаться на НТИ-2015 еще!
-
 Проведем исследование влияния слоя воздуха в модельной задаче морской геоэлектрики при различной глубине погружения в воду источника электромагнитного возмущения.
 
+В этом исследовании будем пользоваться базисными функциями второго полного порядка.
+
 \subsubsection{Описание расчетной области}
-Схематичное изображение расчетной области показано на рисунке \ref{fig:res1:area}, где $\Omega_1$ – воздух ($\sigma=10^{-6}$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_2$ – морская вода ($\sigma=3.3$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_3$ – грунт ($\sigma=0.2$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_4$ – углеводороды ($\sigma=10^{-2}$~См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $L_1$, $L_2$ и $L_3$ -- размеры области моделирования по осям $x$, $y$ и $z$ соответственно; $L_1 = L_2 = L_3 = 6000$~м; $h_1=600$~м -- толщина $\Omega_2$; $h_3=75$~м, $l_1=400$~м, $h_2=80$~м, -- длина, толщина и глубина объекта $\Omega_4$ соответственно.
+Схематичное изображение расчетной области показано на рисунке \ref{fig:res1:area}, где $\Omega_1$ -- воздух ($\sigma=10^{-6}$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_2$ -- морская вода ($\sigma=3.3$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_3$ -- грунт ($\sigma=0.2$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_4$ -- углеводороды ($\sigma=10^{-2}$~См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $L_1$, $L_2$ и $L_3$ -- размеры области моделирования по осям $x$, $y$ и $z$ соответственно; $L_1 = L_2 = L_3 = 6000$~м; $h_1=600$~м -- толщина $\Omega_2$; $l_1=400$~м, $h_3=75$~м, $h_2=135$~м -- длина, толщина и глубина объекта $\Omega_4$ соответственно.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{research-1/area_3layers_shift_3.png}
+	\includegraphics[scale=0.7]{research-1/area_3layers_shift_3.eps}
 	\caption{схематичное изображение расчетной области}
 	\label{fig:res1:area}
 \end{figure}
@@ -1400,7 +1404,7 @@
 	\label{fig:res1:mesh}
 \end{figure}
 
-\subsubsection{Результаты вычислительных экспериментов}
+\subsubsection{Результаты исследования}
 Разности решений в норме $\mathbb{L}^2$ в объеме $[-600,600] \times [-600,600] \times [-1000,0]$ между областью, в которой присутствует слой воздуха, и областью, в которой заданы условия непротекания~(\ref{eq:bound2}), для некоторых значений глубины петли $h$ показаны в таблице \ref{tab:res1:diff}. В форме графика эти данные приведены на рисунке \ref{fig:res1:graph}.
 
 \begin{table}[H]
@@ -1445,96 +1449,149 @@
 % =============================================================================
 
 \subsection{Исследование эффективности применения PML-слоя}
-Цель вычислительных экспериментов: определение эффективности применения PML-слоя.
-Геометрические характеристики PML-слоя показаны на рисунке \ref{fig:info_2d}.
+Цель вычислительных экспериментов: определение эффективности применения PML-слоя. Геометрические характеристики PML-слоя показаны на рисунке \ref{fig:res2:info_2d}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=1.25]{research-2/info_2d_2.png}
+	\includegraphics[scale=1.25]{research-2/info_2d/info_2d_2.eps}
 	\caption{геометрические характеристики PML-слоя}
-	\label{fig:info_2d}
+	\label{fig:res2:info_2d}
 \end{figure}
 
-Вычислительные эксперименты были выполнены следующим образом: последовательно варьировался каждый из параметров PML-слоя: толщина PML-слоя в $k$-м направлении $\delta_k$, где $k = \begin{smallmatrix}x\\1\end{smallmatrix},\begin{smallmatrix}y\\2\end{smallmatrix},\begin{smallmatrix}z\\3\end{smallmatrix}$, расстояние от центра области до границ PML-слоя $l_k$, коэффициент комплексного растяжения координат $\chi$~(\ref{eq:pml_s}), оставшиеся параметры фиксировались, что позволило определить параметры, влияющие на характеристики PML-слоя.
+Вычислительные эксперименты проводились следующим образом: последовательно варьировался каждый из параметров PML-слоя: толщина слоя в $k$-м направлении $\delta_k$, где $k = \begin{smallmatrix}x\\1\end{smallmatrix},\begin{smallmatrix}y\\2\end{smallmatrix},\begin{smallmatrix}z\\3\end{smallmatrix}$, расстояние от центра области до внутренних границ слоя $l_k$, коэффициент комплексного растяжения координат $\chi$~(\ref{eq:pml_s}), оставшиеся параметры фиксировались, что позволило определить параметры, оказывающие наибольшее влияние на характеристики PML-слоя.
 
-Фрагменты тетраэдральных конечноэлементных сеток с <<большим баком>> и с PML-слоем приведены на рисунках \ref{fig:meshes} (а) и \ref{fig:meshes} (б). Все сетки строились таким образом,
-чтобы обеспечить сгущение в области с локальным источником, в качестве которого выступала замкнутая токовая петля.
+Фрагменты тетраэдральных конечноэлементных сеток с <<большим баком>> и с PML-слоем приведены на рисунках \ref{fig:res2:meshes_a} и \ref{fig:res2:meshes_b}.
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.2mm 0mm,clip,scale=1]{research-2/meshes.png}\label{fig:meshes_a}}
-	\subfloat[][]{\includegraphics[trim=79.2mm 0mm 0mm 0mm,clip,scale=1]{research-2/meshes.png}\label{fig:meshes_b}}
+	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.2mm 0mm,clip,scale=1.1]{research-2/meshes/meshes.png}\label{fig:res2:meshes_a}}
+	\subfloat[][]{\includegraphics[trim=78.8mm 0mm 0mm 0mm,clip,scale=1.1]{research-2/meshes/meshes.png}\label{fig:res2:meshes_b}}
 	\caption{конечноэлементные сетки: (а) <<большой бак>> и (б) PML-слой}
-	\label{fig:meshes}
+	\label{fig:res2:meshes}
 \end{figure}
+
+В этом исследовании будем пользоваться базисными функциями первого полного порядка.
 
 \subsubsection{Описание расчетной области}
-На рисунке \ref{fig:area} приведена расчетная область, где $\Omega_1$ -- воздух ($\sigma = 10^{-6}$~См/м), $\Omega_2$ -- морская вода ($\sigma = 3.3$~См/м), $\Omega_3$ -- грунт~($\sigma = 0.2$~См/м), $\Omega_4$ -- углеводороды~($\sigma = 0.01$~См/м), $L_1$, $L_2$ и $L_3$ -- размеры области моделирования по осям $x$, $y$ и $z$ соответственно, $L_1 = L_2 = L_3 = 6000$~м, $h_1 = 300$~м -- толщина $\Omega_2$, $l_1 = 400$~м, $h_3 = 100$~м, $h_2 = 100$~м -- длина, толщина и глубина объекта $\Omega_4$ соответственно.
+Схематичное изображение расчетной области показано на рисунке \ref{fig:res2:area}, где $\Omega_1$ -- воздух ($\sigma=10^{-6}$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_2$ -- морская вода ($\sigma=3.3$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_3$ -- грунт ($\sigma=0.2$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_4$ -- углеводороды ($\sigma=10^{-2}$~См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $L_1$, $L_2$ и $L_3$ -- размеры области моделирования по осям $x$, $y$ и $z$ соответственно; $L_1 = L_2 = L_3 = 6000$~м; $h_1=300$~м -- толщина $\Omega_2$; $l_1=400$~м, $h_3=100$~м, $h_2=100$~м -- длина, толщина и глубина объекта $\Omega_4$ соответственно.
+
+Объект $\Omega_4$ представляет собой скругленный прямоугольный параллелепипед с двумя равными сторонами, наклоненный под углом $5^{\circ}$. Источником электрического поля является петля диаметром $d = 100$~м с током частотой $1$~Гц, расположенная в воздухе на расстоянии $h = 5$~м от границы раздела сред воздух-вода. Также рассматривается случай, когда петля расположена в воде ($h = -5$~м).
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=1]{research-2/area_3layers_3.png}
+	\includegraphics[scale=1.5]{research-2/area_3layers/area_3layers_3.eps}
 	\caption{расчетная область}
-	\label{fig:area}
+	\label{fig:res2:area}
 \end{figure}
 
-Объект $\Omega_4$ представляет собой скругленный прямоугольный параллелепипед с двумя равными сторонами, наклоненный под углом $5^{\circ}$. Источником электрического поля является петля диаметром $d = 100$~м с током частотой $1$~Гц, расположенная в воздухе на расстоянии $h = 5$~м от границы раздела сред воздух--вода.
+Выделим внутри области c условием <<большого бака>> и области, на границе которой задан PML-слой, подобласть $\Omega'$ размером $1000 \times 1000 \times 1000$~м${}^3$. Для этой подобласти в данном исследовании будем оценивать разность в норме $\mathbb{L}^2$ между действительными компонентами $\mathbf{E}_y$ векторов решений $\mathbf{E}_y^{\text{бак}}$ и $\mathbf{E}_y^{\text{PML}}$, полученных с применением <<большого бака>> и PML-слоя соответственно.
 
 \subsubsection{Варьирование коэффициентов растяжения}
-Зафиксируем $\delta_k = 100$~м, $l_k = 600$~м, $m = 3$, $h = 5$~м и будем варьировать коэффициент комплексного растяжения координат $\chi$. Выделим внутри области c условием <<большого бака>> и области, на границе которой задан PML-слой, подобласть $\Omega'$ размером $1000 \times 1000 \times 1000$~м${}^3$, для которой оценим разность в норме $L^2$ между действительными компонентами $\mathbf{E}_y$ векторов решений $\mathbf{E}_y^{\text{бак}}$ и $\mathbf{E}_y^{\text{PML}}$, полученных с применением <<большого бака>> и PML-слоя соответственно. Результаты приведены в таблице \ref{tab:tbl_13}.
+Зафиксируем $\delta_k = 100$~м, $l_k = 600$~м, $m = 3$, $h = 5$~м и будем варьировать коэффициент комплексного растяжения координат $\chi$. Размер получаемой СЛАУ для <<большого бака>> -- 653814, с PML-слоем -- 616180. Результаты приведены в таблице \ref{tab:res2:chi_5}. Для случая $h= -5$~м размер получаемой СЛАУ для <<большого бака>> -- 652396, с PML-слоем -- 614504. Результаты приведены в таблице \ref{tab:res2:chi_m5}.
 \begin{table}[H]
 	\caption{варьирование коэффициентов растяжения при $h= 5$~м}
-	\label{tab:tbl_13}
-	\begin{tabularx}{\textwidth}{|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{1}|C{1}|C{3.1}|}
-		\rowcolor[gray]{.9} \hline $\Re(\chi)$ в $\Omega_1$ & $\Im(\chi)$ в $\Omega_1$ & $\Re(\chi)$ в $\Omega_2$ & $\Im(\chi)$ в $\Omega_2$ & $\Re(\chi)$ в $\Omega_3$ & $\Im(\chi)$ в $\Omega_3$ & Время, бак & Время, PML & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} \\
-		\hline 3 & 0 & 1 & 5 & 3 & 1 & 650 & 592 & 0.106636 \\
-		\hline 3 & 1 & 0 & 6 & 2 & 1 & 650 & 599 & 0.092546 \\
-		\hline 4 & 0 & 1 & 5 & 3 & 1 & 650 & 731 & 0.0946679 \\
-		\hline 4 & 1 & 0 & 6 & 2 & 1 & 650 & 591 & 0.0909998 \\
+	\label{tab:res2:chi_5}
+	\begin{spacing}{1.2}
+	\setlength{\parskip}{0pt}
+	\fontsize{12}{14}\selectfont
+	\begin{tabularx}{\textwidth}{|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{3.1}|C{1}|C{1}|}
+		\rowcolor[gray]{.9} \hline $\Re(\chi)$ в $\Omega_1$ & $\Im(\chi)$ в $\Omega_1$ & $\Re(\chi)$ в $\Omega_2$ & $\Im(\chi)$ в $\Omega_2$ & $\Re(\chi)$ в $\Omega_3$ & $\Im(\chi)$ в $\Omega_3$ & \raisebox{-0.8em}{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} & Время, бак & Время, PML \\[0.2em]
+		\hline 3 & 0 & 1 & 5 & 3 & 1 & 0.106636 & \multirow{4}{*}{650} & 592 \\
+		\cline{1-7}\cline{9-9} 3 & 1 & 0 & 6 & 2 & 1 & 0.0925 & & 599 \\
+		\cline{1-7}\cline{9-9} 4 & 0 & 1 & 5 & 3 & 1 & 0.0947 & & 731 \\
+		\cline{1-7}\cline{9-9} 4 & 1 & 0 & 6 & 2 & 1 & 0.0910 & & 591 \\
 		\hline
 	\end{tabularx}
+	\end{spacing}
 \end{table}
 
-Также рассмотрим случай, когда петля расположена на расстоянии $h= -5$~м от границы раздела сред воздух--вода. Результаты приведены в таблице \ref{tab:tbl_14}.
 \begin{table}[H]
 	\caption{варьирование коэффициентов растяжения при $h= -5$~м}
-	\label{tab:tbl_14}
-	\begin{tabularx}{\textwidth}{|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{1}|C{1}|C{3.1}|}
-		\rowcolor[gray]{.9} \hline $\Re(\chi)$ в $\Omega_1$ & $\Im(\chi)$ в $\Omega_1$ & $\Re(\chi)$ в $\Omega_2$ & $\Im(\chi)$ в $\Omega_2$ & $\Re(\chi)$ в $\Omega_3$ & $\Im(\chi)$ в $\Omega_3$ & Время, бак & Время, PML & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} \\
-		\hline 4 & 0 & 1 & 5 & 3 & 1 & 309 & 344 & 0.0929047 \\
-		\hline 4 & 0 & 1 & 6 & 3 & 1 & 309 & 294 & 0.086956 \\
-		\hline 4 & 0 & 1 & 6 & 3 & 2 & 309 & 253 & 0.0809429 \\
-		\hline 4 & 1 & 1 & 6 & 3 & 2 & 309 & 306 & 0.0657666 \\
+	\label{tab:res2:chi_m5}
+	\begin{spacing}{1.2}
+	\setlength{\parskip}{0pt}
+	\fontsize{12}{14}\selectfont
+	\begin{tabularx}{\textwidth}{|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{0.65}|C{3.1}|C{1}|C{1}|}
+		\rowcolor[gray]{.9} \hline $\Re(\chi)$ в $\Omega_1$ & $\Im(\chi)$ в $\Omega_1$ & $\Re(\chi)$ в $\Omega_2$ & $\Im(\chi)$ в $\Omega_2$ & $\Re(\chi)$ в $\Omega_3$ & $\Im(\chi)$ в $\Omega_3$ & \raisebox{-0.8em}{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} & Время, бак & Время, PML \\[0.2em]
+		\hline 4 & 0 & 1 & 5 & 3 & 1 & 0.0929047 & \multirow{4}{*}{309} & 344 \\
+		\cline{1-7}\cline{9-9} 4 & 0 & 1 & 6 & 3 & 1 & 0.0870 & & 294 \\
+		\cline{1-7}\cline{9-9} 4 & 0 & 1 & 6 & 3 & 2 & 0.0809 & & 253 \\
+		\cline{1-7}\cline{9-9} 4 & 1 & 1 & 6 & 3 & 2 & 0.0658 & & 306 \\
 		\hline
 	\end{tabularx}
+	\end{spacing}
 \end{table}
 
 \subsubsection{Варьирование толщины PML-слоя}
-Зафиксируем $\chi_{\Omega_1} = (4, 1)$, $\chi_{\Omega_2} = (0, 6)$, $\chi_{\Omega_2} = (2, 1)$, $l_k = 600$~м, $m = 3$, $h = 5$~м и будем варьировать толщину PML-слоя $\delta_k$. Результаты приведены в таблице \ref{tab:tbl_15}.
+Зафиксируем $\chi_{\Omega_1} = (4, 1)$, $\chi_{\Omega_2} = (0, 6)$, $\chi_{\Omega_3} = (2, 1)$, $l_k = 600$~м, $m = 3$, $h = 5$~м и будем варьировать толщину PML-слоя $\delta_k$. Результаты приведены в таблице \ref{tab:res2:delta_5}. Для случая $h= -5$~м выберем $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_3} = (3, 2)$. Результаты приведены в таблице \ref{tab:res2:delta_m5}.
+
 \begin{table}[H]
 	\caption{варьирование толщины PML-слоя при $h= 5$~м}
-	\label{tab:tbl_15}
-	\begin{tabularx}{\textwidth}{|C{0.5}|C{1}|C{1}|C{1.5}|}
-		\rowcolor[gray]{.9} \hline $\delta_k$ & Время, бак & Время, PML & $\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}$ \\
-		\hline 80 & 673 & 1289 & 0.119883 \\
-		\hline 100 & 650 & 591 & 0.0909998 \\
-		\hline 120 & 609 & 1142 & 0.078364 \\
+	\label{tab:res2:delta_5}
+	\begin{spacing}{1.2}
+	\setlength{\parskip}{0pt}
+	\fontsize{12}{14}\selectfont
+	\begin{tabularx}{\textwidth}{|C{0.4}|C{2.2}|C{0.8}|C{0.8}|C{0.9}|C{0.9}|}
+		\rowcolor[gray]{.9} \hline \raisebox{-0.8em}[0.8em]{$\smash{\displaystyle \delta_k}$} & \raisebox{-0.8em}[0.8em]{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} & Время, бак & Время, PML & Размер СЛАУ, бак & Размер СЛАУ, PML \\[0.2em]
+		\hline 80 & 0.1199 & 673 & 1289 & 659858 & 618128 \\
+		\hline 100 & 0.0910 & 650 & 591 & 653814 & 616180 \\
+		\hline 120 & 0.0784 & 609 & 1142 & 654354 & 617324 \\
 		\hline
 	\end{tabularx}
+	\end{spacing}
 \end{table}
 
-Также рассмотрим случай, когда петля расположена на расстоянии $h=-5$~м от границы раздела сред воздух--вода, для которого $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_2} = (3, 2)$. Результаты приведены в таблице \ref{tab:tbl_16}.
 \begin{table}[H]
 	\caption{варьирование толщины PML-слоя при $h= -5$~м}
-	\label{tab:tbl_16}
-	\begin{tabularx}{\textwidth}{|C{0.5}|C{1}|C{1}|C{1.5}|}
-		\rowcolor[gray]{.9} \hline $\delta_k$ & Время, бак & Время, PML & $\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}$ \\
-		\hline 80 & 359 & 297 & 0.12013 \\
-		\hline 100 & 309 & 253 & 0.0809429 \\
-		\hline 120 & 250 & 859 & 0.0623323 \\
+	\label{tab:res2:delta_m5}
+	\begin{spacing}{1.2}
+	\setlength{\parskip}{0pt}
+	\fontsize{12}{14}\selectfont
+	\begin{tabularx}{\textwidth}{|C{0.4}|C{2.2}|C{0.8}|C{0.8}|C{0.9}|C{0.9}|}
+		\rowcolor[gray]{.9} \hline \raisebox{-0.8em}[0.8em]{$\smash{\displaystyle \delta_k}$} & \raisebox{-0.8em}[0.8em]{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} & Время, бак & Время, PML & Размер СЛАУ, бак & Размер СЛАУ, PML \\[0.2em]
+		\hline 80 & 0.1201 & 359 & 297 & 652312 & 614822 \\
+		\hline 100 & 0.0809 & 309 & 253 & 652396 & 614504 \\
+		\hline 120 & 0.0623 & 250 & 859 & 652422 & 615394\\
 		\hline
 	\end{tabularx}
+	\end{spacing}
+\end{table}
+
+\subsubsection{Варьирование размера области, на границе которой вводится PML-слой}
+Зафиксируем $\chi_{\Omega_1} = (4, 1)$, $\chi_{\Omega_2} = (0, 6)$, $\chi_{\Omega_3} = (2, 1)$, $\delta_k = 100$~м, $m = 3$, $h = 5$~м и будем варьировать $l_k$ -- размер области, на границе которой вводится PML-слой. Результаты приведены в таблице \ref{tab:res2:l_5}. Для случая $h= -5$~м выберем $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_3} = (3, 2)$. Результаты приведены в таблице \ref{tab:res2:l_m5}.
+
+\begin{table}[H]
+	\caption{варьирование размера области, на границе которой вводится PML-слой, при $h= 5$~м}
+	\label{tab:res2:l_5}
+	\begin{spacing}{1.2}
+	\setlength{\parskip}{0pt}
+	\fontsize{12}{14}\selectfont
+	\begin{tabularx}{\textwidth}{|C{0.4}|C{2.2}|C{0.8}|C{0.8}|C{0.9}|C{0.9}|}
+		\rowcolor[gray]{.9} \hline \raisebox{-0.8em}[0.8em]{$\smash{\displaystyle l_k}$} & \raisebox{-0.8em}[0.8em]{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} & Время, бак & Время, PML & Размер СЛАУ, бак & Размер СЛАУ, PML \\[0.2em]
+		\hline 500 & 0.187456 & 628 & 587 & 659130 & 621390 \\
+		\hline 600 & 0.0909998 & 650 & 591 & 652396 & 614504 \\
+		\hline 800 & 0.0440642 & 718 & 658 & 794310 & 744856 \\
+		\hline
+	\end{tabularx}
+	\end{spacing}
+\end{table}
+
+\begin{table}[H]
+	\caption{варьирование размера области, на границе которой вводится PML-слой, при $h= -5$~м}
+	\label{tab:res2:l_m5}
+	\begin{spacing}{1.2}
+	\setlength{\parskip}{0pt}
+	\fontsize{12}{14}\selectfont
+	\begin{tabularx}{\textwidth}{|C{0.4}|C{2.2}|C{0.8}|C{0.8}|C{0.9}|C{0.9}|}
+		\rowcolor[gray]{.9} \hline \raisebox{-0.8em}[0.8em]{$\smash{\displaystyle l_k}$} & \raisebox{-0.8em}[0.8em]{$\smash{\displaystyle \frac{\lVert \Re(\mathbf{E}_y^{\text{бак}}) - \Re(\mathbf{E}_y^{\text{PML}})\rVert}{\lVert \Re(\mathbf{E}_y^{\text{бак}})\rVert}}$} & Время, бак & Время, PML & Размер СЛАУ, бак & Размер СЛАУ, PML \\[0.2em]
+		\hline 500 & 0.1751746 & 317 & 238 & 659814 & 621390 \\
+		\hline 600 & 0.0809429 & 309 & 253 & 652396 & 614504 \\
+		\hline 800 & 0.0348019 & 357 & 329 & 793272 & 743780 \\
+		\hline
+	\end{tabularx}
+	\end{spacing}
 \end{table}
 
 \subsubsection{Проверка выполнения условий на контактных границах}
-Проверим, что в случае независимого варьирования коэффициентов комплексного растяжения координат $\chi$, на границе двух PML-слоев с различными характеристиками не нарушаются условия на контактных границах (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}). Для этого рассмотрим поведение напряженности электрического поля $\mathbf{E}$ вдоль линии $x = 650$, $y = 0$, $z = [-0.005, 0.005]$ (середина PML-слоя по $x$-направлению):
+Проверим, что в случае независимого варьирования коэффициентов комплексного растяжения координат $\chi$, на границе двух соседних PML-слоев с различными характеристиками не нарушаются условия на контактных границах (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}). Для этого рассмотрим напряженность электрического поля $\mathbf{E}$ вдоль линии $x = 650$, $y = 0$, $z = [-0.005, 0.005]$ (середина PML-слоя по $x$-направлению):
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{research-2/650/ExR.eps}
@@ -1544,30 +1601,56 @@
 	\includegraphics[scale=1]{research-2/650/EzR.eps}
 	\includegraphics[scale=1]{research-2/650/EzI.eps}
 	\caption{графики компонент электрического поля на контактных границах}
-	\label{fig:650_3}
+	\label{fig:res2:650_3}
 \end{figure}
 
-Как видно из графиков на рисунке \ref{fig:650_3}, разрывна только нормальная компонента $\mathbf{E}_z$, следовательно, условия (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}) выполнены.
+Как видно из графиков на рисунке \ref{fig:res2:650_3}, разрывна только нормальная компонента $\mathbf{E}_z$, следовательно, условия (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}) выполнены.
 
 \subsubsection{Графическое представление результатов}
-На рисунках \ref{fig:field_sca} и \ref{fig:field_vec} показаны картины электрического поля, полученные при параметрах $h=-5$~м, $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_2} = (3, 2)$, $m=3$, $l_k = 600$~м и $\delta_k = 100$~м. На рисунках \ref{fig:field_sca} (а) и \ref{fig:field_vec} (а) представлено решение с PML-слоем, \ref{fig:field_sca} (б) и \ref{fig:field_vec} (б) -- решение с <<большим баком>>.
+На рисунках \ref{fig:res2:field_sca}, \ref{fig:res2:field_vec} и \ref{fig:res2:field_y0} показаны картины электрического поля, полученные при параметрах $h=5$~м, $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_2} = (3, 2)$, $m=3$, $l_k = 600$~м и $\delta_k = 100$~м. На рисунках \ref{fig:res2:field_sca_a}, \ref{fig:res2:field_vec_a} и \ref{fig:res2:field_y0_a} представлено решение с PML-слоем; \ref{fig:res2:field_sca_b}, \ref{fig:res2:field_vec_b} и \ref{fig:res2:field_y0_b} -- решение с <<большим баком>>.
+
+\begin{spacing}{1.0}
+\setlength{\parskip}{0pt}
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.5]{research-2/field/pml_sca.png}}
-	\subfloat[][]{\includegraphics[scale=0.5]{research-2/field/std_sca.png}}
-	\caption{$\Re(\mathbf{E}_y)$ в сечении плоскостью $z=10$~м}
-	\label{fig:field_sca}
+	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/pml/airloop_pml_z=-10_EyR.eps}\label{fig:res2:field_sca_a}}
+	~~
+	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/std/airloop_std_z=-10_EyR.eps}\label{fig:res2:field_sca_b}}
+	\caption{$\Re(\mathbf{E}_y)$ в сечении плоскостью $z=-10$~м}
+	\label{fig:res2:field_sca}
 \end{figure}
+
+\vspace{-0.8cm}
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.5]{research-2/field/pml_vec.png}}
-	\subfloat[][]{\includegraphics[scale=0.5]{research-2/field/std_vec.png}}
-	\caption{изолинии $\Re(\mathbf{E}_y)$ и векторы $\left( \Re(\mathbf{E}_x) , \Re(\mathbf{E}_y) \right)^T$ в сечении плоскостью $z=10$~м}
-	\label{fig:field_vec}
+	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/pml/airloop_pml_z=-10_EyR_vec.eps}\label{fig:res2:field_vec_a}}
+	~~
+	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/std/airloop_std_z=-10_EyR_vec.eps}\label{fig:res2:field_vec_b}}
+	\caption{изолинии $\Re(\mathbf{E}_y)$ и векторы $\left( \Re(\mathbf{E}_x) , \Re(\mathbf{E}_y) \right)^T$ в сечении плоскостью $z=-10$~м}
+	\label{fig:res2:field_vec}
 \end{figure}
 
+\vspace{-0.8cm}
+
+\begin{figure}[H]
+	\centering
+	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/pml/airloop_pml_y=0_EyR.eps}\label{fig:res2:field_y0_a}}
+	~~
+	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/std/airloop_std_y=0_EyR.eps}\label{fig:res2:field_y0_b}}
+	\caption{$\Re(\mathbf{E}_y)$ в сечении плоскостью $y=0$}
+	\label{fig:res2:field_y0}
+\end{figure}
+
+\end{spacing}
+
+% =============================================================================
+
+\subsubsection{Анализ результатов исследования}
+Наибольшее влияние на точность получаемого решения при введении PML-слоя оказывают коэффициент комплексного растяжения координат $\chi$ и $l$ -- размер области, на границе которой вводится PML-слой. При увеличении размера внутренней области ожидаемо увеличивается размер СЛАУ, поэтому этот параметр при решении реальных задач следует не варьировать, а выбрать как некоторое ограничение. Таким образом, в первую очередь стоит проводить поиск оптимального значения именно для коэффициента растяжения $\chi$. Выбор толщины PML-слоя влияет на точность решения незначительно, поэтому достаточно лишь убедиться, что она выбрана в подходящих для задачи пределах -- не слишком большой и не слишком маленькой.
+
+В рассмотренном виде применение PML-слоя для сокращения области моделирования задач низкочастотной морской геоэлектрики незначительно уменьшает размерность СЛАУ и, в большинстве случаев, не приводит к существенному сокращению времени решения задачи. Одной из причин этого может быть то, что основное растяжение приходится на вещественные компоненты координат. Это приводит к значительной <<вытянутости>> тетраэдров внутри PML-слоя и, как следствие, сильному ухудшению свойств матрицы СЛАУ и увеличению времени решения. Параллелепипедальные конечные элементы лишены подобного недостатка, поэтому для них можно проводить комплексное растяжение в гораздо больших диапазонах. Однако, такие элементы не подходят для аппроксимации сколь-либо сложных областей. Для использования в одной сетке и тетраэдральных, и параллелепипедальных конечных элементов можно применять специальные переходные элементы {\color{red}\textbf{[ССЫЛКИ!]}}, либо воспользоваться неконформными методами {\color{red}\textbf{[ССЫЛКИ!]}}. %TODO ССЫЛКИ
 
 % =============================================================================
 
@@ -1576,10 +1659,10 @@
 \begin{thebibliography}{10}
 % 1
 \bibitem{shurina} 
-Шурина, Э.П. Морская геоэлектрика – задачи и перспективы / Э.П. Шурина, М.И. Эпов, А.В. Мариенко // Тезисы докладов всероссийской научно-технической конференции "Научное и техническое обеспечение исследования и освоения шельфа Северного Ледовитого океана". – 2010. – 9-13~августа. – С.~7-12.
+Шурина, Э.П. Морская геоэлектрика -- задачи и перспективы / Э.П. Шурина, М.И. Эпов, А.В. Мариенко // Тезисы докладов всероссийской научно-технической конференции "Научное и техническое обеспечение исследования и освоения шельфа Северного Ледовитого океана". -- 2010. -- 9-13~августа. -- С.~7-12.
 % 2
 \bibitem{gabrielsen} 
-Gabrielsen, P.T. 3D CSEM for Hydrocarbon Exploration in the Barents Sea / P.T. Gabrielsen, D.V. Shantsev, S. Fanavoll // 5th Saint Petersburg International Conference \& Exhibition – Geosciences: Making the most of the Earth’s resources. – 2012. – 2-5~April. – P.~1-5.
+Gabrielsen, P.T. 3D CSEM for Hydrocarbon Exploration in the Barents Sea / P.T. Gabrielsen, D.V. Shantsev, S. Fanavoll // 5th Saint Petersburg International Conference \& Exhibition -- Geosciences: Making the most of the Earth’s resources. -- 2012. -- 2-5~April. -- P.~1-5.
 % 3
 \bibitem{berenger}
 Berenger, J.P. A perfectly matched layer for the absorption of electromagnetic waves / J.P. Berenger // Jurnal of computation physics 114, 185-200, 1994
@@ -1588,38 +1671,38 @@ Berenger, J.P. A perfectly matched layer for the absorption of electromagnetic w
 Wiik, T. A Discontinuous Galerkin Method for Modelling Marine Controlled Source Electromagnetic Data / T. Wiik, M.V. De Hoop, B. Ursin // Proceedings of the Project Review, Geo-Mathematical Imaging Group, Purdue University, West Lafayette, IN, Vol. 1 (2013) pp. 75-102.
 % 5
 \bibitem{epov}
-Эпов, М.И. Параллельные конечноэлементные вычислительные схемы в задачах геоэлектрики / М.И. Эпов, Э.П. Шурина, Д.А. Архипов // Вычислительные технологии. – 2013. – Том~18, №2. – С.~94-112.
+Эпов, М.И. Параллельные конечноэлементные вычислительные схемы в задачах геоэлектрики / М.И. Эпов, Э.П. Шурина, Д.А. Архипов // Вычислительные технологии. -- 2013. -- Том~18, №2. -- С.~94-112.
 % 6
 \bibitem{balandin} 
-Баландин, М.Ю. Векторный метод конечных элементов : Учеб. пособие / М.Ю. Баландин, Э.П. Шурина. – Новосибирск : Изд-во НГТУ, 2001. – 69~с.
+Баландин, М.Ю. Векторный метод конечных элементов : Учеб. пособие / М.Ю. Баландин, Э.П. Шурина. -- Новосибирск : Изд-во НГТУ, 2001. -- 69~с.
 % 7
 \bibitem{webb1999}
-Webb, J.P. Hierarchal Vector Basis Functions of Arbitrary Order for Triangular and Tetrahedral Finite Elements / J.P. Webb // IEEE transactions on antennas and propagation. – 1999. – Vol.~47. – P.~1244-1253.
+Webb, J.P. Hierarchal Vector Basis Functions of Arbitrary Order for Triangular and Tetrahedral Finite Elements / J.P. Webb // IEEE transactions on antennas and propagation. -- 1999. -- Vol.~47. -- P.~1244-1253.
 % 8
 \bibitem{nechaev}
-Nechaev, O.V. Multilevel iterative solver for the edge fem solution of the 3D Maxwell equation / O.V. Nechaev, E.P Shurina, M.A. Botchev // Computers and Mathematics with Applications. – 2008. – №55. – P.~2346-2362.
+Nechaev, O.V. Multilevel iterative solver for the edge fem solution of the 3D Maxwell equation / O.V. Nechaev, E.P Shurina, M.A. Botchev // Computers and Mathematics with Applications. -- 2008. -- №55. -- P.~2346-2362.
 % 9
 \bibitem{soloveychick}
-Соловейчик, Ю.Г. Метод конечных элементов для решения скалярных и векторных задач : учеб. пособие / Ю.Г. Соловейчик, М.Э. Рояк, М.Г. Персова. – Новосибирск : Изд-во НГТУ, 2007. – 896~с.
+Соловейчик, Ю.Г. Метод конечных элементов для решения скалярных и векторных задач : учеб. пособие / Ю.Г. Соловейчик, М.Э. Рояк, М.Г. Персова. -- Новосибирск : Изд-во НГТУ, 2007. -- 896~с.
 
 \bibitem{monk}
-Monk P. Finite element methods for Maxwell's equations. – Oxford University Press, 2003.
+Monk P. Finite element methods for Maxwell's equations. -- Oxford University Press, 2003.
 \bibitem{schwarzbach}
-Schwarzbach C. Stability of finite element solutions to Maxwell's equations in frequency domain. – 2009.
+Schwarzbach C. Stability of finite element solutions to Maxwell's equations in frequency domain. -- 2009.
 \bibitem{hiptmair}
-Hiptmair R. Multigrid method for Maxwell's equations // SIAM Journal on Numerical Analysis. – 1998. – Т. 36. – №. 1. – С. 204-225.
+Hiptmair R. Multigrid method for Maxwell's equations // SIAM Journal on Numerical Analysis. -- 1998. -- Т. 36. -- №. 1. -- С. 204-225.
 \bibitem{nedelec1980}
-Nédélec J. C. Mixed finite elements in $\mathbb{R}$3 //Numerische Mathematik. – 1980. – Т. 35. – №. 3. – С. 315-341.
+Nédélec J. C. Mixed finite elements in $\mathbb{R}$3 //Numerische Mathematik. -- 1980. -- Т. 35. -- №. 3. -- С. 315-341.
 \bibitem{nedelec1986}
-Nédélec J. C. A new family of mixed finite elements in $\mathbb{R}$3 //Numerische Mathematik. – 1986. – Т. 50. – №. 1. – С. 57-81.
+Nédélec J. C. A new family of mixed finite elements in $\mathbb{R}$3 //Numerische Mathematik. -- 1986. -- Т. 50. -- №. 1. -- С. 57-81.
 \bibitem{webb1993}
-Webb J. P. Edge elements and what they can do for you //Magnetics, IEEE Transactions on. – 1993. – Т. 29. – №. 2. – С. 1460-1465.
+Webb J. P. Edge elements and what they can do for you //Magnetics, IEEE Transactions on. -- 1993. -- Т. 29. -- №. 2. -- С. 1460-1465.
 \bibitem{mikhajlova}
-Михайлова Е. И., Шурина Э. П. Математическое моделирование высокочастотного электромагнитного поля в волноводных устройствах //Вестник НГУ. Серия: Математика, механика, информатика. – 2013. – Т. 13. – №. 4. – С. 102-118.
+Михайлова Е. И., Шурина Э. П. Математическое моделирование высокочастотного электромагнитного поля в волноводных устройствах //Вестник НГУ. Серия: Математика, механика, информатика. -- 2013. -- Т. 13. -- №. 4. -- С. 102-118.
 \bibitem{misovskih}
-Мысовских И. П. Интерполяционные кубатурные формулы. – Наука. Гл. ред. физ.-мат. лит., 1981.
+Мысовских И. П. Интерполяционные кубатурные формулы. -- Наука. Гл. ред. физ.-мат. лит., 1981.
 \bibitem{zhang_integration}
-Zhang L. et al. A set of symmetric quadrature rules on triangles and tetrahedra //J. Comput. Math. – 2009. – Т. 27. – №. 1. – С. 89-96.
+Zhang L. et al. A set of symmetric quadrature rules on triangles and tetrahedra //J. Comput. Math. -- 2009. -- Т. 27. -- №. 1. -- С. 89-96.
 \bibitem{tet_integration}
 Numerical Integration over the Tetrahedral Domain [Электронный ресурс].
 -- Режим доступа: \href{https://web.archive.org/web/20140714140951/https://people.fh-landshut.de/~maurer/numeth/node148.html}{\url{https://people.fh-landshut.de/~maurer/numeth/node148.html}}.
@@ -1627,7 +1710,7 @@ Numerical Integration over the Tetrahedral Domain [Электронный рес
 Numerical Integration over the Triangular Domain [Электронный ресурс].
 -- Режим доступа: \href{https://web.archive.org/web/20140714120045/https://people.fh-landshut.de/~maurer/numeth/node147.html}{\url{https://people.fh-landshut.de/~maurer/numeth/node147.html}}.
 \bibitem{anderson}
-Anderson C. An integrated approach to marine electromagnetic surveying using a towed streamer and source / Anderson C., Mattsson J. // First Break. – May 2010. – Volume 28, Issue 5. – P. 71-75.
+Anderson C. An integrated approach to marine electromagnetic surveying using a towed streamer and source / Anderson C., Mattsson J. // First Break. -- May 2010. -- Volume 28, Issue 5. -- P. 71-75.
 \end{thebibliography}
 
 % =============================================================================
