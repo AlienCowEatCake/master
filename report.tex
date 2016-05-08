@@ -25,7 +25,7 @@
 \setmainfont[Path=./fonts/times_new_roman/, UprightFont=*, ItalicFont=*i, BoldFont=*bd, BoldItalicFont=*bi]{times}
 
 % Отступ у первого абзаца
-\usepackage[indentfirst]{titlesec}
+\usepackage[indentfirst,explicit]{titlesec}
 
 % Возможность сделать 14-й шрифт
 \usepackage{extsizes}
@@ -98,9 +98,9 @@
 
 % Размер шрифтов в названиях секций/подсекций
 \addto{\captionsrussian}{\renewcommand*{\contentsname}{{\fontsize{14}{16}\selectfont Содержание}}}
-\titleformat{\section}{\normalfont\fontsize{14}{16}\bfseries}{\thesection.}{1ex}{}
-\titleformat{\subsection}{\normalfont\fontsize{14}{16}\bfseries\itshape}{\thesubsection.}{1ex}{}
-\titleformat{\subsubsection}{\normalfont\fontsize{14}{16}\bfseries\itshape}{\thesubsubsection.}{1ex}{}
+\titleformat{\section}{\normalfont\fontsize{14}{16}\bfseries}{\thesection.}{1ex}{\MakeUppercase{#1}}
+\titleformat{\subsection}{\normalfont\fontsize{14}{16}\bfseries}{\thesubsection.}{1ex}{#1}
+\titleformat{\subsubsection}{\normalfont\fontsize{14}{16}\bfseries\itshape}{\thesubsubsection.}{1ex}{#1}
 
 % Размер шрифтов в содержании
 \renewcommand\cftsecfont{\normalfont}
