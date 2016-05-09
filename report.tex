@@ -6,7 +6,7 @@
 % * http://aakinshin.blogspot.ru/2014/01/latex-minted.html -  minted: Оформляем исходный код в LaTeX
 % * http://s.arboreus.com/2008/12/russian-thesis-in-latex.html - советы: Диссертация в LaTeX
 
-\documentclass[a4paper,14pt]{article}
+\documentclass[a4paper,14pt]{extreport}
 %\documentclass[a4paper,12pt]{article}
 
 % Русский язык (LaTeX)
@@ -87,6 +87,7 @@
 
 % Точки после номеров разделов
 \usepackage[subfigure]{tocloft}
+\renewcommand{\cftchapaftersnum}{.}
 \renewcommand{\cftsecaftersnum}{.}
 \renewcommand{\cftsubsecaftersnum}{.}
 \makeatletter
@@ -97,17 +98,25 @@
 \setcounter{tocdepth}{3}
 
 % Размер шрифтов в названиях секций/подсекций
-\addto{\captionsrussian}{\renewcommand*{\contentsname}{{\fontsize{14}{16}\selectfont Содержание}}}
-\titleformat{\section}{\normalfont\fontsize{14}{16}\bfseries}{\thesection.}{1ex}{\MakeUppercase{#1}}
-\titleformat{\subsection}{\normalfont\fontsize{14}{16}\bfseries}{\thesubsection.}{1ex}{#1}
-\titleformat{\subsubsection}{\normalfont\fontsize{14}{16}\bfseries\itshape}{\thesubsubsection.}{1ex}{#1}
+\titleformat{\chapter}{\normalfont\fontsize{16}{16}\bfseries\centering}{\chaptertitlename\ \thechapter.}{1ex}{\MakeUppercase{#1}}
+% \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+\titlespacing*{\chapter}{0pt}{0ex}{1ex plus 0.5ex minus 0.5ex}
+
+%\addto{\captionsrussian}{\renewcommand*{\contentsname}{{\fontsize{14}{16}\selectfont Содержание}}}
+%\titleformat{\section}{\normalfont\fontsize{14}{16}\bfseries}{\thesection.}{1ex}{\MakeUppercase{#1}}
+%\titleformat{\subsection}{\normalfont\fontsize{14}{16}\bfseries}{\thesubsection.}{1ex}{#1}
+%\titleformat{\subsubsection}{\normalfont\fontsize{14}{16}\bfseries\itshape}{\thesubsubsection.}{1ex}{#1}
 
 % Размер шрифтов в содержании
-\renewcommand\cftsecfont{\normalfont}
-\renewcommand\cftsecpagefont{\normalfont}
+%\renewcommand\cftsecfont{\normalfont}
+%\renewcommand\cftsecpagefont{\normalfont}
+
+%\cftsetindents{section}{0em}{2em}
+%\cftsetindents{subsection}{0em}{2em}
 
 % Точки в секциях
 % https://tex.stackexchange.com/questions/53898/how-to-get-lines-with-dots-in-the-table-of-contents-for-sections
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
 % Запрет висячих строк
@@ -449,6 +458,7 @@
 
 
 \clearpage
+\chapter{Тест тест тест}
 \section{Математическая модель}
 \subsection{Уравнения Максвелла и Гельмгольца}
 Электромагнитное поле описывается системой уравнений Максвелла~\citep{epov}:
