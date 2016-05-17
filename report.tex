@@ -436,7 +436,7 @@
 
 % =============================================================================
 
-В современном мире сложилась ситуация, что экономика многих стран, в число которых входят Россия, Швеция, Канада, зависит от цены на нефть. Цены на углеводороды могут расти или падать, но конкуренция за обладание ими всегда велика и доходит порой до вооруженных конфликтов. Особенно актуальными в последнее время становятся задачи геологоразведки в недрах земли, скрытых под толщей морской воды, ведь, по оценкам специалистов, на территории только Северного Ледовитого океана может находиться до 25 процентов мировых запасов нефти и газа~\citep{shurina}
+В современном мире сложилась ситуация, что экономика многих стран, в число которых входят Россия, Швеция, Канада, Объединенные Арабские Эмираты, зависит от цены на нефть. Цены на углеводороды могут расти или падать, но конкуренция за обладание ими всегда велика и доходит порой до вооруженных конфликтов. Особенно актуальными в последнее время становятся задачи геологоразведки в недрах земли, скрытых под толщей морской воды, ведь, по оценкам специалистов, на территории только Северного Ледовитого океана может находиться до 25 процентов мировых запасов нефти и газа~\citep{shurina}
 
 Обычно задача морской геоэлектрики выглядит так, как показано на рисунке \ref{fig:theory:ship}: источник перемещается кораблем со специальным оборудованием. Приемники располагаются на морском дне, обычно вдоль линии или по равномерной сетке.
 \begin{figure}[H]
@@ -564,14 +564,11 @@
 \begin{equation*}
 	\mathbb{H}_{0}( \mathrm{rot}\,, \Omega ) = \lbrace \mathbf{v} \in \mathbb{H}(\mathrm{rot}\,, \Omega) : \left. \mathbf{v} \times \mathbf{n} \right|_{\partial \Omega} = 0  \rbrace . \label{eq:H0_rot}
 \end{equation*}
-Эти пространства имеют скалярное произведение и норму:
+Скалярное произведение в этих пространствах имеет вид:
 \begin{equation*}
 	( \mathbf{u}, \mathbf{v} ) = \int\limits_{\Omega} \mathbf{u} \cdot \mathbf{v}^{*} \,d\Omega ,
 \end{equation*}
-\begin{equation*}
-	\left \| \mathbf{u} \right \| ^{2} = \int\limits_{\Omega} \mathbf{u} \cdot \mathbf{u}^{*} \,d\Omega + \int\limits_{\Omega} ( \nabla \times \mathbf{u} ) \cdot ( \nabla \times \mathbf{u}^{*} ) \,d\Omega ,
-\end{equation*}
-где индекс $*$ обозначает комплексное сопряжение.
+где индексом $*$ обозначено комплексное сопряжение.
 
 Скалярно умножим (\ref{eq:helmholtz}) на некоторую пробную функцию $\mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$:
 \begin{equation*}
@@ -616,7 +613,7 @@
 
 В результате векторная вариационная постановка имеет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, такое что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ будет выполнено}} (\ref{eq:weak}).
 
-Рассмотрим еще пару пространств~\citep{monk}
+Введем еще два пространства~\citep{monk}
 \begin{equation*}
 	\mathbb{H}( \mathrm{grad}\,, \Omega ) = \lbrace \varphi \in \mathbb{L}^{2}(\Omega) : \nabla \varphi \in [ \mathbb{L}^{2}(\Omega) ]^{3} \rbrace , \label{eq:H_grad}
 \end{equation*}
@@ -629,7 +626,7 @@
 \end{equation}
 будет иметь место вложение $\nabla \varphi \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, $\forall \varphi \in \mathbb{H}_{0}( \mathrm{grad}\,, \Omega )$. Возьмем $\mathbf{v} = \nabla \varphi$, тогда (\ref{eq:weak}) примет вид:
 \begin{equation*}
-	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \varphi)^{*} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot (\nabla \varphi)^{*} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot (\nabla \varphi)^{*} \,d\Omega .
+	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \varphi^{*}) \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot (\nabla \varphi^{*}) \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot (\nabla \varphi^{*}) \,d\Omega .
 \end{equation*}
 Использовав свойство дивергенции $\nabla \cdot (\varphi \mathbf{F}) = \nabla \varphi \cdot \mathbf{F} + \varphi \nabla \cdot \mathbf{F}$ и применив формулу Ос\-т\-ро\-г\-ра\-д\-с\-ко\-го-Гаусса~(\ref{eq:divergence_theorem})
 \begin{equation}
@@ -638,23 +635,24 @@
 \end{equation}
 получим:
 \begin{equation*}
-	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \varphi)^{*} \,d\Omega + \int\limits_\Omega k^{2}\, \mathbf{E} \cdot (\nabla \varphi)^{*} \,d\Omega = - \int\limits_\Omega i \omega \varphi^{*} \nabla \cdot \mathbf{J} \,d\Omega - \int\limits_{\partial \Omega} i \omega \varphi^{*} \mathbf{J} \cdot \mathbf{n} \,d S .
+	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \varphi^{*}) \,d\Omega + \int\limits_\Omega k^{2}\, \mathbf{E} \cdot (\nabla \varphi^{*}) \,d\Omega = - \int\limits_\Omega i \omega \varphi^{*} \nabla \cdot \mathbf{J} \,d\Omega - \int\limits_{\partial \Omega} i \omega \varphi^{*} \mathbf{J} \cdot \mathbf{n} \,d S .
 \end{equation*}
 Поскольку $\nabla \times (\nabla \varphi) = 0$, $\nabla \cdot \mathbf{J} = 0$ и $\left. \varphi \right | _{\partial \Omega} = 0$, в левой части останется только один интеграл:
 \begin{equation*}
-	\int\limits_\Omega k^{2}\, \mathbf{E} \cdot (\nabla \varphi)^{*} \,d\Omega = 0 .
+	\int\limits_\Omega k^{2}\, \mathbf{E} \cdot (\nabla \varphi^{*}) \,d\Omega = 0 .
 \end{equation*}
-Снова применим свойство дивергенции $\nabla \cdot (\varphi \mathbf{F}) = \nabla \varphi \cdot \mathbf{F} + \varphi \nabla \cdot \mathbf{F}$:
-\begin{equation*}
-	\int\limits_\Omega \nabla \cdot ( k^{2}\, \mathbf{E} \varphi^{*} ) \,d\Omega
-	- \int\limits_\Omega \varphi^{*} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 ,
-\end{equation*}
-после чего применим формулу Остроградского-Гаусса~(\ref{eq:divergence_theorem}):
-\begin{equation*}
-	\int\limits_{\partial \Omega} ( k^{2}\, \mathbf{E} \varphi^{*} ) \cdot \mathbf{n} \,d S
-	- \int\limits_\Omega \varphi^{*} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 .
-\end{equation*}
-С учетом условия $\left. \varphi \right | _{\partial \Omega} = 0$, получим:
+%Снова применим свойство дивергенции $\nabla \cdot (\varphi \mathbf{F}) = \nabla \varphi \cdot \mathbf{F} + \varphi \nabla \cdot \mathbf{F}$:
+%\begin{equation*}
+%	\int\limits_\Omega \nabla \cdot ( k^{2}\, \mathbf{E} \varphi^{*} ) \,d\Omega
+%	- \int\limits_\Omega \varphi^{*} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 ,
+%\end{equation*}
+%после чего применим формулу Остроградского-Гаусса~(\ref{eq:divergence_theorem}):
+%\begin{equation*}
+%	\int\limits_{\partial \Omega} ( k^{2}\, \mathbf{E} \varphi^{*} ) \cdot \mathbf{n} \,d S
+%	- \int\limits_\Omega \varphi^{*} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 .
+%\end{equation*}
+%С учетом условия $\left. \varphi \right | _{\partial \Omega} = 0$, получим:
+После преобразований получим:
 \begin{equation*}
 	\int\limits_\Omega \varphi^{*} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 ,
 \end{equation*}
@@ -663,7 +661,9 @@
 % =============================================================================
 
 \subsection{Вариационная постановка с учетом PML-слоя}
-Для ограничения расчетной области вводится PML-слой ${\Omega^{PML}}$ согласно рисунку \ref{fig:theory:area_3layers_PML}, который определяется модифицированными координатами $\tilde{x}$, $\tilde{y}$, $\tilde{z}$, полученными следующей заменой координат ~\citep{wiik_dehoop_ursin}:
+Для ограничения расчетной области введем PML-слой ${\Omega^{PML}}$, который является подобластью основной расчетной области $\Omega$ со специальными коэффициентами, построенными таким образом, чтобы обеспечить полное поглощение электрического поля внутри слоя и не допустить его отражения от внутренних границ и прохождения через внешние границы слоя (рисунок \ref{fig:theory:area_3layers_PML}).
+
+PML-слой определяется модифицированными координатами $\tilde{x}$, $\tilde{y}$, $\tilde{z}$, полученными следующей заменой координат ~\citep{wiik_dehoop_ursin}:
 \begin{equation*}
 	\tilde{x} = \int\limits_0^x s_x (t) \,dt ,
 	\text{~~~~~}
@@ -1057,9 +1057,9 @@
 	\end{matrix}
 	\right] , \label{eq:theory:matrix_G}
 \end{equation}
-где $\mathbf{M}^{I, I}$, $\mathbf{G}^{I, I}$ -- вклады от интегралов, содержащих только роторные ($\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$); $\mathbf{M}^{II, II}$ -- только градиентные ($\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$); $\mathbf{M}^{I, II}$, $\mathbf{M}^{II, I}$ -- и роторные, и градиентные базисные функции.
+где $\mathbf{M}^{I, I}$, $\mathbf{G}^{I, I}$ -- блоки от интегралов, содержащих только роторные ($\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{I}}$); $\mathbf{M}^{II, II}$ -- только градиентные ($\mathbf{w}_{7}^{1,\mathrm{II}}, ..., \mathbf{w}_{12}^{1,\mathrm{II}}$); $\mathbf{M}^{I, II}$, $\mathbf{M}^{II, I}$ -- и роторные, и градиентные базисные функции.
 
-Глобальной матрице жесткости также имеет блочную структуру, для двух тетраэдров она схематично приведена на рисунке \ref{fig:theory:matrx_structure}. Под $G_1$ и $G_2$ понимаются вклады от матриц жесткости (\ref{eq:theory:matrix_G}) первого и второго тетраэдров соответственно, под $M_1$ и $M_2$ -- вклады от матриц массы (\ref{eq:theory:matrix_M}) первого и второго тетраэдров соответственно.
+Глобальная матрица также имеет блочную структуру, для двух тетраэдров она схематично приведена на рисунке \ref{fig:theory:matrx_structure}. Под $G_1$ и $G_2$ понимаются элементы матриц жесткости (\ref{eq:theory:matrix_G}) первого и второго тетраэдров соответственно, под $M_1$ и $M_2$ -- элементы матриц массы (\ref{eq:theory:matrix_M}) первого и второго тетраэдров соответственно.
 
 \begin{figure}[H]
 	\begin{spacing}{0.75}
@@ -1413,14 +1413,18 @@
 
 \subsection{Учет краевых условий}
 
-Неоднородные краевые условия первого рода вида (\ref{eq:bound1}) учитываются следующим образом:
-\begin{enumerate}
-	\item строится разложение $\mathbf{E}^g$ по базису треугольников границы в смысле МНК, для этого решается СЛАУ вида (\ref{eq:bound_mnk});
-	\item в диагональные элементы глобальной матрицы, соответствующие базисным функциям треугольников границы, записываются единицы, в элементы правой части -- полученные веса;
-	\item выполняется симметризация СЛАУ (если СЛАУ хранится в несимметричном формате, этот шаг можно пропустить).
-\end{enumerate}
+%Неоднородные краевые условия первого рода вида (\ref{eq:bound1}) учитываются следующим образом:
+%\begin{enumerate}
+%	\item строится разложение $\mathbf{E}^g$ по базису треугольников границы в смысле МНК, для этого решается СЛАУ вида (\ref{eq:bound_mnk});
+%	\item в диагональные элементы глобальной матрицы, соответствующие базисным функциям треугольников границы, записываются единицы, в элементы правой части -- полученные веса;
+%	\item выполняется симметризация СЛАУ (если СЛАУ хранится в несимметричном формате, этот шаг можно пропустить).
+%\end{enumerate}
 
-Однородные краевые условия первого рода вида (\ref{eq:bound1_zero}) учитываются аналогично, с той лишь разницей, что не требуется строить разложение $\mathbf{E}^g$ по базису, так как очевидно, что все веса будут нулевыми.
+%Однородные краевые условия первого рода вида (\ref{eq:bound1_zero}) учитываются аналогично, с той лишь разницей, что не требуется строить разложение $\mathbf{E}^g$ по базису, так как очевидно, что все веса будут нулевыми.
+
+Неоднородные краевые условия первого рода вида (\ref{eq:bound1}) учитываются путем обнуления внедиагональных элементов строк глобальной матрицы, соответствующих базисным функциям, асоциированным с ребрами и гранями сетки на границе, причем диагональные элементы приравниваются к 1, а элементы вектора правой части -- к значениям, взятым из решения (\ref{eq:bound_mnk})~\citep{balandin_slae}.
+
+Однородные краевые условия первого рода вида (\ref{eq:bound1_zero}) учитываются аналогично, с той лишь разницей, что соответствующие элементы вектора правой части обнуляются вместе с элементами строки.
 
 Однородные электрические краевые условия второго рода вида (\ref{eq:bound2}) учитываются естественным образом и не вносят вклад в матрицу или правую часть СЛАУ, поэтому не требуют какой-либо специальной процедуры учета.
 
@@ -1455,28 +1459,90 @@
 
 % =============================================================================
 
-\subsection{Тестирование на линейных функциях}
-В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
-\begin{equation*}
-	\mathbf{E} = ( y+z , x+z, x+y )^T .
-\end{equation*}
-Тестирование будем проводить на базисных функциях первого и второго порядка второго типа. Погрешности в норме пространства $\mathbb{L}^2$ полученных решений приведены в таблице \ref{tab:verify:linear_diff}.
-
-\begin{table}[H]
-	\caption{относительные погрешности в норме $\mathbb{L}^2$}
-	\label{tab:verify:linear_diff}
-	\begin{tabularx}{\textwidth}{|C{1}|C{1}|C{1}|C{1}|C{1}|C{1}|}
-		\hline Порядок базисных ф-й & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| |\mathbf{E}| - |\mathbf{E}^h| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_x - \mathbf{E}^h_x \|_{\mathbb{L}^2}}{\| \mathbf{E}_x \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_y - \mathbf{E}^h_y \|_{\mathbb{L}^2}}{\| \mathbf{E}_y \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_z - \mathbf{E}^h_z \|_{\mathbb{L}^2}}{\| \mathbf{E}_z \|_{\mathbb{L}^2}}}$} \\
-		\hline 1 & 5.277e-11 & 5.313e-11 & 5.345e-11 & 5.169e-11 \\
-		\hline 2 & 8.064e-11 & 8.111e-11 & 8.056e-11 & 8.025e-11 \\
-		\hline
-	\end{tabularx}
-\end{table}
-\vspace{-0.5cm}Как и следовало ожидать, метод хорошо аппроксимировал линейную функцию.
+%\subsection{Тестирование на линейных функциях}
+%В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
+%\begin{equation*}
+%	\mathbf{E} = ( y+z , x+z, x+y )^T .
+%\end{equation*}
+%Тестирование будем проводить на базисных функциях первого и второго порядка второго типа. Погрешности в норме пространства $\mathbb{L}^2$ полученных решений приведены в таблице \ref{tab:verify:linear_diff}.
+%
+%\begin{table}[H]
+%	\caption{относительные погрешности в норме $\mathbb{L}^2$}
+%	\label{tab:verify:linear_diff}
+%	\begin{tabularx}{\textwidth}{|C{1}|C{1}|C{1}|C{1}|C{1}|C{1}|}
+%		\hline Порядок базисных ф-й & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| |\mathbf{E}| - |\mathbf{E}^h| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_x - \mathbf{E}^h_x \|_{\mathbb{L}^2}}{\| \mathbf{E}_x \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_y - \mathbf{E}^h_y \|_{\mathbb{L}^2}}{\| \mathbf{E}_y \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_z - \mathbf{E}^h_z \|_{\mathbb{L}^2}}{\| \mathbf{E}_z \|_{\mathbb{L}^2}}}$} \\
+%		\hline 1 & 5.277e-11 & 5.313e-11 & 5.345e-11 & 5.169e-11 \\
+%		\hline 2 & 8.064e-11 & 8.111e-11 & 8.056e-11 & 8.025e-11 \\
+%		\hline
+%	\end{tabularx}
+%\end{table}
+%\vspace{-0.5cm}Как и следовало ожидать, метод хорошо аппроксимировал линейную функцию.
 
 % =============================================================================
 
-\subsection{Тестирование на нелинейных функциях}
+%\subsection{Тестирование на нелинейных функциях}
+%
+%В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
+%\begin{equation}
+%	\mathbf{E} = \left( \begin{array}{c}
+%		e^{-(0.5-y)^2 -(0.5-z)^2} \\
+%		e^{-(0.5-x)^2 -(0.5-z)^2} \\
+%		e^{-(0.5-x)^2 -(0.5-y)^2} \\
+%	\end{array} \right) .
+%	\label{eq:verify:exp_solution}
+%\end{equation}
+%Тестирование будем проводить на базисных функциях первого и второго порядка второго типа. Погрешности в норме пространства $\mathbb{L}^2$ полученных решений приведены в таблице \ref{tab:verify:exp_diff}.
+%
+%\begin{table}[H]
+%	\caption{относительные погрешности в норме $\mathbb{L}^2$}
+%	\label{tab:verify:exp_diff}
+%	\begin{tabularx}{\textwidth}{|C{1}|C{1}|C{1}|C{1}|C{1}|C{1}|}
+%		\hline Порядок базисных ф-й & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| |\mathbf{E}| - |\mathbf{E}^h| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_x - \mathbf{E}^h_x \|_{\mathbb{L}^2}}{\| \mathbf{E}_x \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_y - \mathbf{E}^h_y \|_{\mathbb{L}^2}}{\| \mathbf{E}_y \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_z - \mathbf{E}^h_z \|_{\mathbb{L}^2}}{\| \mathbf{E}_z \|_{\mathbb{L}^2}}}$} \\
+%		\hline 1 & 6.608e-3 & 7.869e-3 & 5.877e-3 & 5.877e-3 \\
+%		\hline 2 & 1.775e-4 & 1.895e-4 & 1.712e-4 & 1.712e-4 \\
+%		\hline
+%	\end{tabularx}
+%\end{table}
+%\vspace{-0.5cm}Метод достаточно хорошо аппроксимировал и нелинейную функцию.
+
+% =============================================================================
+
+%\subsection{Определение порядка аппроксимации}
+%
+%В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию (\ref{eq:verify:exp_solution}). Проведем исследование на порядок аппроксимации. Измельчим сетку расчетной области, изображенную на рисунке \ref{fig:verify:x1}, в 2 и 4 раза, после чего сравним погрешности полученных решений. Измельченные сетки приведены на рисунках \ref{fig:verify:x2} и \ref{fig:verify:x4}, погрешности в норме пространства $\mathbb{L}^2$ полученных решений и порядок аппроксимации -- в таблице \ref{tab:verify:exp_order}.
+%
+%\begin{figure}[H]
+%	\centering
+%	% trim=left bottom right top
+%	\subfloat[][]{\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x2.png}\label{fig:verify:x2}}
+%	~~~~~
+%	\subfloat[][]{\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x4.png}\label{fig:verify:x4}}
+%	\caption{конечноэлементные сетки для определения порядка аппроксимации}
+%	\label{fig:verify:x2_x4}
+%\end{figure}
+%
+%\begin{table}[H]
+%	\caption{относительные погрешности в норме $\mathbb{L}^2$}
+%	\label{tab:verify:exp_order}
+%	\begin{tabularx}{\textwidth}{|C{0.7}|C{0.9}|C{0.9}|C{0.9}|C{1.3}|C{1.3}|}
+%		\hline Порядок базиса &
+%		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
+%		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
+%		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h/4}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
+%		\raisebox{-0.7em}{$\smash{\log_2 \frac{\| |\mathbf{E}| - |\mathbf{E}^{h}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}}$} &
+%		\raisebox{-0.7em}{$\smash{\log_2 \frac{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| - |\mathbf{E}^{h/4}| \|_{\mathbb{L}^2}}}$} \\
+%		\hline 1 & 6.608e-3 & 1.637e-3 & 5.051e-4 & 2.013 & 1.696 \\
+%		\hline 2 & 1.775e-4 & 2.164e-5 & 3.582e-6 & 3.036 & 2.595 \\
+%		\hline
+%	\end{tabularx}
+%\end{table}
+%\vspace{-0.5cm}
+%
+%Из результатов видно, что порядок аппроксимации получился второй для базисных функций первого порядка и третий для базисных функций второго порядка, что совпадает с теоретическими значениями.
+
+% =============================================================================
+
+\subsection{Тестирование на гладких функциях}
 
 В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
 \begin{equation}
@@ -1493,40 +1559,26 @@
 	\caption{относительные погрешности в норме $\mathbb{L}^2$}
 	\label{tab:verify:exp_diff}
 	\begin{tabularx}{\textwidth}{|C{1}|C{1}|C{1}|C{1}|C{1}|C{1}|}
-		\hline Порядок базисных ф-й & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| |\mathbf{E}| - |\mathbf{E}^h| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_x - \mathbf{E}^h_x \|_{\mathbb{L}^2}}{\| \mathbf{E}_x \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_y - \mathbf{E}^h_y \|_{\mathbb{L}^2}}{\| \mathbf{E}_y \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_z - \mathbf{E}^h_z \|_{\mathbb{L}^2}}{\| \mathbf{E}_z \|_{\mathbb{L}^2}}}$} \\
+		\hline Порядок базисных ф-й & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E} - \mathbf{E}^h \|_{\mathbb{L}^2}}{\| \mathbf{E} \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_x - \mathbf{E}^h_x \|_{\mathbb{L}^2}}{\| \mathbf{E}_x \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_y - \mathbf{E}^h_y \|_{\mathbb{L}^2}}{\| \mathbf{E}_y \|_{\mathbb{L}^2}}}$} & \raisebox{-0.7em}{$\smash{\displaystyle \frac{\| \mathbf{E}_z - \mathbf{E}^h_z \|_{\mathbb{L}^2}}{\| \mathbf{E}_z \|_{\mathbb{L}^2}}}$} \\
 		\hline 1 & 6.608e-3 & 7.869e-3 & 5.877e-3 & 5.877e-3 \\
 		\hline 2 & 1.775e-4 & 1.895e-4 & 1.712e-4 & 1.712e-4 \\
 		\hline
 	\end{tabularx}
 \end{table}
-\vspace{-0.5cm}Метод достаточно хорошо аппроксимировал и нелинейную функцию.
+\vspace{-0.5cm}
 
-% =============================================================================
-
-\subsection{Определение порядка аппроксимации}
-
-В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию (\ref{eq:verify:exp_solution}). Проведем исследование на порядок аппроксимации. Измельчим сетку расчетной области, изображенную на рисунке \ref{fig:verify:x1}, в 2 и 4 раза, после чего сравним погрешности полученных решений. Измельченные сетки приведены на рисунках \ref{fig:verify:x2} и \ref{fig:verify:x4}, погрешности в норме пространства $\mathbb{L}^2$ полученных решений и порядок аппроксимации -- в таблице \ref{tab:verify:exp_order}.
-
-\begin{figure}[H]
-	\centering
-	% trim=left bottom right top
-	\subfloat[][]{\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x2.png}\label{fig:verify:x2}}
-	~~~~~
-	\subfloat[][]{\includegraphics[trim=387mm 20mm 5mm 220mm,clip,scale=0.4]{verify/x4.png}\label{fig:verify:x4}}
-	\caption{конечноэлементные сетки для определения порядка аппроксимации}
-	\label{fig:verify:x2_x4}
-\end{figure}
+Измельчим сетку расчетной области, изображенную на рисунке \ref{fig:verify:x1}, в 2 и 4 раза. Погрешности в норме пространства $\mathbb{L}^2$ полученных решений и порядок аппроксимации -- в таблице \ref{tab:verify:exp_order}.
 
 \begin{table}[H]
 	\caption{относительные погрешности в норме $\mathbb{L}^2$}
 	\label{tab:verify:exp_order}
 	\begin{tabularx}{\textwidth}{|C{0.7}|C{0.9}|C{0.9}|C{0.9}|C{1.3}|C{1.3}|}
 		\hline Порядок базиса &
-		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
-		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
-		\raisebox{-0.7em}{$\smash{\frac{\| |\mathbf{E}| - |\mathbf{E}^{h/4}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| \|_{\mathbb{L}^2}}}$} &
-		\raisebox{-0.7em}{$\smash{\log_2 \frac{\| |\mathbf{E}| - |\mathbf{E}^{h}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}}$} &
-		\raisebox{-0.7em}{$\smash{\log_2 \frac{\| |\mathbf{E}| - |\mathbf{E}^{h/2}| \|_{\mathbb{L}^2}}{\| |\mathbf{E}| - |\mathbf{E}^{h/4}| \|_{\mathbb{L}^2}}}$} \\
+		\raisebox{-0.7em}{$\smash{\frac{\| \mathbf{E} - \mathbf{E}^{h} \|{\mathbb{L}^2}}{\| \mathbf{E} \|_{\mathbb{L}^2}}}$} &
+		\raisebox{-0.7em}{$\smash{\frac{\| \mathbf{E} - \mathbf{E}^{h/2} \|_{\mathbb{L}^2}}{\| \mathbf{E} \|_{\mathbb{L}^2}}}$} &
+		\raisebox{-0.7em}{$\smash{\frac{\| \mathbf{E} - \mathbf{E}^{h/4} \|_{\mathbb{L}^2}}{\| \mathbf{E} \|_{\mathbb{L}^2}}}$} &
+		\raisebox{-0.7em}{$\smash{\log_2 \frac{\| \mathbf{E} - \mathbf{E}^{h} \|_{\mathbb{L}^2}}{\| \mathbf{E} - \mathbf{E}^{h/2} \|_{\mathbb{L}^2}}}$} &
+		\raisebox{-0.7em}{$\smash{\log_2 \frac{\| \mathbf{E} - \mathbf{E}^{h/2} \|_{\mathbb{L}^2}}{\| \mathbf{E} - \mathbf{E}^{h/4} \|_{\mathbb{L}^2}}}$} \\
 		\hline 1 & 6.608e-3 & 1.637e-3 & 5.051e-4 & 2.013 & 1.696 \\
 		\hline 2 & 1.775e-4 & 2.164e-5 & 3.582e-6 & 3.036 & 2.595 \\
 		\hline
@@ -1534,7 +1586,7 @@
 \end{table}
 \vspace{-0.5cm}
 
-Из результатов видно, что порядок аппроксимации получился второй для базисных функций первого порядка и третий для базисных функций второго порядка, что совпадает с теоретическими значениями.
+Из результатов видно, метод достаточно хорошо аппроксимировал гладкую функцию. Порядок аппроксимации получился второй для базисных функций первого порядка второго типа и третий для базисных функций второго порядка второго типа, что совпадает с теоретическими значениями.
 
 % =============================================================================
 
@@ -2011,7 +2063,7 @@
 \clearpage
 \addcontentsline{toc}{section}{Список литературы}
 
-\begin{spacing}{1.2}
+\begin{spacing}{1.18}
 
 \begin{thebibliography}{10}
 % 1
