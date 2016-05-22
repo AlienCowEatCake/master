@@ -41,9 +41,11 @@
 \setlist{nosep}
 % Отступы в списках
 %\setitemize[0]{leftmargin=0pt, itemindent=35pt}
+\setitemize[0]{leftmargin=1.5cm, itemindent=0cm}
+\setenumerate[0]{leftmargin=1.5cm, itemindent=0cm}
 
 % Интервал между абзацами
-\setlength{\parskip}{6pt}
+%\setlength{\parskip}{6pt}
 
 % Поля страницы
 \usepackage[left=3cm,top=2cm,right=1cm,bottom=2cm]{geometry}
@@ -116,7 +118,7 @@
 \setcounter{tocdepth}{3}
 
 % Размер шрифтов в названиях секций/подсекций
-\addto{\captionsrussian}{\renewcommand*{\contentsname}{{\fontsize{14}{16}\selectfont Содержание}}}
+\addto{\captionsrussian}{\renewcommand*{\contentsname}{{\fontsize{14}{16}\selectfont Оглавление}}}
 \titleformat{\section}{\normalfont\fontsize{14}{16}\bfseries}{\thesection.}{1ex}{}
 \titleformat{\subsection}{\normalfont\fontsize{14}{16}\bfseries\itshape}{\thesubsection.}{1ex}{}
 \titleformat{\subsubsection}{\normalfont\fontsize{14}{16}\bfseries\itshape}{\thesubsubsection.}{1ex}{}
@@ -157,6 +159,16 @@
 
 % Раскопировать пробелы
 \newcommand\spacedfill[1]{\makebox[#1]{\leaders\hbox{~}\hfill}}
+
+% Отступ для формул
+\makeatletter
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{20pt}
+  \setlength\belowdisplayskip{20pt}
+  \setlength\abovedisplayshortskip{5pt}
+  \setlength\belowdisplayshortskip{15pt}
+}
+\makeatother
 
 % Код программы
 % http://mydebianblog.blogspot.ru/2012/12/latex.html
@@ -566,49 +578,48 @@
 \end{equation*}
 Скалярное произведение в этих пространствах имеет вид:
 \begin{equation*}
-	( \mathbf{u}, \mathbf{v} ) = \int\limits_{\Omega} \mathbf{u} \cdot \mathbf{v}^{*} \,d\Omega ,
+	( \mathbf{u}, \mathbf{v} ) = \int\limits_{\Omega} \mathbf{u} \cdot \overline{\mathbf{v}} \,d\Omega .
 \end{equation*}
-где индексом $*$ обозначено комплексное сопряжение.
 
 Скалярно умножим (\ref{eq:helmholtz}) на некоторую пробную функцию $\mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$:
 \begin{equation*}
 	(\nabla \times ( \mu^{-1} \nabla \times \mathbf{E} ), \mathbf{v}) + (k^{2} \mathbf{E} , \mathbf{v}) = - (i \omega \mathbf{J} , \mathbf{v}) ,
 \end{equation*}
 \begin{equation*}
-	\int\limits_\Omega \nabla \times ( \mu^{-1} \nabla \times \mathbf{E} ) \cdot \mathbf{v}^{*} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\Omega .
+	\int\limits_\Omega \nabla \times ( \mu^{-1} \nabla \times \mathbf{E} ) \cdot \overline{\mathbf{v}} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot \overline{\mathbf{v}} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot \overline{\mathbf{v}} \,d\Omega .
 \end{equation*}
 Воспользовавшись первой векторной формулой Грина (\ref{eq:green}):
 \begin{equation}
-	\int\limits_D \nabla \times \mathbf{u} \cdot \mathbf{v}^{*} \,dV = \int\limits_D \mathbf{u} \cdot ( \nabla \times \mathbf{v}^{*} ) \,dV + \int\limits_{\partial D} (\mathbf{n} \times \mathbf{u}) \cdot \mathbf{v}^{*} \,dS , \label{eq:green}
+	\int\limits_D \nabla \times \mathbf{u} \cdot \overline{\mathbf{v}} \,dV = \int\limits_D \mathbf{u} \cdot ( \nabla \times \overline{\mathbf{v}} ) \,dV + \int\limits_{\partial D} (\mathbf{n} \times \mathbf{u}) \cdot \overline{\mathbf{v}} \,dS , \label{eq:green}
 \end{equation}
 получим:
 \begin{equation*}
 	\begin{array}{c} { \displaystyle
-		\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\Omega
-		+ \int\limits_{\partial \Omega} \mathbf{n} \times (\mu^{-1} \nabla \times \mathbf{E}) \cdot \mathbf{v}^{*} \,dS
+		\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \overline{\mathbf{v}} \,d\Omega
+		+ \int\limits_{\partial \Omega} \mathbf{n} \times (\mu^{-1} \nabla \times \mathbf{E}) \cdot \overline{\mathbf{v}} \,dS
 		+
 	} \\ { \displaystyle
-		+ \int\limits_\Omega k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\Omega
-		=  - \int\limits_\Omega i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\Omega
+		+ \int\limits_\Omega k^{2} \mathbf{E} \cdot \overline{\mathbf{v}} \,d\Omega
+		=  - \int\limits_\Omega i \omega \mathbf{J} \cdot \overline{\mathbf{v}} \,d\Omega
 		.
 	} \end{array}
 \end{equation*}
 Применим тождества $(\mathbf{a} \times \mathbf{b}) \cdot \mathbf{c} = - (\mathbf{a} \times \mathbf{c}) \cdot \mathbf{b}$ и $\mathbf{a} \times \mathbf{b} = - \mathbf{b} \times \mathbf{a}$:
 \begin{equation}
 	\begin{array}{c} { \displaystyle
-		\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\Omega
-		+ \int\limits_\Omega k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\Omega
+		\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \overline{\mathbf{v}} \,d\Omega
+		+ \int\limits_\Omega k^{2} \mathbf{E} \cdot \overline{\mathbf{v}} \,d\Omega
 		=
 	} \\ { \displaystyle
-		= - \int\limits_\Omega i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\Omega
-		- \int\limits_{\partial \Omega} \mathbf{v}^{*} \times \mathbf{n} \cdot (\mu^{-1} \nabla \times \mathbf{E}) \,dS
+		= - \int\limits_\Omega i \omega \mathbf{J} \cdot \overline{\mathbf{v}} \,d\Omega
+		- \int\limits_{\partial \Omega} \overline{\mathbf{v}} \times \mathbf{n} \cdot (\mu^{-1} \nabla \times \mathbf{E}) \,dS
 	.
 	} \end{array}
 	\label{eq:form_23}
 \end{equation}
 Так как $\mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, то из свойств пространства $\mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ второй интеграл в правой части равен нулю, тогда уравнение (\ref{eq:form_23}) примет вид:
 \begin{equation}
-	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\Omega . \label{eq:weak}
+	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \overline{\mathbf{v}} \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot \overline{\mathbf{v}} \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot \overline{\mathbf{v}} \,d\Omega . \label{eq:weak}
 \end{equation}
 
 В результате векторная вариационная постановка имеет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, такое что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$ будет выполнено}} (\ref{eq:weak}).
@@ -626,7 +637,7 @@
 \end{equation}
 будет иметь место вложение $\nabla \varphi \in \mathbb{H}_{0}( \mathrm{rot}\,, \Omega )$, $\forall \varphi \in \mathbb{H}_{0}( \mathrm{grad}\,, \Omega )$. Возьмем $\mathbf{v} = \nabla \varphi$, тогда (\ref{eq:weak}) примет вид:
 \begin{equation*}
-	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \varphi^{*}) \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot (\nabla \varphi^{*}) \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot (\nabla \varphi^{*}) \,d\Omega .
+	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \overline{\varphi}) \,d\Omega + \int\limits_\Omega k^{2} \mathbf{E} \cdot (\nabla \overline{\varphi}) \,d\Omega = - \int\limits_\Omega i \omega \mathbf{J} \cdot (\nabla \overline{\varphi}) \,d\Omega .
 \end{equation*}
 Использовав свойство дивергенции $\nabla \cdot (\varphi \mathbf{F}) = \nabla \varphi \cdot \mathbf{F} + \varphi \nabla \cdot \mathbf{F}$ и применив формулу Ос\-т\-ро\-г\-ра\-д\-с\-ко\-го-Гаусса~(\ref{eq:divergence_theorem})
 \begin{equation}
@@ -635,26 +646,26 @@
 \end{equation}
 получим:
 \begin{equation*}
-	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \varphi^{*}) \,d\Omega + \int\limits_\Omega k^{2}\, \mathbf{E} \cdot (\nabla \varphi^{*}) \,d\Omega = - \int\limits_\Omega i \omega \varphi^{*} \nabla \cdot \mathbf{J} \,d\Omega - \int\limits_{\partial \Omega} i \omega \varphi^{*} \mathbf{J} \cdot \mathbf{n} \,d S .
+	\int\limits_\Omega \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times (\nabla \overline{\varphi}) \,d\Omega + \int\limits_\Omega k^{2}\, \mathbf{E} \cdot (\nabla \overline{\varphi}) \,d\Omega = - \int\limits_\Omega i \omega \overline{\varphi} \nabla \cdot \mathbf{J} \,d\Omega - \int\limits_{\partial \Omega} i \omega \overline{\varphi} \mathbf{J} \cdot \mathbf{n} \,d S .
 \end{equation*}
 Поскольку $\nabla \times (\nabla \varphi) = 0$, $\nabla \cdot \mathbf{J} = 0$ и $\left. \varphi \right | _{\partial \Omega} = 0$, в левой части останется только один интеграл:
 \begin{equation*}
-	\int\limits_\Omega k^{2}\, \mathbf{E} \cdot (\nabla \varphi^{*}) \,d\Omega = 0 .
+	\int\limits_\Omega k^{2}\, \mathbf{E} \cdot (\nabla \overline{\varphi}) \,d\Omega = 0 .
 \end{equation*}
 %Снова применим свойство дивергенции $\nabla \cdot (\varphi \mathbf{F}) = \nabla \varphi \cdot \mathbf{F} + \varphi \nabla \cdot \mathbf{F}$:
 %\begin{equation*}
-%	\int\limits_\Omega \nabla \cdot ( k^{2}\, \mathbf{E} \varphi^{*} ) \,d\Omega
-%	- \int\limits_\Omega \varphi^{*} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 ,
+%	\int\limits_\Omega \nabla \cdot ( k^{2}\, \mathbf{E} \overline{\varphi} ) \,d\Omega
+%	- \int\limits_\Omega \overline{\varphi} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 ,
 %\end{equation*}
 %после чего применим формулу Остроградского-Гаусса~(\ref{eq:divergence_theorem}):
 %\begin{equation*}
-%	\int\limits_{\partial \Omega} ( k^{2}\, \mathbf{E} \varphi^{*} ) \cdot \mathbf{n} \,d S
-%	- \int\limits_\Omega \varphi^{*} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 .
+%	\int\limits_{\partial \Omega} ( k^{2}\, \mathbf{E} \overline{\varphi} ) \cdot \mathbf{n} \,d S
+%	- \int\limits_\Omega \overline{\varphi} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 .
 %\end{equation*}
 %С учетом условия $\left. \varphi \right | _{\partial \Omega} = 0$, получим:
 После преобразований получим:
 \begin{equation*}
-	\int\limits_\Omega \varphi^{*} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 ,
+	\int\limits_\Omega \overline{\varphi} \nabla \cdot ( k^{2}\, \mathbf{E} ) \,d\Omega = 0 ,
 \end{equation*}
 следовательно, решение вариационной задачи (\ref{eq:weak}) удовлетворяет закону сохранения заряда (\ref{eq:charge}) в слабом смысле.
 
@@ -662,6 +673,15 @@
 
 \subsection{Вариационная постановка с учетом PML-слоя}
 Для ограничения расчетной области введем PML-слой ${\Omega^{PML}}$, который является подобластью основной расчетной области $\Omega$ со специальными коэффициентами, построенными таким образом, чтобы обеспечить полное поглощение электрического поля внутри слоя и не допустить его отражения от внутренних границ и прохождения через внешние границы слоя (рисунок \ref{fig:theory:area_3layers_PML}).
+
+\begin{figure}[H]
+	\centering
+	% trim=left bottom right top
+	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.0mm 0mm,clip,scale=1]{theory/area_3layers_PML.eps}\label{fig:theory:area_3layers_PML_a}}
+	\subfloat[][]{\includegraphics[trim=77.0mm 0mm 0mm 0mm,clip,scale=1]{theory/area_3layers_PML.eps}\label{fig:theory:area_3layers_PML_b}}
+	\caption{расчетные области: (а) без PML-слоя и (б) с PML-слоем}
+	\label{fig:theory:area_3layers_PML}
+\end{figure}
 
 PML-слой определяется модифицированными координатами $\tilde{x}$, $\tilde{y}$, $\tilde{z}$, полученными следующей заменой координат ~\citep{wiik_dehoop_ursin}:
 \begin{equation*}
@@ -680,32 +700,22 @@ PML-слой определяется модифицированными коо�
 \begin{equation*}
 	\tilde{\nabla} = \left[ \frac{1}{s_x} \frac{\partial}{\partial x} \,, \frac{1}{s_y} \frac{\partial}{\partial y} \,, \frac{1}{s_z} \frac{\partial}{\partial z} \right] .
 \end{equation*}
-
-\begin{figure}[H]
-	\centering
-	% trim=left bottom right top
-	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.0mm 0mm,clip,scale=1]{theory/area_3layers_PML.eps}\label{fig:theory:area_3layers_PML_a}}
-	\subfloat[][]{\includegraphics[trim=77.0mm 0mm 0mm 0mm,clip,scale=1]{theory/area_3layers_PML.eps}\label{fig:theory:area_3layers_PML_b}}
-	\caption{расчетные области: (а) без PML-слоя и (б) с PML-слоем}
-	\label{fig:theory:area_3layers_PML}
-\end{figure}
-
 После такой замены, внутри PML-слоя уравнение Гельмгольца (\ref{eq:helmholtz}) будет иметь вид (\ref{eq:helmholtz_pml})
 \begin{equation}
 	\tilde{\nabla} \times ( \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} ) + k^{2} \tilde{\mathbf{E}} = 0 , \label{eq:helmholtz_pml}
 \end{equation}
 что приведет к преобразованию уравнения (\ref{eq:weak}) к виду (\ref{eq:weak_pml}):
 \begin{equation}
-	\int\limits_{{\Omega^{PML}}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \mathbf{v}^{*} \,d{\Omega^{PML}} + \int\limits_{{\Omega^{PML}}} k^{2} \tilde{\mathbf{E}} \cdot \mathbf{v}^{*} \,d{\Omega^{PML}} = 0 . \label{eq:weak_pml}
+	\int\limits_{{\Omega^{PML}}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \overline{\mathbf{v}} \,d{\Omega^{PML}} + \int\limits_{{\Omega^{PML}}} k^{2} \tilde{\mathbf{E}} \cdot \overline{\mathbf{v}} \,d{\Omega^{PML}} = 0 . \label{eq:weak_pml}
 \end{equation}
 
 В результате, если обозначить $\widehat{\Omega} = \Omega \setminus {\Omega^{PML}}$, то векторная вариационная постановка с учетом PML-слоя примет вид: \textbf{\textit{Найти $\mathbf{E} \in \mathbb{H}_{0}( \mathrm{rot}\,, \widehat{\Omega} )$ и  $\tilde{\mathbf{E}} \in \mathbb{H}_{0}( \mathrm{rot}\,, {\Omega^{PML}} )$, такие что $\forall \mathbf{v} \in \mathbb{H}_{0}( \mathrm{rot}\,, \widehat{\Omega} )$ и $\forall \tilde{\mathbf{v}} \in \mathbb{H}_{0}( \mathrm{rot}\,, {\Omega^{PML}} )$ будет выполнено}}:
 \begin{equation*}
 	\begin{cases}
 		\displaystyle
-		\int\limits_{\widehat{\Omega}} \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \mathbf{v}^{*} \,d\widehat{\Omega} + \int\limits_{\widehat{\Omega}} k^{2} \mathbf{E} \cdot \mathbf{v}^{*} \,d\widehat{\Omega} = - \int\limits_{\widehat{\Omega}} i \omega \mathbf{J} \cdot \mathbf{v}^{*} \,d\widehat{\Omega} \\
+		\int\limits_{\widehat{\Omega}} \mu^{-1} \nabla \times \mathbf{E} \cdot \nabla \times \overline{\mathbf{v}} \,d\widehat{\Omega} + \int\limits_{\widehat{\Omega}} k^{2} \mathbf{E} \cdot \overline{\mathbf{v}} \,d\widehat{\Omega} = - \int\limits_{\widehat{\Omega}} i \omega \mathbf{J} \cdot \overline{\mathbf{v}} \,d\widehat{\Omega} \\
 		\displaystyle
-		\int\limits_{{\Omega^{PML}}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \tilde{\mathbf{v}}^{*} \,d{\Omega^{PML}} + \int\limits_{{\Omega^{PML}}} k^{2} \tilde{\mathbf{E}} \cdot \tilde{\mathbf{v}}^{*} \,d{\Omega^{PML}} = 0 . \\
+		\int\limits_{{\Omega^{PML}}} \mu^{-1} \tilde{\nabla} \times \tilde{\mathbf{E}} \cdot \tilde{\nabla} \times \tilde{\overline{\mathbf{v}}} \,d{\Omega^{PML}} + \int\limits_{{\Omega^{PML}}} k^{2} \tilde{\mathbf{E}} \cdot \tilde{\overline{\mathbf{v}}} \,d{\Omega^{PML}} = 0 . \\
 	\end{cases}
 \end{equation*}
 
@@ -722,7 +732,7 @@ PML-слой определяется модифицированными коо�
 	\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega ) \subset \mathbb{H}_{0}( \mathrm{rot}\,, \Omega ) , \text{~~}
 	\mathbb{H}_{0}^h( \mathrm{grad}\,, \Omega ) \subset \mathbb{H}_{0}( \mathrm{grad}\,, \Omega ) .
 \end{equation*}
-Для дискретных подпространств $\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$ и $\mathbb{H}_{0}^h( \mathrm{grad}\,, \Omega )$ комплекс Де Рама~(\ref{eq:derham}) также будет верен, следовательно закон сохранения заряда~(\ref{eq:charge}) будет также выполнен в слабом смысле.
+Для дискретных подпространств $\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$ и $\mathbb{H}_{0}^h( \mathrm{grad}\,, \Omega )$ комплекс Де Рама~(\ref{eq:derham}) также будет верен, следовательно закон сохранения заряда~(\ref{eq:charge}) будет также выполнен в слабом смысле~\citep{epov}.
 
 Пространство $\mathbb{H}_{0}^h( \mathrm{rot}\,, \Omega )$ является прямой суммой подпространств~\citep{hiptmair,epov}
 \begin{equation}
@@ -749,11 +759,12 @@ PML-слой определяется модифицированными коо�
 \begin{equation}
 	( \mathbf{G} + \mathbf{M} )\mathbf{q} = \mathbf{f} , \label{eq:form_29}
 \end{equation}
-где:
+%где:
 \begin{equation*}
 	\mathbf{G}_{ i,j } = \int\limits_{\Omega_k} \mu^{-1} \nabla \times \mathbf{w}_i \cdot \nabla \times \mathbf{w}_j \,d\Omega_k , \text{~~~}
 	\mathbf{M}_{ i,j } = \int\limits_{\Omega_k} k^2 \mathbf{w}_i \cdot \mathbf{w}_j \,d\Omega_k . \label{eq:local_matrixes}
 \end{equation*}
+
 Матрица СЛАУ будет иметь симметричную разреженную структуру, поэтому ее удобно хранить в формате CSLR~(Compressed Sparse (Lower triangle) Row) или CSR~(Compressed Sparse Row)~\citep{balandin_slae}.
 % Система линейных алгебраических уравнений (СЛАУ) (\ref{eq:slae}) решается специальным двухуровневым методом~\citep{nechaev}.
 
@@ -841,7 +852,7 @@ PML-слой определяется модифицированными коо�
 	\mathbf{M}^{S_1} \tilde{\mathbf{q}} = \mathbf{b}^{S_1} ,
 	\label{eq:bound_mnk}
 \end{equation}
-где $\displaystyle \mathbf{M}^{S_1}_{i,j} = \int\limits_{S_1} \mathbf{w}_i \cdot \mathbf{w}_j \,d S_1$, $\displaystyle \mathbf{b}^{S_1}_{i} = \int\limits_{S_1} \mathbf{E}^g \cdot \mathbf{w}_i \,d S_1$, $\mathbf{w}_i$ и $\mathbf{w}_j$ -- базисные функции на треугольниках.
+где $\displaystyle \mathbf{M}^{S_1}_{i,j} = \int\limits_{S_1} \tilde{\mathbf{w}}_i \cdot \tilde{\mathbf{w}}_j \,d S_1$, $\displaystyle \mathbf{b}^{S_1}_{i} = \int\limits_{S_1} \mathbf{E}^g \cdot \tilde{\mathbf{w}}_i \,d S_1$, $\tilde{\mathbf{w}}_i$ и $\tilde{\mathbf{w}}_j$ -- базисные функции на треугольниках.
 
 Определим $\mathcal{L}$-координаты на треугольниках таким же образом, как и на тетраэдрах. Введем нумерацию вершин и ребер согласно рисунку \ref{fig:theory:triangle}:
 \begin{figure}[H]
@@ -876,27 +887,27 @@ PML-слой определяется модифицированными коо�
 \begin{equation*}
 	\begin{matrix}
 		\displaystyle
-		\mathbf{w}_{i}^{1,\mathrm{I}} = \mathcal{L}_k \nabla \mathcal{L}_l - \mathcal{L}_l \nabla \mathcal{L}_k ;
+		\tilde{\mathbf{w}}_{i}^{1,\mathrm{I}} = \mathcal{L}_k \nabla \mathcal{L}_l - \mathcal{L}_l \nabla \mathcal{L}_k ;
 		\scriptstyle
 		\text{~~} i = 1, ..., 3 ; \text{~~} k, l = 1, ..., 3 ; \text{~~} k < l ,\\
 		\displaystyle
-		\mathbf{w}_{i}^{1,\mathrm{II}} = \mathcal{L}_k \nabla \mathcal{L}_l + \mathcal{L}_l \nabla \mathcal{L}_k ;
+		\tilde{\mathbf{w}}_{i}^{1,\mathrm{II}} = \mathcal{L}_k \nabla \mathcal{L}_l + \mathcal{L}_l \nabla \mathcal{L}_k ;
 		\scriptstyle
 		\text{~~} i = 4, ..., 6 ; \text{~~} k, l = 1, ..., 3 ; \text{~~} k < l ,\\
 		\displaystyle
-		\mathbf{w}_{7}^{2,\mathrm{I}} = \mathcal{L}_2 \mathcal{L}_3 \nabla \mathcal{L}_1 + \mathcal{L}_1 \mathcal{L}_3 \nabla \mathcal{L}_2 - 2 \mathcal{L}_1 \mathcal{L}_2 \nabla \mathcal{L}_3 ,\\
+		\tilde{\mathbf{w}}_{7}^{2,\mathrm{I}} = \mathcal{L}_2 \mathcal{L}_3 \nabla \mathcal{L}_1 + \mathcal{L}_1 \mathcal{L}_3 \nabla \mathcal{L}_2 - 2 \mathcal{L}_1 \mathcal{L}_2 \nabla \mathcal{L}_3 ,\\
 		\displaystyle
-		\mathbf{w}_{8}^{2,\mathrm{I}} = \mathcal{L}_2 \mathcal{L}_3 \nabla \mathcal{L}_1 - 2 \mathcal{L}_1 \mathcal{L}_3 \nabla \mathcal{L}_2 + \mathcal{L}_1 \mathcal{L}_2 \nabla \mathcal{L}_3 ,\\
+		\tilde{\mathbf{w}}_{8}^{2,\mathrm{I}} = \mathcal{L}_2 \mathcal{L}_3 \nabla \mathcal{L}_1 - 2 \mathcal{L}_1 \mathcal{L}_3 \nabla \mathcal{L}_2 + \mathcal{L}_1 \mathcal{L}_2 \nabla \mathcal{L}_3 ,\\
 		\displaystyle
-		\mathbf{w}_{9}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_1 \mathcal{L}_2 \mathcal{L}_3 ) ,\\
+		\tilde{\mathbf{w}}_{9}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_1 \mathcal{L}_2 \mathcal{L}_3 ) ,\\
 		\displaystyle
-		\mathbf{w}_{i}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_j \mathcal{L}_k ( \mathcal{L}_j - \mathcal{L}_k ) ) ;
+		\tilde{\mathbf{w}}_{i}^{2,\mathrm{II}} = \nabla ( \mathcal{L}_j \mathcal{L}_k ( \mathcal{L}_j - \mathcal{L}_k ) ) ;
 		\scriptstyle
 		\text{~~} i = 10, ..., 12 ; \text{~~} j, k = 1, ..., 3 ; \text{~~} j < k ,
 	\end{matrix}
 	\label{eq:tr_basis}
 \end{equation*}
-где $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{3}^{1,\mathrm{I}}$ -- базисные функции первого порядка первого типа, $\mathbf{w}_{4}^{1,\mathrm{II}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$ -- базисные функции первого порядка второго типа, $\mathbf{w}_{7}^{2,\mathrm{I}}, \mathbf{w}_{8}^{2,\mathrm{I}}$ -- базисные функции второго порядка первого типа, $\mathbf{w}_{9}^{2,\mathrm{II}}, ..., \mathbf{w}_{12}^{2,\mathrm{II}}$ -- базисные функции второго порядка второго типа. Для базиса первого порядка второго типа следует использовать функции $\mathbf{w}_{1}^{1,\mathrm{I}}, ..., \mathbf{w}_{6}^{1,\mathrm{II}}$.
+где $\tilde{\mathbf{w}}_{1}^{1,\mathrm{I}}, ..., \tilde{\mathbf{w}}_{3}^{1,\mathrm{I}}$ -- базисные функции первого порядка первого типа, $\tilde{\mathbf{w}}_{4}^{1,\mathrm{II}}, ..., \tilde{\mathbf{w}}_{6}^{1,\mathrm{II}}$ -- базисные функции первого порядка второго типа, $\tilde{\mathbf{w}}_{7}^{2,\mathrm{I}}, \tilde{\mathbf{w}}_{8}^{2,\mathrm{I}}$ -- базисные функции второго порядка первого типа, $\tilde{\mathbf{w}}_{9}^{2,\mathrm{II}}, ..., \tilde{\mathbf{w}}_{12}^{2,\mathrm{II}}$ -- базисные функции второго порядка второго типа. Для базиса первого порядка второго типа следует использовать функции $\tilde{\mathbf{w}}_{1}^{1,\mathrm{I}}, ..., \tilde{\mathbf{w}}_{6}^{1,\mathrm{II}}$.
 
 Для вычисления интегралов в (\ref{eq:bound_mnk}) воспользуемся формулой Гаусса~\citep{misovskih}:
 \begin{equation*}
@@ -991,6 +1002,7 @@ PML-слой определяется модифицированными коо�
 \end{equation*}
 где $\mathbf{I}_{n \times n}$ -- единичная матрица размерностью $n \times n$, $\mathbb{O}_{n \times m}$ -- нулевая матрица размерностью $n \times m$.
 
+\pagebreak
 Общий алгоритм многоуровневых методов имеет следующий вид:
 \begin{enumerate}
 	\item \label{itm:multilevel:algo1} Выбрать некоторое начальное приближение;
@@ -1024,13 +1036,13 @@ PML-слой определяется модифицированными коо�
 
 \noindent где $\mathbf{A}$ и $\mathbf{f}$ -- матрица и правая часть СЛАУ~(\ref{eq:form_29}); $\mathbf{q}_0$ -- начальное приближение;  $\mathbf{P}$ -- матрица перехода от базиса $\mathbf{w}$~(\ref{eq:basis}) к базису $\nabla \phi$~(\ref{eq:basis_nodal_grads}); $\gamma$ -- точность решения СЛАУ; $\varepsilon_1$ и $\varepsilon_2$ -- точности решения промежуточных СЛАУ на подпространстве ядра и полном пространстве соответственно; $solve(\mathbf{A}, \mathbf{b}, \varepsilon)$ -- процедура решения СЛАУ с матрицей $\mathbf{A}$ и правой частью $\mathbf{b}$ с точностью $\varepsilon$.
 
-В качестве $solve(\mathbf{A}, \mathbf{b}, \varepsilon)$ можно воспользоваться методами на подпространствах Крылова~\citep{balandin_slae, solver_saad, solver_iterative, solver_templates}, хорошо себя зарекомендовали GMRES и COCG. Величины $\varepsilon_1$ и $\varepsilon_2$ следует выбирать небольшими, от $0.9$ до $0.01$~\citep{nechaev}.
+В качестве $solve(\mathbf{A}, \mathbf{b}, \varepsilon)$ можно воспользоваться методами на подпространствах Крылова~\citep{balandin_slae, solver_saad, solver_iterative, solver_templates}, например GMRES или COCG. Величины $\varepsilon_1$ и $\varepsilon_2$ следует выбирать небольшими, от $0.9$ до $0.01$~\citep{nechaev}.
 %
 
 % =============================================================================
 
 \clearpage
-\section{Построение СЛАУ}
+\section{Построение и решение СЛАУ}
 \subsection{Структура глобальной матрицы СЛАУ}
 Рассмотрим структуру глобальной матрицы СЛАУ на примере двух тетраэдральных конечных элементов с базисом первого полного порядка, имеющих общую грань. Глобальная нумерация вершин и ребер этих тетраэдров приведена на рисунке \ref{fig:theory:2-tetrahedrons}.
 \begin{figure}[H]
@@ -1439,9 +1451,10 @@ PML-слой определяется модифицированными коо�
 % =============================================================================
 
 \clearpage
-\section{Верификация программного комплекса}
+\section{Вычислительные эксперименты}
+\subsection{Верификация программного комплекса}
 Верификация полученной конечноэлементной аппроксимации будет проводиться на тестовой задаче, имеющей аналитическое решение.
-\subsection{Расчетная область}
+\subsubsection{Расчетная область}
 Расчетная область представляет собой куб со следующими параметрами: $x \in [0,1]$, $y \in [0,1]$, $z \in [0,1]$. Куб разбивается на регулярную тетраэдральную сетку согласно рисунку \ref{fig:verify:x1}:
 
 \begin{figure}[!htbp]
@@ -1459,7 +1472,7 @@ PML-слой определяется модифицированными коо�
 
 % =============================================================================
 
-%\subsection{Тестирование на линейных функциях}
+%\subsubsection{Тестирование на линейных функциях}
 %В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
 %\begin{equation*}
 %	\mathbf{E} = ( y+z , x+z, x+y )^T .
@@ -1480,7 +1493,7 @@ PML-слой определяется модифицированными коо�
 
 % =============================================================================
 
-%\subsection{Тестирование на нелинейных функциях}
+%\subsubsection{Тестирование на нелинейных функциях}
 %
 %В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
 %\begin{equation}
@@ -1507,7 +1520,7 @@ PML-слой определяется модифицированными коо�
 
 % =============================================================================
 
-%\subsection{Определение порядка аппроксимации}
+%\subsubsection{Определение порядка аппроксимации}
 %
 %В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию (\ref{eq:verify:exp_solution}). Проведем исследование на порядок аппроксимации. Измельчим сетку расчетной области, изображенную на рисунке \ref{fig:verify:x1}, в 2 и 4 раза, после чего сравним погрешности полученных решений. Измельченные сетки приведены на рисунках \ref{fig:verify:x2} и \ref{fig:verify:x4}, погрешности в норме пространства $\mathbb{L}^2$ полученных решений и порядок аппроксимации -- в таблице \ref{tab:verify:exp_order}.
 %
@@ -1542,7 +1555,7 @@ PML-слой определяется модифицированными коо�
 
 % =============================================================================
 
-\subsection{Тестирование на гладких функциях}
+\subsubsection{Тестирование на гладких функциях}
 
 В качестве аналитического решения уравнения (\ref{eq:helmholtz}) выберем функцию
 \begin{equation}
@@ -1590,8 +1603,6 @@ PML-слой определяется модифицированными коо�
 
 % =============================================================================
 
-\clearpage
-\section{Вычислительные эксперименты}
 \subsection{Исследование влияния слоя воздуха}
 
 Проведем исследование влияния слоя воздуха в модельной задаче морской геоэлектрики при различной глубине погружения в воду источника электромагнитного возмущения.
@@ -1624,6 +1635,13 @@ PML-слой определяется модифицированными коо�
 \subsubsection{Результаты исследования}
 Разности решений в норме $\mathbb{L}^2$ в объеме $[-600,600] \times [-600,600] \times [-1000,0]$ между областью, в которой присутствует слой воздуха, и областью, в которой заданы условия непротекания~(\ref{eq:bound2}), для некоторых значений глубины петли $h$ показаны в таблице \ref{tab:res1:diff}. В форме графика эти данные приведены на рисунке \ref{fig:res1:graph}.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{research-1/presentation/presentation.eps}
+	\caption{график изменения относительной разности решений при изменении глубины}
+	\label{fig:res1:graph}
+\end{figure}
+
 \begin{table}[H]
 	\caption{относительные разности решений}
 	\label{tab:res1:diff}
@@ -1633,13 +1651,6 @@ PML-слой определяется модифицированными коо�
 		\hline
 	\end{tabularx}
 \end{table}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=1]{research-1/presentation/presentation.eps}
-	\caption{график изменения относительной разности решений при изменении глубины}
-	\label{fig:res1:graph}
-\end{figure}
 
 Графики вещественной компоненты $\mathbf{E}_y$ по линии $y=0$, $z=-610$ для различных глубин петли представлены на рисунках \ref{fig:res1:5_50} и \ref{fig:res1:200_300}.
 
@@ -1651,6 +1662,8 @@ PML-слой определяется модифицированными коо�
 	\caption{$\Re(\mathbf{E}_y)$ по линии $y=0$, $z=-610$, глубина (а) 5 м и (б) 50 м}
 	\label{fig:res1:5_50}
 \end{figure}
+
+\vspace{-0.8cm}
 
 \begin{figure}[H]
 	\centering
@@ -1676,22 +1689,21 @@ PML-слой определяется модифицированными коо�
 
 Вычислительные эксперименты проводились следующим образом: последовательно варьировался каждый из параметров PML-слоя: толщина слоя в $k$-м направлении $\delta_k$, где $k = \begin{smallmatrix}x\\1\end{smallmatrix},\begin{smallmatrix}y\\2\end{smallmatrix},\begin{smallmatrix}z\\3\end{smallmatrix}$, расстояние от центра области до внутренних границ слоя $l_k$, коэффициент комплексного растяжения координат $\chi$~(\ref{eq:pml_s}), оставшиеся параметры фиксировались, что позволило определить параметры, оказывающие наибольшее влияние на характеристики PML-слоя.
 
-Фрагменты тетраэдральных конечноэлементных сеток с <<большим баком>> и с PML-слоем приведены на рисунках \ref{fig:res2:meshes_a} и \ref{fig:res2:meshes_b}.
 \begin{figure}[H]
 	\centering
 	% trim=left bottom right top
-	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.2mm 0mm,clip,scale=1.1]{research-2/meshes/meshes.png}\label{fig:res2:meshes_a}}
-	\subfloat[][]{\includegraphics[trim=78.8mm 0mm 0mm 0mm,clip,scale=1.1]{research-2/meshes/meshes.png}\label{fig:res2:meshes_b}}
+	\subfloat[][]{\includegraphics[trim=0mm 0mm 79.2mm 0mm,clip,scale=1.1]{research-2/meshes/meshes_color.eps}\label{fig:res2:meshes_a}}
+	\subfloat[][]{\includegraphics[trim=79.2mm 0mm 0mm 0mm,clip,scale=1.1]{research-2/meshes/meshes_color.eps}\label{fig:res2:meshes_b}}
 	\caption{конечноэлементные сетки: (а) <<большой бак>> и (б) PML-слой}
 	\label{fig:res2:meshes}
 \end{figure}
+
+Фрагменты тетраэдральных конечноэлементных сеток с <<большим баком>> и с PML-слоем приведены на рисунках \ref{fig:res2:meshes_a} и \ref{fig:res2:meshes_b}.
 
 В этом исследовании будем пользоваться базисными функциями первого полного порядка.
 
 \subsubsection{Описание расчетной области}
 Схематичное изображение расчетной области показано на рисунке \ref{fig:res2:area}, где $\Omega_1$ -- воздух ($\sigma=10^{-6}$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_2$ -- морская вода ($\sigma=3.3$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_3$ -- грунт ($\sigma=0.2$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_4$ -- углеводороды ($\sigma=10^{-2}$~См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $L_1$, $L_2$ и $L_3$ -- размеры области моделирования по осям $x$, $y$ и $z$ соответственно; $L_1 = L_2 = L_3 = 6000$~м; $h_1=300$~м -- толщина $\Omega_2$; $l_1=400$~м, $h_3=100$~м, $h_2=100$~м -- длина, толщина и глубина объекта $\Omega_4$ соответственно.
-
-Объект $\Omega_4$ представляет собой скругленный прямоугольный параллелепипед с двумя равными сторонами, наклоненный под углом $5^{\circ}$. Источником электрического поля является петля диаметром $d = 100$~м с током частотой $1$~Гц, расположенная в воздухе на расстоянии $h = 5$~м от границы раздела сред воздух-вода. Также рассматривается случай, когда петля расположена в воде ($h = -5$~м).
 
 \begin{figure}[H]
 	\centering
@@ -1699,6 +1711,8 @@ PML-слой определяется модифицированными коо�
 	\caption{расчетная область}
 	\label{fig:res2:area}
 \end{figure}
+
+Объект $\Omega_4$ представляет собой скругленный прямоугольный параллелепипед с двумя равными сторонами, наклоненный под углом $5^{\circ}$. Источником электрического поля является петля диаметром $d = 100$~м с током частотой $1$~Гц, расположенная в воздухе на расстоянии $h = 5$~м от границы раздела сред воздух-вода. Также рассматривается случай, когда петля расположена в воде ($h = -5$~м).
 
 Выделим внутри области c условием <<большого бака>> и области, на границе которой задан PML-слой, подобласть $\Omega'$ размером $1000 \times 1000 \times 1000$~м${}^3$. Для этой подобласти в данном исследовании будем оценивать разность в норме $\mathbb{L}^2$ между действительными компонентами $\mathbf{E}_y$ векторов решений $\mathbf{E}_y^{\text{бак}}$ и $\mathbf{E}_y^{\text{PML}}$, полученных с применением <<большого бака>> и PML-слоя соответственно.
 
@@ -1825,17 +1839,14 @@ PML-слой определяется модифицированными коо�
 Как видно из графиков на рисунке \ref{fig:res2:650_3}, разрывна только нормальная компонента $\mathbf{E}_z$, следовательно, условия (\ref{eq:maxwell:tangent_E})-(\ref{eq:maxwell:normal_D}) выполнены.
 
 \subsubsection{Графическое представление результатов}
-На рисунках \ref{fig:res2:field_sca}, \ref{fig:res2:field_vec} и \ref{fig:res2:field_y0} показаны картины электрического поля, полученные при параметрах $h=5$~м, $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_2} = (3, 2)$, $m=3$, $l_k = 600$~м и $\delta_k = 100$~м. На рисунках \ref{fig:res2:field_sca_a}, \ref{fig:res2:field_vec_a} и \ref{fig:res2:field_y0_a} представлено решение с PML-слоем; \ref{fig:res2:field_sca_b}, \ref{fig:res2:field_vec_b} и \ref{fig:res2:field_y0_b} -- решение с <<большим баком>>.
-
-\begin{spacing}{1.0}
-\setlength{\parskip}{0pt}
+Рассмотрим результаты, полученные при параметрах $h=5$~м, $\chi_{\Omega_1} = (4, 0)$, $\chi_{\Omega_2} = (1, 6)$, $\chi_{\Omega_2} = (3, 2)$, $m=3$, $l_k = 600$~м и $\delta_k = 100$~м. На рисунках \ref{fig:res2:field_sca} и \ref{fig:res2:field_vec} показаны картины электрического поля в сечении плоскостью $z = -10$~м. На рисунках \ref{fig:res2:field_sca_a} и \ref{fig:res2:field_vec_a} представлено решение с PML-слоем; \ref{fig:res2:field_sca_b} и \ref{fig:res2:field_vec_b} -- решение с <<большим баком>>.
 
 \begin{figure}[H]
 	\centering
 	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/pml/airloop_pml_z=-10_EyR.eps}\label{fig:res2:field_sca_a}}
 	~~
 	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/std/airloop_std_z=-10_EyR.eps}\label{fig:res2:field_sca_b}}
-	\caption{$\Re(\mathbf{E}_y)$ в сечении плоскостью $z=-10$~м}
+	\caption{$\Re(\mathbf{E}_y)$}
 	\label{fig:res2:field_sca}
 \end{figure}
 
@@ -1846,22 +1857,20 @@ PML-слой определяется модифицированными коо�
 	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/pml/airloop_pml_z=-10_EyR_vec.eps}\label{fig:res2:field_vec_a}}
 	~~
 	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/std/airloop_std_z=-10_EyR_vec.eps}\label{fig:res2:field_vec_b}}
-	\caption{изолинии $\Re(\mathbf{E}_y)$ и векторы $\left( \Re(\mathbf{E}_x) , \Re(\mathbf{E}_y) \right)^T$ в сечении плоскостью $z=-10$~м}
+	\caption{изолинии $\Re(\mathbf{E}_y)$ и векторы $\left( \Re(\mathbf{E}_x) , \Re(\mathbf{E}_y) \right)^T$}
 	\label{fig:res2:field_vec}
 \end{figure}
 
-\vspace{-0.8cm}
+На рисунке \ref{fig:res2:field_y0} показаны картины электрического поля в сечении плоскостью $y=0$. На рисунках \ref{fig:res2:field_y0_a} и \ref{fig:res2:field_y0_b} представлено решение с PML-слоем и решение с <<большим баком>> соответственно.
 
 \begin{figure}[H]
 	\centering
 	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/pml/airloop_pml_y=0_EyR.eps}\label{fig:res2:field_y0_a}}
 	~~
 	\subfloat[][]{\includegraphics[scale=0.35]{research-2/field/airloop/std/airloop_std_y=0_EyR.eps}\label{fig:res2:field_y0_b}}
-	\caption{$\Re(\mathbf{E}_y)$ в сечении плоскостью $y=0$}
+	\caption{$\Re(\mathbf{E}_y)$}
 	\label{fig:res2:field_y0}
 \end{figure}
-
-\end{spacing}
 
 % =============================================================================
 
@@ -1879,16 +1888,19 @@ PML-слой определяется модифицированными коо�
 
 \subsubsection{Описание расчетной области}
 Схематичное изображение расчетной области показано на рисунке \ref{fig:res3:area}, где $\Omega_1$ -- воздух ($\sigma=10^{-6}$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_2$ -- морская вода ($\sigma=3.3$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_3$ -- грунт ($\sigma=0.2$ См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $\Omega_4$ -- углеводороды ($\sigma=10^{-2}$~См/м, $\mu=\mu_0$, $\varepsilon=\varepsilon_0$); $L_1$, $L_2$ и $L_3$ -- размеры области моделирования по осям $x$, $y$ и $z$ соответственно; $L_1 = L_2 = L_3 = 6000$~м; $h_1=600$~м -- толщина $\Omega_2$; $l_1=400$~м, $h_3=75$~м, $h_2=120$~м -- длина, толщина и глубина объекта $\Omega_4$ соответственно.
+
+Источником электрического поля является петля диаметром $d=100$ м с током частотой 1 Гц, расположенная в воде на расстоянии $h=590$ м от границы раздела сред воздух-вода (в 10 метрах над поверхностью грунта). Объект $\Omega_4$
+%, как и в предыдущих исследованиях, 
+представляет собой скругленный прямоугольный параллелепипед с двумя равными сторонами, наклоненный под углом $5^{\circ}$.
+
+В этой области рассмотрим электрическое поле при различных смещениях объекта относительно источника ($l_2=-300$, $-200$, $-100$ и $0$ м), а также сравним с электрическим полем в случае проводящего объекта ($\sigma=10^2$ См/м).
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.7]{research-3/area/area_3layers_shift_3.eps}
 	\caption{схематичное изображение расчетной области}
 	\label{fig:res3:area}
 \end{figure}
-
-Источником электрического поля является петля диаметром $d=100$ м с током частотой 1 Гц, расположенная в воде на расстоянии $h=590$ м от границы раздела сред воздух-вода (в 10 метрах над поверхностью грунта). Объект $\Omega_4$, как и в предыдущих исследованиях, представляет собой скругленный прямоугольный параллелепипед с двумя равными сторонами, наклоненный под углом $5^{\circ}$.
-
-В этой области рассмотрим электрическое поле при различных смещениях объекта относительно источника ($l_2=-300$, $-200$, $-100$ и $0$ м), а также сравним с электрическим полем в случае проводящего объекта ($\sigma=10^2$ См/м).
 
 \subsubsection{Конечноэлементная сетка}
 Фрагмент $x \in [-600,0]$, $y \in [-600,600]$ $z \in [-1000,600]$ одной из конечноэлементных сеток, использованных для проведения исследования, представлен на рисунке \ref{fig:res3:mesh}.
@@ -1902,149 +1914,143 @@ PML-слой определяется модифицированными коо�
 \end{figure}
 
 \subsubsection{Результаты вычислительного эксперимента}
-На рисунках \ref{fig:res3:0_EyR}-\ref{fig:res3:300_EzR} показано графическое представление напряженности электрического поля $\mathbf{E}$, на рисунках под буквой <<а>>~(слева) -- для объекта с $\sigma=10^{-2}$~См/м, под буквой <<б>>~(справа) -- для объекта с $\sigma=10^{2}$~См/м.
+Рассмотрим результаты для проводящего и непроводящего объекта при различных его смещениях относительно источника ($l_2=-300$, $-200$, $-100$ и $0$ м). На рисунках \ref{fig:res3:0_EyR}-\ref{fig:res3:0_vec} показано графическое представление напряженности электрического поля $\mathbf{E}$ при $l_2=0$ в сечении $y=0$, на рисунках \ref{fig:res3:0_EyR_a} и \ref{fig:res3:0_vec_a} -- для объекта с $\sigma=10^{-2}$~См/м, на рисунках \ref{fig:res3:0_EyR_b} и \ref{fig:res3:0_vec_b} -- для объекта с $\sigma=10^{2}$~См/м.
 
-\begin{spacing}{1.0}
-\setlength{\parskip}{0pt}
+%\begin{spacing}{1.0}
+%\setlength{\parskip}{0pt}
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/0/0_no_y=0_EyR.eps}\label{fig:res3:0_EyR_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/0/0_no_y=0_EyR.eps}\label{fig:res3:0_EyR_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/0/0_yes_y=0_EyR.eps}\label{fig:res3:0_EyR_b}}
-	\caption{$\Re(\mathbf{E}_y)$ при $l_2=0$ в сечении $y=0$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/0/0_yes_y=0_EyR.eps}\label{fig:res3:0_EyR_b}}
+	\caption{$\Re(\mathbf{E}_y)$ при $l_2=0$}
 	\label{fig:res3:0_EyR}
 \end{figure}
 
-\vspace{-0.8cm}
+%\vspace{-0.8cm}
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/0/0_no_y=0_vec.eps}\label{fig:res3:0_vec_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/0/0_no_y=0_vec.eps}\label{fig:res3:0_vec_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/0/0_yes_y=0_vec.eps}\label{fig:res3:0_vec_b}}
-	\caption{векторы $(\Re(\mathbf{E}_x), \Re{\mathbf{E}_z})^T$, изолинии $\Re(\mathbf{E}_y)$ при $l_2=0$ в сечении $y=0$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/0/0_yes_y=0_vec.eps}\label{fig:res3:0_vec_b}}
+	\caption{векторы $(\Re(\mathbf{E}_x), \Re{\mathbf{E}_z})^T$, изолинии $\Re(\mathbf{E}_y)$ при $l_2=0$}
 	\label{fig:res3:0_vec}
 \end{figure}
 
-\vspace{-0.8cm}
+%\end{spacing}
+
+На рисунках \ref{fig:res3:0_EzR_a} и \ref{fig:res3:0_EzR_b} показано графическое представление напряженности электрического поля $\mathbf{E}$ при $l_2=0$ в сечении $z=-601$~м для объекта с $\sigma=10^{-2}$~См/м и для объекта с $\sigma=10^{2}$~См/м соответственно.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/0/0_no_z=-601_EzR.eps}\label{fig:res3:0_EzR_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/0/0_no_z=-601_EzR.eps}\label{fig:res3:0_EzR_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/0/0_yes_z=-601_EzR.eps}\label{fig:res3:0_EzR_b}}
-	\caption{$\Re(\mathbf{E}_z)$ при $l_2=0$ в сечении $z=-601$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/0/0_yes_z=-601_EzR.eps}\label{fig:res3:0_EzR_b}}
+	\caption{$\Re(\mathbf{E}_z)$ при $l_2=0$}
 	\label{fig:res3:0_EzR}
 \end{figure}
 
-\vspace{-0.8cm}
+На рисунках \ref{fig:res3:100_EyR}-\ref{fig:res3:100_vec} показано графическое представление напряженности электрического поля $\mathbf{E}$ при $l_2=-100$ в сечении $y=0$, на рисунках \ref{fig:res3:100_EyR_a} и \ref{fig:res3:100_vec_a} -- для объекта с $\sigma=10^{-2}$~См/м, на рисунках \ref{fig:res3:100_EyR_b} и \ref{fig:res3:100_vec_b} -- для объекта с $\sigma=10^{2}$~См/м.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/100/100_no_y=0_EyR.eps}\label{fig:res3:100_EyR_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/100/100_no_y=0_EyR.eps}\label{fig:res3:100_EyR_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/100/100_yes_y=0_EyR.eps}\label{fig:res3:100_EyR_b}}
-	\caption{$\Re(\mathbf{E}_y)$ при $l_2=-100$ в сечении $y=0$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/100/100_yes_y=0_EyR.eps}\label{fig:res3:100_EyR_b}}
+	\caption{$\Re(\mathbf{E}_y)$ при $l_2=-100$}
 	\label{fig:res3:100_EyR}
 \end{figure}
 
-\vspace{-0.8cm}
-
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/100/100_no_y=0_vec.eps}\label{fig:res3:100_vec_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/100/100_no_y=0_vec.eps}\label{fig:res3:100_vec_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/100/100_yes_y=0_vec.eps}\label{fig:res3:100_vec_b}}
-	\caption{векторы $(\Re(\mathbf{E}_x), \Re{\mathbf{E}_z})^T$, изолинии $\Re(\mathbf{E}_y)$ при $l_2=-100$ в сечении $y=0$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/100/100_yes_y=0_vec.eps}\label{fig:res3:100_vec_b}}
+	\caption{векторы $(\Re(\mathbf{E}_x), \Re{\mathbf{E}_z})^T$, изолинии $\Re(\mathbf{E}_y)$ при $l_2=-100$}
 	\label{fig:res3:100_vec}
 \end{figure}
 
-\vspace{-0.8cm}
+На рисунках \ref{fig:res3:100_EzR_a} и \ref{fig:res3:100_EzR_b} показано графическое представление напряженности электрического поля $\mathbf{E}$ при $l_2=-100$ в сечении $z=-601$~м для объекта с $\sigma=10^{-2}$~См/м и для объекта с $\sigma=10^{2}$~См/м соответственно.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/100/100_no_z=-601_EzR.eps}\label{fig:res3:100_EzR_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/100/100_no_z=-601_EzR.eps}\label{fig:res3:100_EzR_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/100/100_yes_z=-601_EzR.eps}\label{fig:res3:100_EzR_b}}
-	\caption{$\Re(\mathbf{E}_z)$ при $l_2=-100$ в сечении $z=-601$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/100/100_yes_z=-601_EzR.eps}\label{fig:res3:100_EzR_b}}
+	\caption{$\Re(\mathbf{E}_z)$ при $l_2=-100$}
 	\label{fig:res3:100_EzR}
 \end{figure}
 
-\vspace{-0.8cm}
+На рисунках \ref{fig:res3:200_EyR}-\ref{fig:res3:200_vec} показано графическое представление напряженности электрического поля $\mathbf{E}$ при $l_2=-200$ в сечении $y=0$, на рисунках \ref{fig:res3:200_EyR_a} и \ref{fig:res3:200_vec_a} -- для объекта с $\sigma=10^{-2}$~См/м, на рисунках \ref{fig:res3:200_EyR_b} и \ref{fig:res3:200_vec_b} -- для объекта с $\sigma=10^{2}$~См/м.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/200/200_no_y=0_EyR.eps}\label{fig:res3:200_EyR_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/200/200_no_y=0_EyR.eps}\label{fig:res3:200_EyR_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/200/200_yes_y=0_EyR.eps}\label{fig:res3:200_EyR_b}}
-	\caption{$\Re(\mathbf{E}_y)$ при $l_2=-200$ в сечении $y=0$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/200/200_yes_y=0_EyR.eps}\label{fig:res3:200_EyR_b}}
+	\caption{$\Re(\mathbf{E}_y)$ при $l_2=-200$}
 	\label{fig:res3:200_EyR}
 \end{figure}
 
-\vspace{-0.8cm}
-
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/200/200_no_y=0_vec.eps}\label{fig:res3:200_vec_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/200/200_no_y=0_vec.eps}\label{fig:res3:200_vec_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/200/200_yes_y=0_vec.eps}\label{fig:res3:200_vec_b}}
-	\caption{векторы $(\Re(\mathbf{E}_x), \Re{\mathbf{E}_z})^T$, изолинии $\Re(\mathbf{E}_y)$ при $l_2=-200$ в сечении $y=0$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/200/200_yes_y=0_vec.eps}\label{fig:res3:200_vec_b}}
+	\caption{векторы $(\Re(\mathbf{E}_x), \Re{\mathbf{E}_z})^T$, изолинии $\Re(\mathbf{E}_y)$ при $l_2=-200$}
 	\label{fig:res3:200_vec}
 \end{figure}
 
-\vspace{-0.8cm}
+На рисунках \ref{fig:res3:200_EzR_a} и \ref{fig:res3:200_EzR_b} показано графическое представление напряженности электрического поля $\mathbf{E}$ при $l_2=-200$ в сечении $z=-601$~м для объекта с $\sigma=10^{-2}$~См/м и для объекта с $\sigma=10^{2}$~См/м соответственно.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/200/200_no_z=-601_EzR.eps}\label{fig:res3:200_EzR_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/200/200_no_z=-601_EzR.eps}\label{fig:res3:200_EzR_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/200/200_yes_z=-601_EzR.eps}\label{fig:res3:200_EzR_b}}
-	\caption{$\Re(\mathbf{E}_z)$ при $l_2=-200$ в сечении $z=-601$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/200/200_yes_z=-601_EzR.eps}\label{fig:res3:200_EzR_b}}
+	\caption{$\Re(\mathbf{E}_z)$ при $l_2=-200$}
 	\label{fig:res3:200_EzR}
 \end{figure}
 
-\vspace{-0.8cm}
+На рисунках \ref{fig:res3:300_EyR}-\ref{fig:res3:300_vec} показано графическое представление напряженности электрического поля $\mathbf{E}$ при $l_2=-300$ в сечении $y=0$, на рисунках \ref{fig:res3:300_EyR_a} и \ref{fig:res3:300_vec_a} -- для объекта с $\sigma=10^{-2}$~См/м, на рисунках \ref{fig:res3:300_EyR_b} и \ref{fig:res3:300_vec_b} -- для объекта с $\sigma=10^{2}$~См/м.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/300/300_no_y=0_EyR.eps}\label{fig:res3:300_EyR_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/300/300_no_y=0_EyR.eps}\label{fig:res3:300_EyR_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/300/300_yes_y=0_EyR.eps}\label{fig:res3:300_EyR_b}}
-	\caption{$\Re(\mathbf{E}_y)$ при $l_2=-300$ в сечении $y=0$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/300/300_yes_y=0_EyR.eps}\label{fig:res3:300_EyR_b}}
+	\caption{$\Re(\mathbf{E}_y)$ при $l_2=-300$}
 	\label{fig:res3:300_EyR}
 \end{figure}
 
-\vspace{-0.8cm}
+На рисунках \ref{fig:res3:300_EzR_a} и \ref{fig:res3:300_EzR_b} показано графическое представление напряженности электрического поля $\mathbf{E}$ при $l_2=-300$ в сечении $z=-601$~м для объекта с $\sigma=10^{-2}$~См/м и для объекта с $\sigma=10^{2}$~См/м соответственно.
 
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/300/300_no_y=0_vec.eps}\label{fig:res3:300_vec_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/300/300_no_y=0_vec.eps}\label{fig:res3:300_vec_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/300/300_yes_y=0_vec.eps}\label{fig:res3:300_vec_b}}
-	\caption{векторы $(\Re(\mathbf{E}_x), \Re{\mathbf{E}_z})^T$, изолинии $\Re(\mathbf{E}_y)$ при $l_2=-300$ в сечении $y=0$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/300/300_yes_y=0_vec.eps}\label{fig:res3:300_vec_b}}
+	\caption{векторы $(\Re(\mathbf{E}_x), \Re{\mathbf{E}_z})^T$, изолинии $\Re(\mathbf{E}_y)$ при $l_2=-300$}
 	\label{fig:res3:300_vec}
 \end{figure}
 
-\vspace{-0.8cm}
-
 \begin{figure}[H]
 	\centering
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/300/300_no_z=-601_EzR.eps}\label{fig:res3:300_EzR_a}}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/300/300_no_z=-601_EzR.eps}\label{fig:res3:300_EzR_a}}
 	\text{~~}
-	\subfloat[][]{\includegraphics[scale=0.35]{research-3/fields/images/300/300_yes_z=-601_EzR.eps}\label{fig:res3:300_EzR_b}}
-	\caption{$\Re(\mathbf{E}_z)$ при $l_2=-300$ в сечении $z=-601$}
+	\subfloat[][]{\includegraphics[scale=0.36]{research-3/fields/images/300/300_yes_z=-601_EzR.eps}\label{fig:res3:300_EzR_b}}
+	\caption{$\Re(\mathbf{E}_z)$ при $l_2=-300$}
 	\label{fig:res3:300_EzR}
 \end{figure}
-
-\end{spacing}
 
 
 Результаты моделирования показывают, что проводящий объект хорошо <<виден>> и на некотором расстоянии от морского дна, а непроводящий -- только вблизи поверхности или при некотором заглублении приемника в грунт, причем наибольший отклик на источник электромагнитного возмущения для непроводящего объекта наблюдается в том случае, когда этот источник расположен с некоторым смещением от центра симметрии объекта.
 
 % =============================================================================
 
-%\clearpage
+\clearpage
 \section{Описание программного комплекса}
 %TODO Описать программный комплекс
 {\color{red}\textbf{Описать программный комплекс}}
