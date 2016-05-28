@@ -251,6 +251,22 @@
 \renewcommand{\log}{\mathop{\mathrm{log}}\nolimits}
 \newcommand{\CodeFont}[1]{{\small{\texttt{#1}}}}
 
+% Команда для вставки подсекции с раскрашенным кодом
+% \subsectioncode{<language>}{<filepath>}{<title>}
+\newcommand{\subsectioncode}[3]{%
+	%\pagebreak[1]%
+	\subsection*{#3}%
+	\begin{singlespace}%
+	\begin{scriptsize}%
+	\inputminted{#1}{#2}%
+	\end{scriptsize}%
+	\end{singlespace}%
+}
+% \subsectioncodeauto{<language>}{<prefix>}{<filename>}
+\newcommand{\subsectioncodeauto}[3]{%
+	\subsectioncode{#1}{#2/#3}{Файл #3}%
+}
+
 % =============================================================================
 
 \begin{document}
@@ -2544,37 +2560,11 @@ Gmsh Reference Manual [Электронный ресурс]. -- Режим до�
 \labelname{А}\label{app:config_example}
 \addcontentsline{toc}{section}{Приложение А. Примеры конфигурационных файлов}
 
-\subsection*{Пример основного конфигурационного файла}
-
-\begin{singlespace}
-\begin{scriptsize}
-\inputminted{ini}{sources/configs/config.ini}
-\end{scriptsize}
-\end{singlespace}
-
-\subsection*{Пример конфигурационного файла физических областей}
-
-\begin{singlespace}
-\begin{scriptsize}
-\inputminted{ini}{sources/configs/phys.ini}
-\end{scriptsize}
-\end{singlespace}
-
-\subsection*{Пример конфигурационного файла PML-слоя}
-
-\begin{singlespace}
-\begin{scriptsize}
-\inputminted{ini}{sources/configs/config_pml.ini}
-\end{scriptsize}
-\end{singlespace}
-
-\subsection*{Пример конфигурационного файла сравнения решений}
-
-\begin{singlespace}
-\begin{scriptsize}
-\inputminted{ini}{sources/configs/diff.ini}
-\end{scriptsize}
-\end{singlespace}
+\subsectioncode{ini}{sources/configs/config.ini}{Пример основного конфигурационного файла}
+\pagebreak
+\subsectioncode{ini}{sources/configs/phys.ini}{Пример конфигурационного файла физических областей}
+\subsectioncode{ini}{sources/configs/config_pml.ini}{Пример конфигурационного файла PML-слоя}
+\subsectioncode{ini}{sources/configs/diff.ini}{Пример конфигурационного файла сравнения решений}
 
 % =============================================================================
 
@@ -2584,8 +2574,43 @@ Gmsh Reference Manual [Электронный ресурс]. -- Режим до�
 \labelname{Б}\label{app:interfaces}
 \addcontentsline{toc}{section}{Приложение Б. Интерфейсы основных классов программного комплекса}
 
-%TODO Вставить интерфейсы основных классов программного комплекса
-{\color{red}\textbf{Вставить интерфейсы основных классов программного комплекса}}
+\subsectioncodeauto{cpp}{sources/src}{vfem/vfem/vfem.h}
+\subsectioncodeauto{cpp}{sources/src}{vfem/vfem/phys.h}
+\subsectioncodeauto{cpp}{sources/src}{vfem/vfem/slae.h}
+\subsectioncodeauto{cpp}{sources/src}{vfem/problems/problems.h}
+\subsectioncodeauto{cpp}{sources/src}{vfem/elements/tetrahedron.h}
+\pagebreak
+\subsectioncodeauto{cpp}{sources/src}{vfem/elements/triangle.h}
+\subsectioncodeauto{cpp}{sources/src}{vfem/elements/edge.h}
+\subsectioncodeauto{cpp}{sources/src}{vfem/common/config.h}
+\subsectioncode{cpp}{sources/src/vfem/common/evaluator_helmholtz.h}{Файл vfem/common/evaluator\_helmholtz.h}
+\subsectioncodeauto{cpp}{sources/src}{vfem/common/common.h}
+
+\subsectioncode{cpp}{sources/src/core/containers/fem/tetrahedron_basic.h}{Файл core/containers/fem/tetrahedron\_basic.h}
+\subsectioncode{cpp}{sources/src/core/containers/fem/tetrahedron_basic_3d.h}{Файл core/containers/fem/tetrahedron\_basic\_3d.h}
+\subsectioncode{cpp}{sources/src/core/containers/fem/triangle_basic.h}{Файл core/containers/fem/triangle\_basic.h}
+\subsectioncode{cpp}{sources/src/core/containers/fem/triangle_basic_3d.h}{Файл core/containers/fem/triangle\_basic\_3d.h}
+
+\subsectioncodeauto{cpp}{sources/src}{core/containers/tree/octree.h}
+
+\subsectioncode{cpp}{sources/src/core/containers/geometry/edge_basic.h}{Файл core/containers/geometry/edge\_basic.h}
+\subsectioncode{cpp}{sources/src/core/containers/geometry/face_triangle_basic.h}{Файл core/containers/geometry/face\_triangle\_basic.h}
+\subsectioncode{cpp}{sources/src/core/containers/geometry/vector3_t.h}{Файл core/containers/geometry/vector3\_t.h}
+\pagebreak
+\subsectioncode{cpp}{sources/src/core/containers/geometry/point3_t.h}{Файл core/containers/geometry/point3\_t.h}
+
+\subsectioncode{cpp}{sources/src/core/cubatures/tetrahedron_integration.h}{Файл core/cubatures/tetrahedron\_integration.h}
+\subsectioncode{cpp}{sources/src/core/cubatures/triangle_integration.h}{Файл core/cubatures/triangle\_integration.h}
+
+\subsectioncode{cpp}{sources/src/core/solvers/CSLR/preconditioners/preconditioner_interface.h}{Файл core/solvers/CSLR/preconditioners/preconditioner\_interface.h}
+\subsectioncode{cpp}{sources/src/core/solvers/CSLR/symmetric/symmetric_solver_interface.h}{Файл core/solvers/CSLR/symmetric/symmetric\_solver\_interface.h}
+\subsectioncode{cpp}{sources/src/core/solvers/CSLR/solvers_factory.h}{Файл core/solvers/CSLR/symmetric/solvers\_factory.h}
+
+\subsectioncodeauto{cpp}{sources/src}{core/utils/inifile.h}
+
+\subsectioncodeauto{cpp}{sources/src}{core/evaluator/evaluator.h}
+\subsectioncode{cpp}{sources/src/core/evaluator/evaluator_operations.h}{Файл sources/src/core/evaluator/evaluator\_operations.h}
+\subsectioncode{cpp}{sources/src/core/evaluator/evaluator_xyz.h}{Файл sources/src/core/evaluator/evaluator\_xyz.h}
 
 % =============================================================================
 
